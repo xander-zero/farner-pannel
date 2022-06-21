@@ -1,0 +1,134 @@
+[
+  {
+    "id": "1",
+    "role": "financeManager",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/visit",
+        "display_name": "درخواست بازدید",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "role": "educationManager",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/gis",
+        "display_name": "لیست فایل های report",
+        "icon": "bx bx-category-alt"
+      },
+      {
+        "id": "2",
+        "route": "/dashboard/app/questionnaireList",
+        "display_name": "لیست پرسشنامه ها",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "role": "visitSupport",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/visit",
+        "display_name": "درخواست های بازدید",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "role": "dataCollector",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/checklist",
+        "display_name": "بازدیدهای انجام شده",
+        "icon": "bx bx-category-alt"
+      },
+      {
+        "id": "2",
+        "route": "/dashboard/app/archive",
+        "display_name": "بازدیدهای بایگانی شده",
+        "icon": "bx bx-package"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "role": "GIS",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/checklist",
+        "display_name": "بازدیدهای انجام شده",
+        "icon": "bx bx-category-alt"
+      },
+      {
+        "id": "2",
+        "route": "/dashboard/app/gis",
+        "display_name": "لیست فایل های gis",
+        "icon": "bx bx-package"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "role": "analyst",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/gis",
+        "display_name": "لیست فایل های GIS",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "role": "Qsupport",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/questionnaireList",
+        "display_name": "لیست پرسشنامه ها",
+        "icon": "bx bx-category-alt"
+      },
+      {
+        "id": "2",
+        "route": "/dashboard/app/archive",
+        "display_name": "لیست پرسشنامه های بایگانی",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "role": "mealPlanWriter",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/questionnaireList",
+        "display_name": "لیست پرسشنامه ها",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "role": "contentProvider",
+    "features": [
+      {
+        "id": "1",
+        "route": "/dashboard/app/contentProvider",
+        "display_name": "لیست همه ی کودها",
+        "icon": "bx bx-category-alt"
+      }
+    ]
+  }
+]
