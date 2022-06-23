@@ -9,6 +9,7 @@ const Button = ({
   color,
   space,
   marginTop,
+  weight,
 }) => {
   return (
     <ButtonStyle
@@ -18,6 +19,7 @@ const Button = ({
       small={small}
       color={color}
       space={space}
+      weight={weight}
     >
       {children}
     </ButtonStyle>
@@ -38,5 +40,6 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   margin-top: ${({ marginTop }) => (marginTop ? marginTop : "1rem")};
   margin-right: ${({ space }) => (space ? ".5rem" : "0")};
+  font-weight: ${({ weight }) => weight};
 `;
 export default Button;

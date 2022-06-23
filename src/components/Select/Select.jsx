@@ -1,11 +1,11 @@
 import { Option, SelectStyle } from "./selectStyle";
 
-const Select = ({ items }) => {
+const Select = ({ items, onChange }) => {
   return (
-    <SelectStyle>
+    <SelectStyle onChange={onChange}>
       {items?.map((item, index) => (
         <Option key={index} value={item.value}>
-          {item.name}
+          {item.label}
         </Option>
       ))}
     </SelectStyle>

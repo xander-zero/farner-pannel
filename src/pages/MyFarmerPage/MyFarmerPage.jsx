@@ -14,8 +14,15 @@ import InputFeild from "../../components/InputFeild/InputFeild";
 import Select from "../../components/Select/Select";
 import { allCities, allProvinces } from "../../redux/action/general";
 import Button from "../../components/Button/Button";
+import { useState } from "react";
 
 const MyFarmerPage = () => {
+  const [form, setForm] = useState({
+    fullName: "",
+    phoneNumber: "",
+    city: "",
+    province: "",
+  });
   // declare dispatch
   const dispatch = useDispatch();
 
@@ -41,6 +48,30 @@ const MyFarmerPage = () => {
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { farmers } = farmerSelector;
 
+  const generalSelector = useSelector((state) => state.general);
+
+  const { provinces, cities } = generalSelector;
+  const allProvince = provinces?.provinces?.map((item) => ({
+    label: item?.name,
+    value: item.id,
+  }));
+
+  // const allCities = cities?.cities?.map((item) => ({
+  //   label: item.name,
+  //   value: item.id,
+  // }));
+
+  const filtedCity = cities?.cities?.filter(
+    (item) => item.province_id == form?.province
+  );
+
+  const allCity = filtedCity?.map((item) => ({
+    label: item?.name,
+    value: item.id,
+  }));
+
+  console.log("filtedCity", filtedCity);
+
   useEffect(() => {
     dispatch(allFarmers());
   }, [dispatch]);
@@ -61,15 +92,24 @@ const MyFarmerPage = () => {
       <Row>
         <InputFeild type="text" placeholder="نام و نام خانوادگی" />
         <InputFeild type="text" placeholder="شماره تماس" />
-        <InputFeild type="text" placeholder="شماره تماس" />
       </Row>
       <Row>
-        <Select />
-        <Select />
+        <Select
+          items={allProvince}
+          onChange={(event) =>
+            setForm({ ...form, province: event.target.value })
+          }
+        />
+        <Select
+          items={allCity ? allCity : []}
+          onChange={(event) => setForm({ ...form, city: event.target.value })}
+        />
         <Select items={initialSort} />
       </Row>
 
-      <Button small>جستجو</Button>
+      <Button small weight="bold">
+        جستجو
+      </Button>
       {farmers ? (
         <CardList items={farmers} />
       ) : (
