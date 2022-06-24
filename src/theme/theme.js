@@ -8,7 +8,7 @@ export const lightTheme = {
   backgroundSidebar: "#fff",
   shadow: "2px 2px 10px 2px gray",
   bgPrimary: "#0b618d",
-  border: "#DFDFDF",
+  border: "#C8CCCF",
   lightColor: "#98FB98",
 };
 
@@ -22,6 +22,6 @@ export const darkTheme = {
   backgroundSidebar: "#191C24",
   shadow: "2px 2px 10px 2px black",
   bgPrimary: "#0b618d",
-  border: "#2c2e33",
+  border: "#fff",
   lightColor: "#9370DB",
 };

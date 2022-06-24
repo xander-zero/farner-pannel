@@ -3,8 +3,10 @@ import styled from "styled-components";
 export const Header = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 1rem;
+  align-items: center;
+  /* margin: 1rem; */
   width: 100%;
+  margin: 1rem;
 `;
 
 export const Footer = styled.div`
@@ -20,10 +22,21 @@ export const Card = styled.div`
   align-items: center;
   flex-direction: column;
   width: 350px;
-  height: 250px;
   background-color: ${({ theme }) => theme.backgroundSidebar};
   box-shadow: ${({ theme }) => theme.shadow};
   margin: 0.5rem;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    margin-left: 1rem;
+  }
 `;

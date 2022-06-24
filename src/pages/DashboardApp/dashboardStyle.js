@@ -3,17 +3,25 @@ import styled from "styled-components";
 export const Dashboard = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
+  width: 100%;
+  margin: 1rem 0;
 `;
 export const Right = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 30%;
+  justify-content: space-between;
+  flex-wrap: "wrap";
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
-export const Left = styled.div`
-  display: flex;
-  width: 70%;
-`;
+// export const Left = styled.div`
+//   display: flex;
+//   width: 70%;
+// `;
 
 export const Card = styled.div`
   display: flex;
@@ -24,4 +32,9 @@ export const Card = styled.div`
   background-color: ${({ theme }) => theme.backgroundSidebar};
   border-radius: 10px;
   margin: 0.5rem 0;
+  width: 30%;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;

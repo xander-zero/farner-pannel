@@ -19,6 +19,8 @@ export const Img = styled.img`
   width: 70px;
   height: 70px;
   object-fit: cover;
+  border-radius: 20px;
+  margin-left: 10px;
 `;
 
 export const HeadeTitle = styled.div`

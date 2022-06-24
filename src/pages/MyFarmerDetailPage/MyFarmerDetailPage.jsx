@@ -20,23 +20,27 @@ import {
   MainContent,
   Wrapper,
 } from "./myFarmerDetailStyle";
+import { farmerDetailData } from "../../data/farmerData";
+import VisitList from "../../components/Visit/VisitList";
 
 const MyFarmerDetailPage = () => {
   // use params
   const { farmerCode } = useParams();
+  const farmer = farmerDetailData;
+  const { avatarUrl } = farmer;
+  console.log(farmer);
+  // // declare dispatch
+  // const dispatch = useDispatch();
 
-  // declare dispatch
-  const dispatch = useDispatch();
+  // // fermer selector
+  // const myFarmerSelector = useSelector((state) => state.myFarmer);
+  // const { farmer } = myFarmerSelector;
 
-  // fermer selector
-  const myFarmerSelector = useSelector((state) => state.myFarmer);
-  const { farmer } = myFarmerSelector;
+  // console.log("farmer", farmer);
 
-  console.log("farmer", farmer);
-
-  useEffect(() => {
-    dispatch(detailFarmer(farmerCode));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(detailFarmer(farmerCode));
+  // }, [dispatch]);
 
   return (
     <Container>
@@ -49,20 +53,20 @@ const MyFarmerDetailPage = () => {
           <Img src={farmer?.avatarUrl} />
           <HeadeTitle>
             <Typography size="16px">{farmer?.fullName}</Typography>
-            <Typography size="14px">{farmer?.phoneNumber}</Typography>
+            <Typography size="12px">{farmer?.phoneNumber}</Typography>
+            <Typography size="10px">
+              آدرس : {`${farmer?.province} ${farmer?.city}`}
+            </Typography>
           </HeadeTitle>
         </HeaderImg>
         <MainContent>
-          <Column>
-            <Typography>
-              آدرس : {`${farmer?.province} ${farmer?.city}`}
-            </Typography>
-          </Column>
+          <Column></Column>
         </MainContent>
         <Row></Row>
       </Wrapper>
       <QuestionnaireList items={farmer?.products} />
       <MealPlanList items={farmer?.mealPlans} />
+      <VisitList items={farmer?.mealPlans} />
     </Container>
   );
 };

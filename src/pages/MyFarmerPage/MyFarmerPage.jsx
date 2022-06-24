@@ -15,6 +15,7 @@ import Select from "../../components/Select/Select";
 import { allCities, allProvinces } from "../../redux/action/general";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
+import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
   const [form, setForm] = useState({
@@ -29,24 +30,24 @@ const MyFarmerPage = () => {
   const initialSort = [
     {
       id: "1",
-      name: "بیشترین",
+      label: "بیشترین",
       value: "most",
     },
     {
       id: "2",
-      name: "مساحت",
+      label: "مساحت",
       value: "area",
     },
     {
       id: "3",
-      name: "بیشترین برنامه",
+      label: "بیشترین برنامه",
       value: "most-mealPlan",
     },
   ];
 
   // myFarmerSelector
-  const farmerSelector = useSelector((state) => state.myFarmer);
-  const { farmers } = farmerSelector;
+  // const farmerSelector = useSelector((state) => state.myFarmer);
+  // const { farmers } = farmerSelector;
 
   const generalSelector = useSelector((state) => state.general);
 
@@ -72,9 +73,9 @@ const MyFarmerPage = () => {
 
   console.log("filtedCity", filtedCity);
 
-  useEffect(() => {
-    dispatch(allFarmers());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(allFarmers());
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(allProvinces());
@@ -90,10 +91,8 @@ const MyFarmerPage = () => {
         <HeaderTitle>کشاورزان من</HeaderTitle>
       </Row>
       <Row>
-        <InputFeild type="text" placeholder="نام و نام خانوادگی" />
-        <InputFeild type="text" placeholder="شماره تماس" />
-      </Row>
-      <Row>
+        <InputFeild space type="text" placeholder="نام و نام خانوادگی" />
+        <InputFeild space type="text" placeholder="شماره تماس" />
         <Select
           items={allProvince}
           onChange={(event) =>
@@ -110,11 +109,13 @@ const MyFarmerPage = () => {
       <Button small weight="bold">
         جستجو
       </Button>
-      {farmers ? (
-        <CardList items={farmers} />
-      ) : (
-        <Typography>Loading...</Typography>
-      )}
+      <div style={{ marginTop: "1rem" }}>
+        {farmerCardList ? (
+          <CardList items={farmerCardList} />
+        ) : (
+          <Typography>Loading...</Typography>
+        )}
+      </div>
     </Container>
   );
 };

@@ -19,9 +19,7 @@ const Card = ({ item }) => {
   const navigate = useNavigate();
 
   return (
-    <CardStyle
-      onClick={() => navigate(`/dashboard/myFarmer/${item?.farmerCode}`)}
-    >
+    <CardStyle>
       <CardRights>
         <Row>
           <Typography size="16px">{item?.fullName}</Typography>
@@ -35,6 +33,14 @@ const Card = ({ item }) => {
           {item?.mealPlanCount} برنامه غذایی <AiOutlineFileDone />
         </Typography>
         <InputFeild type="text" placeholder="یادداشت خود را بنویسید..." />
+        <div
+          style={{ marginTop: "10px", cursor: "pointer" }}
+          onClick={() => navigate(`/dashboard/myFarmer/${item?.id}`)}
+        >
+          <Typography color="#6980FF" weight="bold" size="12px">
+            مشاهده جزییات
+          </Typography>
+        </div>
       </CardRights>
       <CardLeft>
         <Img src={bg} />

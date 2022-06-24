@@ -48,8 +48,8 @@ const Input = styled.input`
   border: 1px solid #c8cccf;
   border-radius: 5px;
   outline: none;
-  color: #495057;
-  background-color: transparent;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundSidebar};
   height: calc(2.25rem + 2px);
   padding: 0 0.5rem;
   font-family: "IRAN";

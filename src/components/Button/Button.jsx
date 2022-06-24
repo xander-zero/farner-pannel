@@ -34,7 +34,7 @@ const ButtonStyle = styled.button`
   color: #fff;
   background-color: ${({ color }) => (color ? color : "#6980ff")};
   font-family: "IRAN";
-  width: ${({ small }) => (small ? "130px" : "150px")};
+  width: ${({ small }) => (small ? "130px" : "100%")};
   outline: none;
   border: none;
   cursor: pointer;

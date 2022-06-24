@@ -22,6 +22,7 @@ const DarkMode = ({ theme, themeToggler }) => {
 
 export const DarkStyle = styled.div`
   position: fixed;
+  z-index: 100;
   bottom: 20px;
   left: 20px;
   background-color: ${({ bgColor }) => bgColor};

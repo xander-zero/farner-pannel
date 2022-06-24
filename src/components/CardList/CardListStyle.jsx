@@ -5,4 +5,5 @@ export const CardListStyle = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+  width: 100%;
 `;

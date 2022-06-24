@@ -5,20 +5,15 @@ import Typography from "../Typography/Typography";
 import Button from "../Button/Button";
 
 // styled componentss
-import {
-  Card,
-  Footer,
-  Header,
-  Row,
-} from "../QuestionnaireList/questionnaireStyle";
+import { Card, Header, Row } from "../QuestionnaireList/questionnaireStyle";
 import { Container, HeaderTitle } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
 import QRCode from "react-qr-code";
 
-const MealPlanList = ({ items }) => {
+const VisitList = ({ items }) => {
   return (
     <Container>
-      <HeaderTitle>برنامه غذایی</HeaderTitle>
+      <HeaderTitle>بازدید</HeaderTitle>
       <CardListStyle>
         {items?.map((item, index) => (
           <Card key={index}>
@@ -43,11 +38,11 @@ const MealPlanList = ({ items }) => {
                 {item?.expertCode}
               </Typography>
             </Header>
-            <Button color="#00B050">مشاهده برنامه غذایی</Button>
+            <Button color="#002060">مشاهده برنامه غذایی</Button>
           </Card>
         ))}
       </CardListStyle>
     </Container>
   );
 };
-export default MealPlanList;
+export default VisitList;
