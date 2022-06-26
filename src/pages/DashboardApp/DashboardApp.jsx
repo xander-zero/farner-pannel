@@ -9,7 +9,10 @@ const DashboardApp = () => {
     <Dashboard>
       <HeaderTitle>پیشخوان من</HeaderTitle>
       <Right>
-        <Card>
+        <Card bgColor="#009EF7">
+          <Typography color="#fff" weight="bold">
+            کشاورزان
+          </Typography>
           <div
             style={{
               display: "flex",
@@ -20,15 +23,18 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               تعداد کشاورزان
             </Typography>
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               254
             </Typography>
           </div>
         </Card>
-        <Card>
+        <Card bgColor="#F1416C">
+          <Typography color="#fff" weight="bold">
+            محتوا
+          </Typography>
           <div
             style={{
               display: "flex",
@@ -39,15 +45,18 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               تعداد بازدید محتوا
             </Typography>
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               154
             </Typography>
           </div>
         </Card>
-        <Card>
+        <Card bgColor="#50CD89">
+          <Typography color="#fff" weight="bold">
+            بازدید
+          </Typography>
           <div
             style={{
               display: "flex",
@@ -58,10 +67,10 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               تعداد بازدید صفحه
             </Typography>
-            <Typography size="24px" weight="bold">
+            <Typography color="#fff" size="24px" weight="bold">
               654
             </Typography>
           </div>

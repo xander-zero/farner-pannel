@@ -23,5 +23,5 @@ export const darkTheme = {
   shadow: "2px 2px 10px 2px black",
   bgPrimary: "#0b618d",
   border: "#fff",
-  lightColor: "#9370DB",
+  lightColor: "#009EF7",
 };

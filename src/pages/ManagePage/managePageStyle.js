@@ -28,6 +28,9 @@ export const Round = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const InputFile = styled.input`

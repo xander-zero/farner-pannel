@@ -10,6 +10,7 @@ const Button = ({
   space,
   marginTop,
   weight,
+  size,
 }) => {
   return (
     <ButtonStyle
@@ -20,6 +21,7 @@ const Button = ({
       color={color}
       space={space}
       weight={weight}
+      size={size}
     >
       {children}
     </ButtonStyle>
@@ -28,7 +30,7 @@ const Button = ({
 
 const ButtonStyle = styled.button`
   padding: 0.5rem 1rem;
-  font-size: ${({ small }) => (small ? ".7rem" : "1rem")};
+  font-size: ${({ size }) => (size ? size : "1rem")};
   line-height: 1.5;
   border-radius: 0.3rem;
   color: #fff;

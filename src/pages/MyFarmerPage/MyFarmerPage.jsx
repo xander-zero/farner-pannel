@@ -106,7 +106,7 @@ const MyFarmerPage = () => {
         <Select items={initialSort} />
       </Row>
 
-      <Button small weight="bold">
+      <Button color="#009EF7" small weight="bold">
         جستجو
       </Button>
       <div style={{ marginTop: "1rem" }}>

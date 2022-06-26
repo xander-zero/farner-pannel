@@ -53,7 +53,9 @@ const QuestionnaireList = ({ items }) => {
                 {item?.expertCode}
               </Typography>
             </Header>
-            <Button color="#A6A6A6">در حال بررسی ...</Button>
+            <Button size="14px" color="#50CD89">
+              در حال بررسی ...
+            </Button>
           </Card>
         ))}
         {/* </Fade>

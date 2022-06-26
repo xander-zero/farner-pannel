@@ -5,17 +5,12 @@ import uploadFile from "../../assets/images/uploadFile.webp";
 
 import { AiOutlineArrowDown } from "react-icons/ai";
 import "./style.css";
-import {
-  Img,
-  InputFile,
-  Left,
-  Right,
-  Round,
-  Upload,
-  Wrapper,
-} from "./managePageStyle";
+import { Img, Left, Right, Round, Upload, Wrapper } from "./managePageStyle";
 import Typography from "../../components/Typography/Typography";
+import { useNavigate } from "react-router-dom";
 const ManagePage = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <HeaderTitle>مدیریت صفحه</HeaderTitle>
@@ -26,8 +21,8 @@ const ManagePage = () => {
           </Typography>
           <Upload>
             <Img src={uploadVideo} alt="" />
-            <Round>
-              <InputFile type="file" />
+            <Round onClick={() => navigate("uploadVideo")}>
+              {/* <InputFile type="file" /> */}
               <AiOutlineArrowDown size={20} color="#fff" />
             </Round>
           </Upload>
@@ -38,8 +33,8 @@ const ManagePage = () => {
           </Typography>
           <Upload>
             <Img src={uploadFile} alt="" />
-            <Round>
-              <InputFile type="file" />
+            <Round onClick={() => navigate("uploadFile")}>
+              {/* <InputFile type="file" /> */}
               <AiOutlineArrowDown size={20} color="#fff" />
             </Round>
           </Upload>

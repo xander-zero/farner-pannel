@@ -8,6 +8,8 @@ import DashboardApp from "../DashboardApp/DashboardApp";
 import ManagePage from "../ManagePage/ManagePage";
 import MyFarmerDetailPage from "../MyFarmerDetailPage/MyFarmerDetailPage";
 import MyFarmerPage from "../MyFarmerPage/MyFarmerPage";
+import UploadFilePage from "../UploadFile/UploadFilePage";
+import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 
 const Dashboard = () => {
   return (
@@ -17,6 +19,8 @@ const Dashboard = () => {
         <Route path="myFarmer" element={<MyFarmerPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
         <Route path="manage-page" element={<ManagePage />} />
+        <Route path="manage-page/uploadVideo" element={<UploadVideoPage />} />
+        <Route path="manage-page/uploadFile" element={<UploadFilePage />} />
         <Route path="calender" element={<CalenderPage />} />
       </Routes>
     </Layout>

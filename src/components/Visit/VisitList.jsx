@@ -38,7 +38,9 @@ const VisitList = ({ items }) => {
                 {item?.expertCode}
               </Typography>
             </Header>
-            <Button color="#002060">مشاهده برنامه غذایی</Button>
+            <Button size="14px" color="#009EF7">
+              مشاهده برنامه غذایی
+            </Button>
           </Card>
         ))}
       </CardListStyle>

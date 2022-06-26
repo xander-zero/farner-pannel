@@ -46,7 +46,9 @@ const MyFarmerDetailPage = () => {
     <Container>
       <Row>
         <HeaderTitle>جزییات کشاورز</HeaderTitle>
-        <Button small>assign</Button>
+        <Button size="14px" color="#009EF7" small>
+          assign
+        </Button>
       </Row>
       <Wrapper>
         <HeaderImg>

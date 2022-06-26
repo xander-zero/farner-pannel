@@ -29,7 +29,7 @@ export const Card = styled.div`
   align-items: flex-start;
   padding: 1rem;
   box-shadow: ${({ theme }) => theme.shadow};
-  background-color: ${({ theme }) => theme.backgroundSidebar};
+  background-color: ${({ bgColor }) => bgColor};
   border-radius: 10px;
   margin: 0.5rem 0;
   width: 30%;

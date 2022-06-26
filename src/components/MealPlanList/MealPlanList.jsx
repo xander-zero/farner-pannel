@@ -43,7 +43,9 @@ const MealPlanList = ({ items }) => {
                 {item?.expertCode}
               </Typography>
             </Header>
-            <Button color="#00B050">مشاهده برنامه غذایی</Button>
+            <Button size="14px" color="#F1416C">
+              مشاهده برنامه غذایی
+            </Button>
           </Card>
         ))}
       </CardListStyle>

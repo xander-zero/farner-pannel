@@ -37,7 +37,7 @@ const Card = ({ item }) => {
           style={{ marginTop: "10px", cursor: "pointer" }}
           onClick={() => navigate(`/dashboard/myFarmer/${item?.id}`)}
         >
-          <Typography color="#6980FF" weight="bold" size="12px">
+          <Typography color="#009EF7" weight="bold" size="12px">
             مشاهده جزییات
           </Typography>
         </div>
