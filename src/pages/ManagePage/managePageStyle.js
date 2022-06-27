@@ -48,6 +48,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 1rem;
 `;
 
 export const Left = styled.div`

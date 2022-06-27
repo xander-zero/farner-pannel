@@ -10,7 +10,6 @@ export const SelectStyle = styled.select`
   font-family: "IRAN";
   width: 100%;
   border-radius: 5px;
-  margin: 0 0.2rem;
   margin-bottom: -12px;
 
   @media (max-width: 768px) {

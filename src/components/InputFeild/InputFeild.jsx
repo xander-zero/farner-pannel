@@ -42,6 +42,7 @@ const Label = styled.label`
   line-height: 1.5;
   color: #495057;
   margin-bottom: 0.4rem;
+  font-weight: bold;
 `;
 const Input = styled.input`
   -webkit-appearance: none;
