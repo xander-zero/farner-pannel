@@ -15,7 +15,8 @@ import Select from "../../components/Select/Select";
 import { allCities, allProvinces } from "../../redux/action/general";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
-import { farmerCardList } from "../../data/farmerData";
+import { userData } from "../../help/userData";
+// import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
   const [form, setForm] = useState({
@@ -46,8 +47,8 @@ const MyFarmerPage = () => {
   ];
 
   // myFarmerSelector
-  // const farmerSelector = useSelector((state) => state.myFarmer);
-  // const { farmers } = farmerSelector;
+  const farmerSelector = useSelector((state) => state.myFarmer);
+  const { farmers } = farmerSelector;
 
   const generalSelector = useSelector((state) => state.general);
 
@@ -56,6 +57,10 @@ const MyFarmerPage = () => {
     label: item?.name,
     value: item.id,
   }));
+
+  const userInformation = userData();
+  const expertCode = userInformation?.data?.result?.expert?.expertCode;
+  console.log(expertCode);
 
   // const allCities = cities?.cities?.map((item) => ({
   //   label: item.name,
@@ -73,9 +78,9 @@ const MyFarmerPage = () => {
 
   console.log("filtedCity", filtedCity);
 
-  // useEffect(() => {
-  //   dispatch(allFarmers());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(allFarmers(expertCode));
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(allProvinces());
@@ -110,8 +115,8 @@ const MyFarmerPage = () => {
         جستجو
       </Button>
       <div style={{ marginTop: "1rem" }}>
-        {farmerCardList ? (
-          <CardList items={farmerCardList} />
+        {farmers ? (
+          <CardList items={farmers} />
         ) : (
           <Typography>Loading...</Typography>
         )}

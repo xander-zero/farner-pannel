@@ -26,21 +26,21 @@ import VisitList from "../../components/Visit/VisitList";
 const MyFarmerDetailPage = () => {
   // use params
   const { farmerCode } = useParams();
-  const farmer = farmerDetailData;
-  const { avatarUrl } = farmer;
-  console.log(farmer);
+  // const farmer = farmerDetailData;
+  // const { avatarUrl } = farmer;
+  // console.log(farmer);
   // // declare dispatch
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // // fermer selector
+  // fermer selector
   // const myFarmerSelector = useSelector((state) => state.myFarmer);
   // const { farmer } = myFarmerSelector;
 
   // console.log("farmer", farmer);
 
-  // useEffect(() => {
-  //   dispatch(detailFarmer(farmerCode));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(detailFarmer(farmerCode));
+  }, [dispatch]);
 
   return (
     <Container>
@@ -50,7 +50,7 @@ const MyFarmerDetailPage = () => {
           assign
         </Button>
       </Row>
-      <Wrapper>
+      {/* <Wrapper>
         <HeaderImg>
           <Img src={farmer?.avatarUrl} />
           <HeadeTitle>
@@ -68,7 +68,7 @@ const MyFarmerDetailPage = () => {
       </Wrapper>
       <QuestionnaireList items={farmer?.products} />
       <MealPlanList items={farmer?.mealPlans} />
-      <VisitList items={farmer?.mealPlans} />
+      <VisitList items={farmer?.mealPlans} /> */}
     </Container>
   );
 };

@@ -12,7 +12,7 @@ const DragDropFile = (props) => {
   const wrapperRef = useRef(null);
 
   const [fileList, setFileList] = useState([]);
-
+  const [source, setSource] = useState();
   const onDragEnter = () => wrapperRef.current.classList.add("dragover");
 
   const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
@@ -21,6 +21,8 @@ const DragDropFile = (props) => {
 
   const onFileDrop = (e) => {
     const newFile = e.target.files[0];
+    const url = URL.createObjectURL(newFile);
+    setSource(url);
     if (newFile) {
       const updatedList = [...fileList, newFile];
       setFileList(updatedList);
@@ -35,6 +37,8 @@ const DragDropFile = (props) => {
     props.onFileChange(updatedList);
   };
 
+  console.log(source);
+
   return (
     <>
       <div
@@ -46,9 +50,14 @@ const DragDropFile = (props) => {
       >
         <div className="drop-file-input__label">
           <img src={uploadImg} alt="" />
-          <p>فایل خود را اینجا بکشید</p>
+          <p>{props.title}</p>
         </div>
-        <input type="file" value="" onChange={onFileDrop} />
+        <input
+          type="file"
+          value=""
+          onChange={onFileDrop}
+          accept="image/png, image/gif, image/jpeg"
+        />
       </div>
       {fileList.length > 0 ? (
         <div className="drop-file-preview">

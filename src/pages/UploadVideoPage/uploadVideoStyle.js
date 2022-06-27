@@ -36,3 +36,10 @@ export const Label = styled.label`
   margin-bottom: 0.4rem;
   font-weight: bold;
 `;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0 0;
+`;

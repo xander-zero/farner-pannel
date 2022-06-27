@@ -40,7 +40,7 @@ const Label = styled.label`
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: ${({ theme }) => theme.text};
   margin-bottom: 0.4rem;
   font-weight: bold;
 `;

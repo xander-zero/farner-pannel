@@ -6,6 +6,7 @@ import InputFeild from "../../components/InputFeild/InputFeild";
 import Select from "../../components/Select/Select";
 import TextArea from "../../components/TextArea/TextArea";
 import Button from "../../components/Button/Button";
+import VideoInput from "./VideoInput";
 
 const UploadVideoPage = () => {
   const onFileChange = (files) => {
@@ -35,7 +36,15 @@ const UploadVideoPage = () => {
           </Button>
         </Right>
         <Left>
-          <DragDropFile onFileChange={(files) => onFileChange(files)} />
+          <VideoInput
+            titleFile="ویدیو شاخص را انتخاب کنید"
+            onFileChange={(files) => onFileChange(files)}
+            type=".mov,.mp4"
+          />
+          <DragDropFile
+            title="کاور را انتخاب کنید"
+            onFileChange={(files) => onFileChange(files)}
+          />
         </Left>
       </Wrapper>
     </Container>

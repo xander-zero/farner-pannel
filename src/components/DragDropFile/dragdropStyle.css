@@ -20,6 +20,7 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+  scroll-behavior: auto;
 }
 
 .drop-file-input:hover,
@@ -35,12 +36,14 @@
 }
 
 .drop-file-input__label img {
-  width: 100px;
+  width: 50px;
 }
 
 .drop-file-preview {
   margin-top: 30px;
   border-radius: 10px;
+  height: 200px;
+  overflow-y: scroll;
 }
 
 .drop-file-preview p {
