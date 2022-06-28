@@ -16,8 +16,32 @@ h6 {
 }
 
 @font-face {
-  font-family: "IRAN";
-  src: url(./assets/fonts/IRAN.woff);
+  font-family: IRAN;
+  font-style: normal;
+  font-weight: bold;
+  src: url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2")
+      format("woff2"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/woff/IRANSansWeb(FaNum)_Bold.woff")
+      format("woff"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: IRAN;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/eot/IRANSansWeb(FaNum).eot");
+  src: url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/eot/IRANSansWeb(FaNum).eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/woff2/IRANSansWeb(FaNum).woff2")
+      format("woff2"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/woff/IRANSansWeb(FaNum).woff")
+      format("woff"),
+    url("./assets/fonts/IRANSans/Farsi_numerals/webFonts/fonts/ttf/IRANSansWeb(FaNum).ttf")
+      format("truetype");
 }
 
 .active-card {

@@ -116,10 +116,10 @@
   overflow: hidden;
   font-family: "IRAN";
   cursor: pointer;
-  direction: rtl;
+  direction: rtl !important;
 }
 .Toastify__toast--rtl {
-  direction: rtl;
+  direction: rtl !important;
 }
 .Toastify__toast-body {
   margin: auto 0;
