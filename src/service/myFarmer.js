@@ -3,7 +3,7 @@ import { API } from "./apiRequestInterface";
 // get all farmer
 export const getAllFarmer = (expertCode) =>
   API.get(
-    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=ESEHO907951`
+    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=${expertCode}`
   );
 
 // get detail farmer

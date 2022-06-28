@@ -54,6 +54,10 @@ const Input = styled.input`
   height: calc(2.25rem + 2px);
   padding: 0 0.5rem;
   font-family: "IRAN";
+
+  ::-webkit-input-placeholder {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export default InputFeild;
