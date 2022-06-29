@@ -35,7 +35,7 @@ const Card = ({ item }) => {
         <InputFeild type="text" placeholder="یادداشت خود را بنویسید..." />
         <div
           style={{ marginTop: "10px", cursor: "pointer" }}
-          onClick={() => navigate(`/dashboard/myFarmer/${item?.expertCode}`)}
+          onClick={() => navigate(`/dashboard/myFarmer/${item?.farmerCode}`)}
         >
           <Typography color="#009EF7" weight="bold" size="12px">
             مشاهده جزییات

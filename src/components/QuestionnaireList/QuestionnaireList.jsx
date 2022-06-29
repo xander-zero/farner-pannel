@@ -7,23 +7,13 @@ import Typography from "../Typography/Typography";
 import { Container, HeaderTitle } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
 import { Card, Header, Row } from "./questionnaireStyle";
-import QRCode from "react-qr-code";
 import Button from "../Button/Button";
-// import { Fade } from "react-slideshow-image";
-// import "react-slideshow-image/dist/styles.css";
-const QuestionnaireList = ({ items }) => {
-  // const properties = {
-  //   duration: 5000,
-  //   transitionDuration: 500,
-  //   infinite: true,
-  //   indicators: true,
-  //   arrows: true,
-  //   pauseOnHover: true,
-  //   onChange: (oldIndex, newIndex) => {
-  //     console.log(`slide transition from ${oldIndex} to ${newIndex}`);
-  //   },
-  // };
+import imgProduct from "../../assets/images/plant.png";
+import { formatData } from "../../utils/date";
+import QRCode from "../../assets/images/qr-code.png";
+// import QRCode from "react-qr-code";
 
+const QuestionnaireList = ({ items }) => {
   return (
     <Container>
       <HeaderTitle>پرسشنامه</HeaderTitle>
@@ -34,27 +24,36 @@ const QuestionnaireList = ({ items }) => {
           <Card key={index}>
             <Header>
               <Row>
-                <img src={item.imgProduct} />
+                <img src={imgProduct} />
                 <Typography size="14px" weight="bold">
-                  {item?.nameProduct}
+                  {item?.product}
                 </Typography>
               </Row>
               <Typography size="14px" weight="bold">
-                {item?.data}
+                تاریخ دریافت : {formatData(item?.date?.toString())}
               </Typography>
             </Header>
             <Header>
+              <Typography size="14px" weight="bold">
+                {item?.Qcode}
+              </Typography>
               <Row>
                 <Typography size="14px" weight="bold">
-                  <QRCode value={item?.expertCode} size={100} height={100} />
+                  {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
+                  <img src={QRCode} alt="QRCode-image" />
                 </Typography>
               </Row>
-              <Typography size="14px" weight="bold">
-                {item?.expertCode}
-              </Typography>
             </Header>
             <Button size="14px" color="#50CD89">
-              در حال بررسی ...
+              {item.state === "supportCheck"
+                ? "درحال بررسی "
+                : item.state === "mealPlanCheck"
+                ? "درحال نگارش"
+                : ""
+                ? item.state === "educationCheck" || item.state === "saleCheck"
+                : " کنترل و تایید"
+                ? item.state === "done"
+                : "ارسال شد"}
             </Button>
           </Card>
         ))}

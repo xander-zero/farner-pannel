@@ -8,9 +8,7 @@ export const getAllFarmer = (expertCode) =>
 
 // get detail farmer
 export const getDetailFarmer = (farmerCode) =>
-  API.get(
-    `http://185.81.99.8:88/api/expert/get/farmer?farmerCode=${farmerCode}`
-  );
+  API.get(`http://185.81.99.8:88/api/farmer/data?farmerCode=${farmerCode}`);
 
 // assign farmer to expert
 export const addAssignFarmer = (data) => API.post("/expert/farmer", data);

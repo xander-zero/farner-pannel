@@ -13,7 +13,7 @@ import { singInUser } from "../../redux/action/auth";
 import styled from "styled-components";
 
 // image background
-import bg from "../../assets/images/ibrahima-toure-GAepqKfzZFI-unsplash.jpg";
+import bg from "../../assets/images/panel_login_background.jpg";
 
 const LoginPage = () => {
   const [expertCode, setExpertCode] = useState("");
@@ -89,7 +89,6 @@ const Left = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(60%);
   }
   @media (max-width: 799px) {
     display: none;

@@ -5,17 +5,18 @@ import Typography from "../Typography/Typography";
 import Button from "../Button/Button";
 
 // styled componentss
-import {
-  Card,
-  Footer,
-  Header,
-  Row,
-} from "../QuestionnaireList/questionnaireStyle";
+import { Card, Header, Row } from "../QuestionnaireList/questionnaireStyle";
 import { Container, HeaderTitle } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
-import QRCode from "react-qr-code";
+import imgProduct from "../../assets/images/plant.png";
+import { formatData } from "../../utils/date";
+import { FiDownload } from "react-icons/fi";
+import QRCode from "../../assets/images/qr-code.png";
+// import QRCode from "react-qr-code";
 
 const MealPlanList = ({ items }) => {
+  console.log(items);
+
   return (
     <Container>
       <HeaderTitle>برنامه غذایی</HeaderTitle>
@@ -24,25 +25,38 @@ const MealPlanList = ({ items }) => {
           <Card key={index}>
             <Header>
               <Row>
-                <img src={item.imgProduct} />
+                <img src={imgProduct} alt="image-plant" />
                 <Typography size="14px" weight="bold">
-                  {item?.nameProduct}
+                  {item?.product}
                 </Typography>
               </Row>
-              <Typography size="14px" weight="bold">
-                {item?.data}
+              <Typography size="12px" weight="bold">
+                تاریخ نگارش : {formatData(item?.date?.toString())}
               </Typography>
             </Header>
             <Header>
+              <Typography size="14px" weight="bold">
+                {item?.Qcode}
+              </Typography>
+
               <Row>
                 <Typography size="14px" weight="bold">
-                  <QRCode value={item?.expertCode} size={100} height={100} />
+                  {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
+                  <img src={QRCode} />
                 </Typography>
               </Row>
-              <Typography size="14px" weight="bold">
-                {item?.expertCode}
-              </Typography>
             </Header>
+            <Row>
+              <Typography textAlign="left" size="14px" weight="bold">
+                <a href={item?.files} target="_blank">
+                  <FiDownload
+                    color="#009EF7"
+                    size={20}
+                    style={{ fontWeight: "bold" }}
+                  />
+                </a>
+              </Typography>
+            </Row>
             <Button size="14px" color="#F1416C">
               مشاهده برنامه غذایی
             </Button>

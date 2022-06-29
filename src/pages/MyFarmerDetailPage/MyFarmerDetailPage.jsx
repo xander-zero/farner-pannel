@@ -33,31 +33,41 @@ const MyFarmerDetailPage = () => {
   const dispatch = useDispatch();
 
   // fermer selector
-  // const myFarmerSelector = useSelector((state) => state.myFarmer);
-  // const { farmer } = myFarmerSelector;
+  const myFarmerSelector = useSelector((state) => state.myFarmer);
+  const { farmer } = myFarmerSelector;
 
-  // console.log("farmer", farmer);
+  const questionnaire = farmer[0];
+  const mealPlan = farmer[1];
+  const visit = farmer[2];
 
   useEffect(() => {
     dispatch(detailFarmer(farmerCode));
   }, [dispatch]);
 
+  if (!farmer) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <Container>
       <Row>
         <HeaderTitle>جزییات کشاورز</HeaderTitle>
-        <Button size="14px" color="#009EF7" small>
+        {/* <Button size="14px" color="#009EF7" small>
           assign
-        </Button>
+        </Button> */}
       </Row>
-      {/* <Wrapper>
+      <Wrapper>
         <HeaderImg>
-          <Img src={farmer?.avatarUrl} />
+          <Img src={""} />
           <HeadeTitle>
-            <Typography size="16px">{farmer?.fullName}</Typography>
-            <Typography size="12px">{farmer?.phoneNumber}</Typography>
+            <Typography size="16px">
+              {questionnaire && questionnaire[0]?.fullName}
+            </Typography>
+            <Typography size="12px">
+              {questionnaire && questionnaire[0]?.phoneNumber}
+            </Typography>
             <Typography size="10px">
-              آدرس : {`${farmer?.province} ${farmer?.city}`}
+              آدرس : {`${questionnaire && questionnaire[0]?.city}`}
             </Typography>
           </HeadeTitle>
         </HeaderImg>
@@ -66,9 +76,9 @@ const MyFarmerDetailPage = () => {
         </MainContent>
         <Row></Row>
       </Wrapper>
-      <QuestionnaireList items={farmer?.products} />
-      <MealPlanList items={farmer?.mealPlans} />
-      <VisitList items={farmer?.mealPlans} /> */}
+      <QuestionnaireList items={questionnaire} />
+      <MealPlanList items={mealPlan} />
+      {/* <VisitList items={farmer?.mealPlans} /> */}
     </Container>
   );
 };

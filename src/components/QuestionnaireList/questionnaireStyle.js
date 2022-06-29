@@ -32,10 +32,11 @@ export const Card = styled.div`
 export const Row = styled.div`
   display: flex;
   align-items: center;
+
   img {
     width: 50px;
     height: 50px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     object-fit: cover;
     margin-left: 1rem;
   }
