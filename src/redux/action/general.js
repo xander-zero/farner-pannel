@@ -20,3 +20,13 @@ export const allCities = () => async (dispatch) => {
     errorMessage("some thing wrong");
   }
 };
+
+export const getAllProducts = () => async (dispatch) => {
+  try {
+    const { data } = await api.getProducts();
+    const result = data?.data?.result;
+    dispatch({ type: "GET_PRODUCTS", payload: result });
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};

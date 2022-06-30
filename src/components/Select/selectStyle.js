@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SelectStyle = styled.select`
   border: 1px solid ${({ theme }) => theme.border};
   color: ${({ theme }) => theme.text};
-  padding: 0.3rem;
+  padding: 0.4rem;
   background-color: ${({ theme }) => theme.backgroundSidebar};
   outline: none;
   margin-top: 0.6rem;

@@ -22,7 +22,7 @@ import {
 } from "./myFarmerDetailStyle";
 import { farmerDetailData } from "../../data/farmerData";
 import VisitList from "../../components/Visit/VisitList";
-
+import { AiOutlinePhone } from "react-icons/ai";
 const MyFarmerDetailPage = () => {
   // use params
   const { farmerCode } = useParams();
@@ -60,13 +60,15 @@ const MyFarmerDetailPage = () => {
         <HeaderImg>
           <Img src={""} />
           <HeadeTitle>
+            <div>
+              <Typography size="16px">
+                {questionnaire && questionnaire[0]?.fullName}
+              </Typography>
+            </div>
             <Typography size="16px">
-              {questionnaire && questionnaire[0]?.fullName}
+              شماره تماس : {questionnaire && questionnaire[0]?.phoneNumber}
             </Typography>
-            <Typography size="12px">
-              {questionnaire && questionnaire[0]?.phoneNumber}
-            </Typography>
-            <Typography size="10px">
+            <Typography size="16px">
               آدرس : {`${questionnaire && questionnaire[0]?.city}`}
             </Typography>
           </HeadeTitle>
@@ -78,7 +80,7 @@ const MyFarmerDetailPage = () => {
       </Wrapper>
       <QuestionnaireList items={questionnaire} />
       <MealPlanList items={mealPlan} />
-      {/* <VisitList items={farmer?.mealPlans} /> */}
+      <VisitList items={farmer?.mealPlans} />
     </Container>
   );
 };

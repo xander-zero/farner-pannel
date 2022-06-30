@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 1.5rem 0.5rem;
   position: relative;
 `;
 
@@ -48,6 +48,7 @@ export const Row = styled.div`
 `;
 
 export const HeaderTitle = styled.h4`
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold !important;
   color: ${({ theme }) => theme.text};
 `;

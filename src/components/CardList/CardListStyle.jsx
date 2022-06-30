@@ -6,4 +6,8 @@ export const CardListStyle = styled.div`
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

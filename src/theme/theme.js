@@ -10,6 +10,7 @@ export const lightTheme = {
   bgPrimary: "#0b618d",
   border: "#C8CCCF",
   lightColor: "#98FB98",
+  cardBackground: "#EBEBEB",
 };
 
 // dark mode color
@@ -24,4 +25,5 @@ export const darkTheme = {
   bgPrimary: "#0b618d",
   border: "#fff",
   lightColor: "#009EF7",
+  cardBackground: "#191C24",
 };

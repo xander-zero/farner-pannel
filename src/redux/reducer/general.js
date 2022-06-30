@@ -1,5 +1,5 @@
 export const generalReducer = (
-  state = { provinces: [], cities: [] },
+  state = { provinces: [], cities: [], products: [] },
   action
 ) => {
   switch (action.type) {
@@ -12,6 +12,11 @@ export const generalReducer = (
       return {
         ...state,
         cities: action.payload,
+      };
+    case "GET_PRODUCTS":
+      return {
+        ...state,
+        products: action.payload,
       };
     default:
       return state;

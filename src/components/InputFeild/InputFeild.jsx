@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineEdit } from "react-icons/ai";
 
 // styled ccomponents
 import styled from "styled-components";
@@ -11,6 +12,7 @@ const InputFeild = ({
   name,
   value,
   space,
+  icon,
 }) => {
   return (
     <FormControl space={space}>
@@ -23,6 +25,7 @@ const InputFeild = ({
         placeholder={placeholder}
         id={label}
       />
+      {icon}
     </FormControl>
   );
 };
@@ -33,6 +36,13 @@ const FormControl = styled.div`
   width: 100%;
   margin-right: ${({ space }) => (space ? "5px" : "0")};
   margin-top: 0.4rem;
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: 10px;
+    top: 40%;
+  }
   /* margin-left: 1.5rem; */
   /* justify-content: space-between; */
 `;

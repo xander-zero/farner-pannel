@@ -3,8 +3,8 @@ import React from "react";
 // react router dom
 import { useNavigate } from "react-router-dom";
 
-import { AiOutlineFileDone } from "react-icons/ai";
-import { TiLocationArrowOutline } from "react-icons/ti";
+import { AiOutlineFile } from "react-icons/ai";
+import { GoLocation } from "react-icons/go";
 import { FiPhoneCall } from "react-icons/fi";
 // components
 import Typography from "../Typography/Typography";
@@ -22,7 +22,9 @@ const Card = ({ item }) => {
     <CardStyle>
       <CardRights>
         <Row>
-          <Typography size="16px">{item?.fullName}</Typography>
+          <Typography weight="bold" size="18px">
+            {item?.fullName}
+          </Typography>
           <Icon>
             <a href={`tel:${item?.phoneNumber}`}>
               <FiPhoneCall size={25} color="#fff" />
@@ -30,9 +32,9 @@ const Card = ({ item }) => {
           </Icon>
         </Row>
         <Typography size="12px">
-          {item?.mealPlanCount} برنامه غذایی <AiOutlineFileDone />
+          <AiOutlineFile /> {item?.mealPlanCount} برنامه غذایی
         </Typography>
-        <InputFeild type="text" placeholder="یادداشت خود را بنویسید..." />
+        <InputFeild type="text" placeholder={`یادداشت خود را بنویسید...`} />
         <div
           style={{ marginTop: "10px", cursor: "pointer" }}
           onClick={() => navigate(`/dashboard/myFarmer/${item?.farmerCode}`)}
@@ -44,8 +46,9 @@ const Card = ({ item }) => {
       </CardRights>
       <CardLeft>
         <Img src={bg} />
-        <Typography size="10px">
-          {`${item?.province} ${item.city}`} <TiLocationArrowOutline />
+        <Typography space=".3rem" size="10px" weight="bold">
+          <GoLocation style={{ fontWeight: "bold" }} size={13} />
+          {`${item?.province} ${item.city}`}{" "}
         </Typography>
       </CardLeft>
     </CardStyle>

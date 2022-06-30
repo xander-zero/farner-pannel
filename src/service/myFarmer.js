@@ -16,3 +16,5 @@ export const addAssignFarmer = (data) => API.post("/expert/farmer", data);
 export const getProvince = () => API.get("/provinces");
 // get cities
 export const getCities = () => API.get("/cities");
+// get products
+export const getProducts = () => API.get("/products");

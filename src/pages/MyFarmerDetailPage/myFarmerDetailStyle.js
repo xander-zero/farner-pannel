@@ -24,9 +24,11 @@ export const Img = styled.img`
 `;
 
 export const HeadeTitle = styled.div`
+  width: 100%;
   margin-right: 0.5rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MainContent = styled.div`
