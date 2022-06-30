@@ -15,7 +15,7 @@ import { Row } from "../../theme/GlobalStyle";
 // image farmer
 import bg from "../../assets/images/ibrahima-toure-GAepqKfzZFI-unsplash.jpg";
 
-const Card = ({ item }) => {
+const Card = ({ item, icon }) => {
   const navigate = useNavigate();
 
   return (
@@ -34,7 +34,11 @@ const Card = ({ item }) => {
         <Typography size="12px">
           <AiOutlineFile /> {item?.mealPlanCount} برنامه غذایی
         </Typography>
-        <InputFeild type="text" placeholder={`یادداشت خود را بنویسید...`} />
+        <InputFeild
+          icon={icon}
+          type="text"
+          placeholder={`یادداشت خود را بنویسید...`}
+        />
         <div
           style={{ marginTop: "10px", cursor: "pointer" }}
           onClick={() => navigate(`/dashboard/myFarmer/${item?.farmerCode}`)}

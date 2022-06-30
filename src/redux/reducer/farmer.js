@@ -12,7 +12,10 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
         ...state,
         farmer: action.payload,
       };
-
+    case "ADD_FILE_CONTENT":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

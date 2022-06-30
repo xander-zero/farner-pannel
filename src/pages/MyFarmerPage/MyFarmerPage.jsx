@@ -22,7 +22,7 @@ import { useState } from "react";
 import { userData } from "../../help/userData";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import styled from "styled-components";
-
+import {AiFillEdit} from 'react-icons/ai'
 // import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
@@ -138,7 +138,7 @@ const MyFarmerPage = () => {
       </Wrapper>
       <div style={{ marginTop: "1rem" }}>
         {farmers ? (
-          <CardList items={farmers} />
+          <CardList icon={<AiFillEdit />} items={farmers} />
         ) : (
           <Typography>Loading...</Typography>
         )}

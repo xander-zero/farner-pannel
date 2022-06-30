@@ -4,6 +4,7 @@ export const Upload = styled.div`
   position: relative;
   width: 100%;
   margin: 0.5rem auto;
+  cursor: pointer;
 `;
 
 export const Img = styled.img`
@@ -48,7 +49,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 1rem;
+  height: 70vh;
 `;
 
 export const Left = styled.div`

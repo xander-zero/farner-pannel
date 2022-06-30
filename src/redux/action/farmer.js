@@ -34,3 +34,14 @@ export const assignFarmer = (data) => async (dispatch) => {
     errorMessage("some thing wrong");
   }
 };
+
+export const sendFileContent = (formData) => async (dispatch) => {
+  console.log(formData);
+  try {
+    const { data } = await api.addFileContent(formData);
+    dispatch({ type: "ADD_FILE_CONTENT" });
+    successMessage("با موفقیت اضافه شد");
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};

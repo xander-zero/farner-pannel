@@ -18,3 +18,5 @@ export const getProvince = () => API.get("/provinces");
 export const getCities = () => API.get("/cities");
 // get products
 export const getProducts = () => API.get("/products");
+// add files content management farmer
+export const addFileContent = (formData) => API.post("/file/content", formData);

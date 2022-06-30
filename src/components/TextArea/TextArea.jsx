@@ -1,10 +1,10 @@
 import { Label, Text, TextAreaStyle } from "./textareaStyle";
 
-const TextArea = ({ label, placeholder }) => {
+const TextArea = ({ label, placeholder, onChange }) => {
   return (
     <TextAreaStyle>
       <Label>{label}</Label>
-      <Text placeholder={placeholder}></Text>
+      <Text placeholder={placeholder} onChange={onChange}></Text>
     </TextAreaStyle>
   );
 };

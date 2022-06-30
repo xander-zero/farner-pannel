@@ -19,24 +19,16 @@ const ManagePage = () => {
           <Typography weight="bold" size="14px">
             بارگذاری ویدیو
           </Typography>
-          <Upload>
+          <Upload onClick={() => navigate("uploadVideo")}>
             <Img src={uploadVideo} alt="" />
-            <Round onClick={() => navigate("uploadVideo")}>
-              {/* <InputFile type="file" /> */}
-              <AiOutlineArrowDown size={20} color="#fff" />
-            </Round>
           </Upload>
         </Left>
         <Right>
           <Typography weight="bold" size="14px">
             بارگذاری مطلب
           </Typography>
-          <Upload>
+          <Upload onClick={() => navigate("uploadFile")}>
             <Img src={uploadFile} alt="" />
-            <Round onClick={() => navigate("uploadFile")}>
-              {/* <InputFile type="file" /> */}
-              <AiOutlineArrowDown size={20} color="#fff" />
-            </Round>
           </Upload>
         </Right>
       </Wrapper>

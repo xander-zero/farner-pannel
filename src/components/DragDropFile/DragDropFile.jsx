@@ -10,8 +10,7 @@ import Typography from "../Typography/Typography";
 
 const DragDropFile = (props) => {
   const wrapperRef = useRef(null);
-
-  const [fileList, setFileList] = useState([]);
+  const { fileList, setFileList } = props;
   const [source, setSource] = useState();
   const onDragEnter = () => wrapperRef.current.classList.add("dragover");
 
@@ -56,7 +55,7 @@ const DragDropFile = (props) => {
           type="file"
           value=""
           onChange={onFileDrop}
-          accept="image/png, image/gif, image/jpeg"
+          accept={props.type ? props.type : "image/png, image/gif, image/jpeg"}
         />
       </div>
       {fileList.length > 0 ? (

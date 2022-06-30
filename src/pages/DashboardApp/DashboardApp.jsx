@@ -33,28 +33,6 @@ const DashboardApp = () => {
         </Card>
         <Card bgColor="#F1416C">
           <Typography color="#fff" weight="bold">
-            محتوا
-          </Typography>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              width: "100%",
-              height: "200px",
-            }}
-          >
-            <Typography color="#fff" size="24px" weight="bold">
-              تعداد بازدید محتوا
-            </Typography>
-            <Typography color="#fff" size="24px" weight="bold">
-              154
-            </Typography>
-          </div>
-        </Card>
-        <Card bgColor="#50CD89">
-          <Typography color="#fff" weight="bold">
             بازدید
           </Typography>
           <div
@@ -68,7 +46,29 @@ const DashboardApp = () => {
             }}
           >
             <Typography color="#fff" size="24px" weight="bold">
-              تعداد بازدید صفحه
+              تعداد بازدید
+            </Typography>
+            <Typography color="#fff" size="24px" weight="bold">
+              154
+            </Typography>
+          </div>
+        </Card>
+        <Card bgColor="#50CD89">
+          <Typography color="#fff" weight="bold">
+            برنامه غذایی
+          </Typography>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              width: "100%",
+              height: "200px",
+            }}
+          >
+            <Typography color="#fff" size="24px" weight="bold">
+              تعداد برنامه غذایی
             </Typography>
             <Typography color="#fff" size="24px" weight="bold">
               654
