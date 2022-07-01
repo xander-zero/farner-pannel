@@ -16,6 +16,17 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
       return {
         ...state,
       };
+
+    //
+    case "ADD_VIDEO_CONTENT_LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "ADD_VIDEO_CONTENT":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

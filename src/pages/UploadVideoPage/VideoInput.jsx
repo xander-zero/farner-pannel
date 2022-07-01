@@ -7,10 +7,10 @@ import uploadImg from "../../assets/images/cloud-upload-regular-240.png";
 export default function VideoInput(props) {
   const { width, height } = props;
 
-  const inputRef = React.useRef();
+  const { source, setSource } = props;
 
-  const [source, setSource] = React.useState();
-
+  // const [source, setSource] = React.useState();
+  const inputRef = props.inputRef;
   const handleFileChange = (event) => {
     console.log(event);
     const file = event.target.files[0];

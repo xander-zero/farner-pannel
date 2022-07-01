@@ -45,3 +45,15 @@ export const sendFileContent = (formData) => async (dispatch) => {
     errorMessage("some thing wrong");
   }
 };
+
+export const sendVideoContent = (formData) => async (dispatch) => {
+  console.log(formData);
+  try {
+    dispatch({ type: "ADD_VIDEO_CONTENT_LOADING" });
+    const { data } = await api.addVideoContent(formData);
+    dispatch({ type: "ADD_VIDEO_CONTENT" });
+    successMessage("با موفقیت اضافه شد");
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};

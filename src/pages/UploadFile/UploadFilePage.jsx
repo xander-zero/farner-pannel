@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button/Button";
 import DragDropFile from "../../components/DragDropFile/DragDropFile";
 import InputFeild from "../../components/InputFeild/InputFeild";
@@ -9,6 +10,7 @@ import TextArea from "../../components/TextArea/TextArea";
 import Typography from "../../components/Typography/Typography";
 import { userData } from "../../help/userData";
 import { sendFileContent } from "../../redux/action/farmer";
+import { getAllProducts } from "../../redux/action/general";
 import { Container } from "../../theme/GlobalStyle";
 import { errorMessage } from "../../utils/message";
 import {
@@ -37,6 +39,14 @@ const UploadFilePage = () => {
   const onFileChange = (files) => {
     // console.log(files);
   };
+
+  const generalSelector = useSelector((state) => state.general);
+  const { products } = generalSelector;
+
+  const productFormat = products?.map((product) => ({
+    label: product.persianName,
+    value: product?.pid,
+  }));
 
   const onCertailFile = (files) => {
     console.log("Hello");
@@ -77,6 +87,10 @@ const UploadFilePage = () => {
     dispatch(sendFileContent(formData));
   };
 
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
   return (
     <Container>
       <Typography size="20px" weight="bold">
@@ -100,7 +114,7 @@ const UploadFilePage = () => {
               onChange={(e) =>
                 setForm({ ...form, contentCategory: e.target.value })
               }
-              items={[]}
+              items={productFormat}
             />
           </div>
           <TagGenerator tags={tags} setTags={setTags} />

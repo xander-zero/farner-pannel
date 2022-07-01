@@ -20,3 +20,5 @@ export const getCities = () => API.get("/cities");
 export const getProducts = () => API.get("/products");
 // add files content management farmer
 export const addFileContent = (formData) => API.post("/file/content", formData);
+// add video content management farmer
+export const addVideoContent = (formData) => API.post("/file/video", formData);
