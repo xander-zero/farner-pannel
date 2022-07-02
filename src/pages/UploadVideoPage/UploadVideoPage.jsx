@@ -13,8 +13,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/action/general";
 import { userData } from "../../help/userData";
 import { sendVideoContent } from "../../redux/action/farmer";
+import Loading from "../../components/Loading/Loading";
 
 const UploadVideoPage = () => {
+  const initialValue = [
+    {
+      id: "1",
+      label: "انتخاب کنید",
+      value: "",
+    },
+    {
+      id: "2",
+      label: "آموزشی",
+      value: "آموزشی",
+    },
+    {
+      id: "2",
+      label: "تجربه کشاورز",
+      value: "تجربه کشاورز",
+    },
+  ];
+
   const [fileList, setFileList] = useState([]);
   const [tags, setTags] = useState([]);
   const [source, setSource] = useState(null);
@@ -91,7 +110,7 @@ const UploadVideoPage = () => {
             <Label>نوع ویدیو</Label>
             <Select
               onChange={(e) => setForm({ ...form, type: e.target.value })}
-              items={[]}
+              items={initialValue}
             />
           </div>
           <div className="select">
@@ -105,7 +124,7 @@ const UploadVideoPage = () => {
           <Button small size="14px" weight="bold" onClick={handleSubmit}>
             {loading ? (
               <Typography color="#fff" size="10px">
-                loading...
+                <Loading />
               </Typography>
             ) : (
               "ارسال"

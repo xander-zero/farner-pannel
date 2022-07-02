@@ -13,7 +13,9 @@ import { singInUser } from "../../redux/action/auth";
 import styled from "styled-components";
 
 // image background
-import bg from "../../assets/images/panel_login_background.jpg";
+import bg from "../../assets/images/expert.png";
+import Typography from "../../components/Typography/Typography";
+import Loading from "../../components/Loading/Loading";
 
 const LoginPage = () => {
   const [expertCode, setExpertCode] = useState("");
@@ -22,73 +24,98 @@ const LoginPage = () => {
   // declare useNavigate
   const navigate = useNavigate();
 
-  // get information authData
-  // const isSendotp = useSelector((state) => state.auth);
-  // const { validation } = isSendotp;
-  // declare dispatch
+  const authSelector = useSelector((state) => state.auth);
+  const { loading } = authSelector;
+
+  console.log("authSelector", authSelector);
+
   const dispatch = useDispatch();
 
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (!validation) {
-    //   dispatch(validationUser({ phoneNumber }));
-    // } else {
+
     dispatch(singInUser({ expertCode, password }, navigate));
-    // }
   };
 
   return (
     <LoginStyle>
-      <Right>
-        <Content>
-          <TitleLogo>Dayan</TitleLogo>
-          <Wrapper>
-            <p>خوش آمدید,</p>
-            <p>لطفا به اکانت خود وارد شوید.</p>
-          </Wrapper>
-          <Form autocomplete="off" onSubmit={handleSubmit}>
-            <FormGroup>
-              {/* {validation === false ? ( */}
-              <InputFeild
-                type="text"
-                label="کد کارشناس"
-                name="expertCode"
-                value={expertCode}
-                onChange={(e) => setExpertCode(e.target.value)}
-              />
-              {/* ) : ( */}
-              <InputFeild
-                type="password"
-                name="password"
-                label="رمز عبور"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {/* )} */}
-            </FormGroup>
-            <Button type="submit">ورود به داشبورد</Button>
-          </Form>
-        </Content>
-      </Right>
-      <Left>
-        <img src={bg} alt="background-image" />
-      </Left>
+      <Container>
+        <Right>
+          <Content>
+            <Wrapper>
+              <Typography size="24px" weight="bold" textAlign="center">
+                وارد حساب خود شوید
+              </Typography>
+            </Wrapper>
+            <Form autocomplete="off" onSubmit={handleSubmit}>
+              <FormGroup>
+                {/* {validation === false ? ( */}
+                <InputFeild
+                  type="text"
+                  label="کد کارشناس"
+                  name="expertCode"
+                  value={expertCode}
+                  onChange={(e) => setExpertCode(e.target.value)}
+                />
+                {/* ) : ( */}
+                <InputFeild
+                  type="password"
+                  name="password"
+                  label="رمز عبور"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {/* )} */}
+              </FormGroup>
+              <Button type="submit">
+                {loading ? <Loading /> : "ورود به داشبورد"}
+              </Button>
+            </Form>
+          </Content>
+        </Right>
+        <Left>
+          <img src={bg} alt="background-image" />
+          <Typography size="24px">
+            به پنل کارشناسان agroIranExpert خوش آمدید.
+          </Typography>
+        </Left>
+      </Container>
     </LoginStyle>
   );
 };
 
 const LoginStyle = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+  background-color: #1470df;
+  width: 100%;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80vh;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+`;
+
 const Left = styled.div`
   display: flex;
-  width: 40%;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+  height: 500px;
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
   }
   @media (max-width: 799px) {
     display: none;
@@ -97,10 +124,15 @@ const Left = styled.div`
 const Right = styled.div`
   display: flex;
   /* flex: 1; */
-  width: 60%;
+  width: 35%;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  padding: 2rem 6rem;
+  padding: 0 2rem;
+  background-color: #fff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
   @media (max-width: 799px) {
     width: 100%;
     padding: 2rem 2rem;
@@ -108,6 +140,7 @@ const Right = styled.div`
 `;
 const Content = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   flex-direction: column;
 `;
@@ -127,6 +160,7 @@ const Wrapper = styled.div`
   }
 `;
 const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -134,7 +168,7 @@ const Form = styled.form`
 const FormGroup = styled.div`
   display: flex;
   /* justify-content: space-between; */
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   border-top: 1px solid #e9ecef;
   border-bottom: 1px solid #e9ecef;

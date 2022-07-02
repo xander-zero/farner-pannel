@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button/Button";
 import DragDropFile from "../../components/DragDropFile/DragDropFile";
 import InputFeild from "../../components/InputFeild/InputFeild";
+import Loading from "../../components/Loading/Loading";
 import Select from "../../components/Select/Select";
 import TagGenerator from "../../components/TagGenerator/TagGenerator";
 import TextArea from "../../components/TextArea/TextArea";
@@ -47,6 +48,9 @@ const UploadFilePage = () => {
     label: product.persianName,
     value: product?.pid,
   }));
+
+  const farmerSelector = useSelector((state) => state.myFarmer);
+  const { loadingFile } = farmerSelector;
 
   const onCertailFile = (files) => {
     console.log("Hello");
@@ -120,7 +124,7 @@ const UploadFilePage = () => {
           <TagGenerator tags={tags} setTags={setTags} />
 
           <Button small size="14px" weight="bold" onClick={handleSubmit}>
-            ارسال
+            {loadingFile ? <Loading /> : "ارسال"}
           </Button>
         </Right>
         <Left>

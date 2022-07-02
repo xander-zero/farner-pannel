@@ -38,21 +38,23 @@ export const assignFarmer = (data) => async (dispatch) => {
 export const sendFileContent = (formData) => async (dispatch) => {
   console.log(formData);
   try {
+    dispatch({ type: "ADD_FILE_CONTENT_LOADING" });
     const { data } = await api.addFileContent(formData);
     dispatch({ type: "ADD_FILE_CONTENT" });
     successMessage("با موفقیت اضافه شد");
+    dispatch({ type: "ADD_FILE_CONTENT_DONE" });
   } catch (error) {
     errorMessage("some thing wrong");
   }
 };
 
 export const sendVideoContent = (formData) => async (dispatch) => {
-  console.log(formData);
   try {
     dispatch({ type: "ADD_VIDEO_CONTENT_LOADING" });
     const { data } = await api.addVideoContent(formData);
     dispatch({ type: "ADD_VIDEO_CONTENT" });
     successMessage("با موفقیت اضافه شد");
+    dispatch({ type: "ADD_VIDEO_CONTENT_DONE" });
   } catch (error) {
     errorMessage("some thing wrong");
   }

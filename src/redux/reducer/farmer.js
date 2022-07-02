@@ -12,9 +12,19 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
         ...state,
         farmer: action.payload,
       };
+    case "ADD_FILE_CONTENT_LOADING":
+      return {
+        ...state,
+        loadingFile: true,
+      };
     case "ADD_FILE_CONTENT":
       return {
         ...state,
+      };
+    case "ADD_FILE_CONTENT_DONE":
+      return {
+        ...state,
+        loadingFile: false,
       };
 
     //
@@ -27,6 +37,12 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
       return {
         ...state,
       };
+    case "ADD_VIDEO_CONTENT_DONE":
+      return {
+        ...state,
+        loading: false,
+      };
+
     default:
       return state;
   }

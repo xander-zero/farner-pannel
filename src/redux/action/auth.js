@@ -18,6 +18,7 @@ export const validationUser = (userData) => async (dispatch) => {
 // sing in
 export const singInUser = (userData, navigate) => async (dispatch) => {
   try {
+    dispatch({ type: "SIGN_IN_LOADING" });
     const { data } = await api.singIn(userData);
     const result = data?.data?.result;
     dispatch({ type: "SIGN_IN_DONE", payload: result });

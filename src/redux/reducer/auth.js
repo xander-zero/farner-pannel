@@ -9,6 +9,14 @@ export const authReducer = (
         ...state,
         validation: true,
       };
+
+    // loading sing in
+    case "SIGN_IN_LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
+
     // sing in user
     case "SIGN_IN_DONE":
       return {
