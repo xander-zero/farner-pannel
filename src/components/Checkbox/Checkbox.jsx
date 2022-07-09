@@ -1,10 +1,10 @@
 import { Container, InputCheck, Span } from "./checkboxStyle.js";
 
-const Checkbox = ({ title }) => {
+const Checkbox = ({ title, value, onChange }) => {
   return (
     <Container>
       <Span>{title}</Span>
-      <InputCheck type="checkbox" checked="checked" />
+      <InputCheck type="checkbox" onChange={onChange} />
     </Container>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 // react redux
 import { useDispatch, useSelector } from "react-redux";
-import { allFarmers } from "../../redux/action/farmer";
+import { allFarmers, getSearchFarmers } from "../../redux/action/farmer";
 
 // components
 import CardList from "../../components/CardList/CardList";
@@ -22,7 +22,7 @@ import { useState } from "react";
 import { userData } from "../../help/userData";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import styled from "styled-components";
-import {AiFillEdit} from 'react-icons/ai'
+import { AiFillEdit } from "react-icons/ai";
 // import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
@@ -31,6 +31,8 @@ const MyFarmerPage = () => {
     phoneNumber: "",
     city: "",
     province: "",
+    marked: false,
+    pid: "",
   });
   // declare dispatch
   const dispatch = useDispatch();
@@ -75,7 +77,7 @@ const MyFarmerPage = () => {
   // }));
 
   const filtedCity = cities?.cities?.filter(
-    (item) => item.province_id == form?.province
+    (item) => item.province_id === form?.province
   );
 
   const allCity = filtedCity?.map((item) => ({
@@ -88,7 +90,14 @@ const MyFarmerPage = () => {
     value: product?.pid,
   }));
 
-  console.log("filtedCity", filtedCity);
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    dispatch(getSearchFarmers(form));
+  };
 
   useEffect(() => {
     dispatch(allFarmers(expertCode));
@@ -112,8 +121,20 @@ const MyFarmerPage = () => {
         <HeaderTitle>کشاورزان من</HeaderTitle>
       </Row>
       <Row>
-        <InputFeild space type="text" placeholder="نام و نام خانوادگی" />
-        <InputFeild space type="text" placeholder="شماره تماس" />
+        <InputFeild
+          onChange={handleChange}
+          space
+          type="text"
+          placeholder="نام و نام خانوادگی"
+          name="fullName"
+        />
+        <InputFeild
+          onChange={handleChange}
+          space
+          type="text"
+          placeholder="شماره تماس"
+          name="phoneNumber"
+        />
         <Select
           items={allProvince}
           onChange={(event) =>
@@ -126,10 +147,25 @@ const MyFarmerPage = () => {
             onChange={(event) => setForm({ ...form, city: event.target.value })}
           />
         )}
-        <Select items={sortProducts} />
+        <Select
+          items={sortProducts}
+          onChange={(event) => setForm({ ...form, pid: event.target.value })}
+        />
 
-        <Checkbox title="ستاره دار" />
-        <Button color="#009EF7" size="12px" small="100px" weight="bold">
+        <Checkbox
+          value={form.marked}
+          title="ستاره دار"
+          onChange={(event) =>
+            setForm({ ...form, marked: event.target.checked })
+          }
+        />
+        <Button
+          color="#009EF7"
+          size="12px"
+          small="100px"
+          weight="bold"
+          onClick={handleSubmit}
+        >
           جستجو
         </Button>
       </Row>

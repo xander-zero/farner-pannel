@@ -1,10 +1,33 @@
 import React from "react";
 import Typography from "../../components/Typography/Typography";
-import { Card, Dashboard, Left, Right } from "./dashboardStyle";
-import Charts from "../../components/Charts/Charts";
+import { Card, Dashboard, Right } from "./dashboardStyle";
 import { HeaderTitle } from "../../theme/GlobalStyle";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  gettingCountFarmer,
+  gettingCountMealplan,
+  gettingCountVisit,
+} from "../../redux/action/farmer";
 
 const DashboardApp = () => {
+  const dispatch = useDispatch();
+
+  const farmerSelector = useSelector((state) => state.myFarmer);
+  const { countFarmer, countMealplan, countVisit } = farmerSelector;
+
+  useEffect(() => {
+    dispatch(gettingCountFarmer());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(gettingCountMealplan());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(gettingCountVisit());
+  }, [dispatch]);
+
   return (
     <Dashboard>
       <HeaderTitle>پیشخوان من</HeaderTitle>
@@ -27,7 +50,7 @@ const DashboardApp = () => {
               تعداد کشاورزان
             </Typography>
             <Typography color="#fff" size="24px" weight="bold">
-              254
+              {countFarmer}
             </Typography>
           </div>
         </Card>
@@ -49,7 +72,7 @@ const DashboardApp = () => {
               تعداد بازدید
             </Typography>
             <Typography color="#fff" size="24px" weight="bold">
-              154
+              {countVisit}
             </Typography>
           </div>
         </Card>
@@ -71,7 +94,7 @@ const DashboardApp = () => {
               تعداد برنامه غذایی
             </Typography>
             <Typography color="#fff" size="24px" weight="bold">
-              654
+              {countMealplan}
             </Typography>
           </div>
         </Card>

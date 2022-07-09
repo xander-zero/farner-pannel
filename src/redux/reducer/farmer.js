@@ -43,6 +43,31 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
         loading: false,
       };
 
+    // count farmer
+    case "COUNT_FARMER":
+      return {
+        ...state,
+        countFarmer: action.payload,
+      };
+
+    case "COUNT_MEALPLAN":
+      return {
+        ...state,
+        countMealplan: action.payload,
+      };
+
+    case "COUNT_VISIT":
+      return {
+        ...state,
+        countVisit: action.payload,
+      };
+
+    // search farmers
+    case "SEARCH_FARMERS":
+      return {
+        ...state,
+        farmers: action.payload,
+      };
     default:
       return state;
   }

@@ -18,6 +18,7 @@ export const generalReducer = (
         ...state,
         products: action.payload,
       };
+
     default:
       return state;
   }

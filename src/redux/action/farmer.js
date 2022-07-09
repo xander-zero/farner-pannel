@@ -59,3 +59,51 @@ export const sendVideoContent = (formData) => async (dispatch) => {
     errorMessage("some thing wrong");
   }
 };
+
+// get count farmer
+export const gettingCountFarmer = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCountFarmer();
+    const result = data?.data?.result;
+    dispatch({ type: "COUNT_FARMER", payload: result });
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};
+
+// get count mealplan
+export const gettingCountMealplan = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCountMealplan();
+    const result = data?.data?.result;
+    dispatch({ type: "COUNT_MEALPLAN", payload: result });
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};
+
+// get count visit
+export const gettingCountVisit = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCountVisit();
+    const result = data?.data?.result;
+    dispatch({ type: "COUNT_VISIT", payload: result });
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};
+
+// search farmers
+export const getSearchFarmers = (formData) => async (dispatch) => {
+  const keys = Object.keys(formData);
+  const values = Object.values(formData);
+  console.log(keys, values);
+  console.log(formData);
+  try {
+    // const { data } = await api.searchFarmers(formData);
+    // const result = data?.data?.result;
+    // dispatch({ type: "SEARCH_FARMERS", payload: result });
+  } catch (error) {
+    errorMessage("some thing wrong");
+  }
+};
