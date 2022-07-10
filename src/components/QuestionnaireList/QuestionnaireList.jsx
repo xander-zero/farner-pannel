@@ -14,6 +14,22 @@ import QRCode from "../../assets/images/qr-code.png";
 // import QRCode from "react-qr-code";
 
 const QuestionnaireList = ({ items }) => {
+  const checkState = (state) => {
+    switch (state) {
+      case "supportCheck":
+        return "در حال بررسی";
+      case "mealPlanCheck":
+        return "در حال نگارش";
+      case "educationCheck":
+      case "saleCheck":
+        return "کنترل و تایید";
+      case "done":
+        return "ارسال شد";
+      default:
+        return state;
+    }
+  };
+
   return (
     <Container>
       <HeaderTitle>پرسشنامه</HeaderTitle>
@@ -45,15 +61,7 @@ const QuestionnaireList = ({ items }) => {
               </Row>
             </Header>
             <Button size="14px" color="#50CD89">
-              {item.state === "supportCheck"
-                ? "درحال بررسی "
-                : item.state === "mealPlanCheck"
-                ? "درحال نگارش"
-                : ""
-                ? item.state === "educationCheck" || item.state === "saleCheck"
-                : " کنترل و تایید"
-                ? item.state === "done"
-                : "ارسال شد"}
+              {checkState(item?.state)}
             </Button>
           </Card>
         ))}

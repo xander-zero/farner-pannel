@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 // components
 import MealPlanList from "../../components/MealPlanList/MealPlanList";
-import Button from "../../components/Button/Button";
 import Typography from "../../components/Typography/Typography";
 import QuestionnaireList from "../../components/QuestionnaireList/QuestionnaireList";
 // react redux
@@ -20,9 +19,7 @@ import {
   MainContent,
   Wrapper,
 } from "./myFarmerDetailStyle";
-import { farmerDetailData } from "../../data/farmerData";
 import VisitList from "../../components/Visit/VisitList";
-import { AiOutlinePhone } from "react-icons/ai";
 const MyFarmerDetailPage = () => {
   // use params
   const { farmerCode } = useParams();
@@ -62,14 +59,15 @@ const MyFarmerDetailPage = () => {
           <HeadeTitle>
             <div>
               <Typography size="16px">
-                {questionnaire && questionnaire[0]?.fullName}
+                {(questionnaire && questionnaire[0]?.fullName) || ""}
               </Typography>
             </div>
             <Typography size="16px">
-              شماره تماس : {questionnaire && questionnaire[0]?.phoneNumber}
+              شماره تماس :{" "}
+              {(questionnaire && questionnaire[0]?.phoneNumber) || ""}
             </Typography>
             <Typography size="16px">
-              آدرس : {`${questionnaire && questionnaire[0]?.city}`}
+              آدرس : {`${(questionnaire && questionnaire[0]?.city) || ""}`}
             </Typography>
           </HeadeTitle>
         </HeaderImg>

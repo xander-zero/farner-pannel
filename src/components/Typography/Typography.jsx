@@ -1,9 +1,18 @@
 import React from "react";
 import { Title } from "./typographyStyle";
 
-const Typography = ({ children, color, size, weight, textAlign, space }) => {
+const Typography = ({
+  children,
+  color,
+  size,
+  weight,
+  textAlign,
+  space,
+  onClick,
+}) => {
   return (
     <Title
+      onClick={onClick}
       color={color}
       size={size}
       weight={weight}

@@ -5,6 +5,13 @@ export const TextAreaStyle = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0.5rem 0;
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
 `;
 
 export const Text = styled.textarea`
@@ -14,10 +21,10 @@ export const Text = styled.textarea`
   outline: none;
   color: ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.backgroundSidebar};
-  height: calc(2.25rem + 2px);
+  /* height: ${({ small }) => (small ? "50px" : "calc(2.25rem + 2px)")}; */
   padding: 0 0.5rem;
   font-family: "IRAN";
-  height: 150px;
+  height: ${({ small }) => (small ? "60px" : "150px")};
 `;
 export const Label = styled.label`
   font-size: 0.9rem;

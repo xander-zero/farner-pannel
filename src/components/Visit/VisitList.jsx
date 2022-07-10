@@ -11,6 +11,23 @@ import { CardListStyle } from "../CardList/CardListStyle";
 import QRCode from "react-qr-code";
 
 const VisitList = ({ items }) => {
+  const checkState = (state) => {
+    switch (state) {
+      case "dataCheck":
+      case "GIS":
+        return "در حال بررسی";
+      case "analysCheck":
+        return "در حال نگارش";
+      case "educationCheck":
+      case "saleCheck":
+        return "کنترل و تایید";
+      case "done":
+        return "ارسال شد";
+      default:
+        return state;
+    }
+  };
+
   return (
     <Container>
       <HeaderTitle>بازدید</HeaderTitle>
@@ -39,7 +56,7 @@ const VisitList = ({ items }) => {
               </Typography>
             </Header>
             <Button size="14px" color="#009EF7">
-              مشاهده برنامه غذایی
+              {checkState(item?.state)}
             </Button>
           </Card>
         ))}

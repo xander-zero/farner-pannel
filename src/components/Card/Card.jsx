@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // react router dom
 import { useNavigate } from "react-router-dom";
@@ -14,9 +14,28 @@ import { CardLeft, CardRights, CardStyle, Icon, Img } from "./cardStyle";
 import { Row } from "../../theme/GlobalStyle";
 // image farmer
 import bg from "../../assets/images/ibrahima-toure-GAepqKfzZFI-unsplash.jpg";
+import TextArea from "../TextArea/TextArea";
+import { addCommentToFarmer } from "../../redux/action/farmer";
+import { userData } from "../../help/userData";
+import { useDispatch } from "react-redux";
 
 const Card = ({ item, icon }) => {
   const navigate = useNavigate();
+  const [commnet, setComment] = useState("");
+
+  const dispatch = useDispatch();
+
+  const userInformation = userData();
+  const expertCode = userInformation?.data?.result?.expert?.expertCode;
+
+  const handleClick = () => {
+    const data = {
+      commnet,
+      marked: true,
+    };
+    dispatch(addCommentToFarmer(data, item?.farmerCode));
+    setComment("");
+  };
 
   return (
     <CardStyle>
@@ -34,10 +53,13 @@ const Card = ({ item, icon }) => {
         <Typography size="12px">
           <AiOutlineFile /> {item?.mealPlanCount} برنامه غذایی
         </Typography>
-        <InputFeild
+        <TextArea
+          small
           icon={icon}
           type="text"
           placeholder={`یادداشت خود را بنویسید...`}
+          onClick={handleClick}
+          onChange={(event) => setComment(event.target.value)}
         />
         <div
           style={{ marginTop: "10px", cursor: "pointer" }}

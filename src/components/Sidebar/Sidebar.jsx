@@ -11,7 +11,20 @@ import styled from "styled-components";
 
 const Sidebar = () => {
   const location = useLocation();
-
+  const sidebarData = [
+    {
+      id: 1,
+      path: ["/dashboard/app"],
+    },
+    {
+      id: 2,
+      path: ["/dashboard/myFarmer"],
+    },
+    {
+      id: 3,
+      path: ["/dashboard/manage-page"],
+    },
+  ];
   return (
     <SidebarStyle>
       <Logo>
@@ -37,14 +50,15 @@ const Sidebar = () => {
           </Link>
         </MenuListItem>
         <MenuListItem
-          className={location.pathname === "/dashboard/manage-page" ? "active" : ""}
+          className={
+            location.pathname === "/dashboard/manage-page" ? "active" : ""
+          }
         >
           <Link to="/dashboard/manage-page">
             <RiTicketLine size={20} />
             <p>مدیریت صفحه</p>
           </Link>
         </MenuListItem>
-       
       </MenuList>
     </SidebarStyle>
   );

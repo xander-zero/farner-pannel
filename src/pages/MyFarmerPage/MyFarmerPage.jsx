@@ -69,7 +69,6 @@ const MyFarmerPage = () => {
 
   const userInformation = userData();
   const expertCode = userInformation?.data?.result?.expert?.expertCode;
-  console.log(expertCode);
 
   // const allCities = cities?.cities?.map((item) => ({
   //   label: item.name,
@@ -77,7 +76,7 @@ const MyFarmerPage = () => {
   // }));
 
   const filtedCity = cities?.cities?.filter(
-    (item) => item.province_id === form?.province
+    (item) => item.province_id === +form?.province
   );
 
   const allCity = filtedCity?.map((item) => ({
@@ -95,8 +94,21 @@ const MyFarmerPage = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = () => {
-    dispatch(getSearchFarmers(form));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+    dispatch(
+      allFarmers(
+        expertCode,
+        form.fullName,
+        form.phoneNumber,
+        form.province,
+        form.city,
+        form.pid,
+        form.marked
+      )
+    );
+    // dispatch(getSearchFarmers(form.fullName));
   };
 
   useEffect(() => {
@@ -184,11 +196,14 @@ const MyFarmerPage = () => {
 };
 
 const Wrapper = styled.div`
-  width: 10%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  @media (max-width: 567px) {
+    width: 100%;
+  }
 `;
 
 export default MyFarmerPage;

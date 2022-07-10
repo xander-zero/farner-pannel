@@ -2,15 +2,25 @@ import * as api from "../../service/myFarmer";
 import { errorMessage, successMessage } from "../../utils/message";
 
 // get all farmers
-export const allFarmers = (expertCode) => async (dispatch) => {
-  try {
-    const { data } = await api.getAllFarmer(expertCode);
-    const result = data?.data?.result;
-    dispatch({ type: "GET_ALL_FARMERS", payload: result });
-  } catch (error) {
-    errorMessage("some thing wrong");
-  }
-};
+export const allFarmers =
+  (expertCode, fullName, phone, province, city, pid, marked) =>
+  async (dispatch) => {
+    try {
+      const { data } = await api.getAllFarmer(
+        expertCode,
+        fullName,
+        phone,
+        province,
+        city,
+        pid,
+        marked
+      );
+      const result = data?.data?.result;
+      dispatch({ type: "GET_ALL_FARMERS", payload: result });
+    } catch (error) {
+      errorMessage("some thing wrong");
+    }
+  };
 
 // get detail farmer
 export const detailFarmer = (farmerCode) => async (dispatch) => {
@@ -94,16 +104,22 @@ export const gettingCountVisit = () => async (dispatch) => {
 };
 
 // search farmers
-export const getSearchFarmers = (formData) => async (dispatch) => {
-  const keys = Object.keys(formData);
-  const values = Object.values(formData);
-  console.log(keys, values);
-  console.log(formData);
+export const getSearchFarmers = (name) => async (dispatch) => {
+  // console.log(key, value);
   try {
-    // const { data } = await api.searchFarmers(formData);
-    // const result = data?.data?.result;
-    // dispatch({ type: "SEARCH_FARMERS", payload: result });
+    const { data } = await api.searchFarmers(name);
+    const result = data?.data?.result;
+    dispatch({ type: "SEARCH_FARMERS", payload: result });
   } catch (error) {
     errorMessage("some thing wrong");
   }
+};
+
+export const addCommentToFarmer = (data, expertCode) => async (dispatch) => {
+  try {
+    await api.addComment(data, expertCode);
+    dispatch({ type: "ADD_COMMENT_TO_FARMER" });
+    dispatch(allFarmers(expertCode));
+    successMessage("با موفقیت ارسال شد");
+  } catch (error) {}
 };

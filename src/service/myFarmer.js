@@ -1,9 +1,21 @@
 import { API } from "./apiRequestInterface";
 
 // get all farmer
-export const getAllFarmer = (expertCode) =>
+export const getAllFarmer = (
+  expertCode,
+  fullName,
+  phone,
+  province,
+  city,
+  pid,
+  marked
+) =>
   API.get(
-    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=${expertCode}`
+    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=${expertCode}&fullName=${
+      fullName || ""
+    }&phoneNumber=${phone || ""}&province=${province || ""}&city=${
+      city || ""
+    }&pid=${pid || ""}&marked=${marked || ""}`
   );
 
 // get detail farmer
@@ -29,5 +41,8 @@ export const getCountMealplan = () => API.get("/me/mealPlan/count");
 // get count vitist
 export const getCountVisit = () => API.get("/me/visits/count");
 // search farmer
-export const searchFarmers = () =>
-  API.get("/expert/get/farmers?expertCode=ESEHO907951");
+export const searchFarmers = (fullName) =>
+  API.get(`/expert/get/farmers?expertCode=ESEHO907951&fullName=${fullName}`);
+// add comment
+export const addComment = (data, expertCode) =>
+  API.put(`/expert/farmer?farmerCode=${expertCode}`, data);

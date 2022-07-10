@@ -68,6 +68,12 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
         ...state,
         farmers: action.payload,
       };
+
+    // case
+    case "ADD_COMMENT_TO_FARMER":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

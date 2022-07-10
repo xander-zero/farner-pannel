@@ -76,7 +76,7 @@ const UploadVideoPage = () => {
     formData.append("title", form.title);
     formData.append("description", form.description);
     formData.append("video", inputRef ? inputRef?.current?.files[0] : null);
-    formData.append("type", "آموزشی");
+    formData.append("type", form.type);
     formData.append("category", form.category);
     formData.append("cover", fileList[0] ? fileList[0] : null);
     formData.append("keyWords", tags?.join(","));
