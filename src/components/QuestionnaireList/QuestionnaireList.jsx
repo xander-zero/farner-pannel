@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
 // components
 import Typography from "../Typography/Typography";
 
@@ -11,6 +11,7 @@ import Button from "../Button/Button";
 import imgProduct from "../../assets/images/plant.png";
 import { formatData } from "../../utils/date";
 import QRCode from "../../assets/images/qr-code.png";
+import { moreQuestionnaire } from "../../redux/action/farmer";
 // import QRCode from "react-qr-code";
 
 const QuestionnaireList = ({ items }) => {
@@ -29,6 +30,12 @@ const QuestionnaireList = ({ items }) => {
         return state;
     }
   };
+  const dispatch = useDispatch();
+  const getMoreQuestionnaire = (farmerCode) => {
+    dispatch(moreQuestionnaire(farmerCode));
+  };
+
+  console.log(items);
 
   return (
     <Container>
@@ -68,6 +75,15 @@ const QuestionnaireList = ({ items }) => {
         {/* </Fade>
         </div> */}
       </CardListStyle>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Button
+          small
+          size="14px"
+          onClick={() => getMoreQuestionnaire(items[0]?.farmerCode)}
+        >
+          مشاهده بیشتر
+        </Button>
+      </div>
     </Container>
   );
 };

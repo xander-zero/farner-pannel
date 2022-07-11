@@ -46,3 +46,10 @@ export const searchFarmers = (fullName) =>
 // add comment
 export const addComment = (data, expertCode) =>
   API.put(`/expert/farmer?farmerCode=${expertCode}`, data);
+// get questionnaire more
+export const getMoreQuestionnaire = (farmerCode) =>
+  API.get(`/farmer/data/questionnaires/features?farmerCode=${farmerCode}`);
+// get mealplan more
+export const getMoreMealplan = () => API.get("/farmer/data/mealPlans/features");
+// get visit more
+export const getMoreVisit = () => API.get("/farmer/data/visits/features");

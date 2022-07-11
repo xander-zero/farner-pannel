@@ -74,6 +74,26 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
       return {
         ...state,
       };
+
+    // get more questionnaire
+    case "ALL_QUESTIONNAIRE":
+      return {
+        ...state,
+        questionnaires: action.payload,
+      };
+
+    case "ALL_MEALPLAN":
+      return {
+        ...state,
+        mealplans: action.payload,
+      };
+
+    case "ALL_VISIT":
+      return {
+        ...state,
+        visits: action.payload,
+      };
+
     default:
       return state;
   }

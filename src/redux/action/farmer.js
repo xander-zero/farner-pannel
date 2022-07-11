@@ -123,3 +123,33 @@ export const addCommentToFarmer = (data, expertCode) => async (dispatch) => {
     successMessage("با موفقیت ارسال شد");
   } catch (error) {}
 };
+
+export const moreQuestionnaire = (farmerCode) => async (dispatch) => {
+  try {
+    const { data } = await api.getMoreQuestionnaire(farmerCode);
+    const result = data?.data?.result;
+    dispatch({ type: "ALL_QUESTIONNAIRE", payload: result });
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};
+
+export const moreMealplan = () => async (dispatch) => {
+  try {
+    const { data } = await api.getMoreMealplan();
+    const result = data?.data?.result;
+    dispatch({ type: "ALL_MEALPLAN", payload: result });
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};
+
+export const getVisit = () => async (dispatch) => {
+  try {
+    const { data } = await api.getMoreVisit();
+    const result = data?.data?.result;
+    dispatch({ type: "ALL_VISIT", payload: result });
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};

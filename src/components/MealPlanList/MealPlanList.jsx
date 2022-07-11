@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 // components
 import Typography from "../Typography/Typography";
@@ -12,10 +13,17 @@ import imgProduct from "../../assets/images/plant.png";
 import { formatData } from "../../utils/date";
 import { FiDownload } from "react-icons/fi";
 import QRCode from "../../assets/images/qr-code.png";
+import { moreMealplan } from "../../redux/action/farmer";
 // import QRCode from "react-qr-code";
 
 const MealPlanList = ({ items }) => {
   console.log(items);
+
+  const dispatch = useDispatch();
+
+  const getMoreMealplan = () => {
+    dispatch(moreMealplan());
+  };
 
   return (
     <Container>
@@ -63,6 +71,11 @@ const MealPlanList = ({ items }) => {
           </Card>
         ))}
       </CardListStyle>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Button small size="14px" onClick={getMoreMealplan}>
+          مشاهده بیشتر
+        </Button>
+      </div>
     </Container>
   );
 };
