@@ -27,6 +27,7 @@ import { userData } from "../../help/userData";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import styled from "styled-components";
 import { AiFillEdit } from "react-icons/ai";
+import { FiRefreshCcw } from "react-icons/fi";
 // import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
@@ -165,6 +166,9 @@ const MyFarmerPage = () => {
     <Container>
       <Row>
         <HeaderTitle>کشاورزان من</HeaderTitle>
+        <Refresh onClick={() => dispatch(allFarmers(expertCode))}>
+          <FiRefreshCcw size={20} />
+        </Refresh>
       </Row>
       <Row>
         <InputFeild
@@ -214,6 +218,15 @@ const MyFarmerPage = () => {
         >
           جستجو
         </Button>
+        {/* <Button
+          color="#009EF7"
+          size="12px"
+          small="50px"
+          weight="bold"
+          onClick={() => dispatch(allFarmers(expertCode))}
+        > */}
+
+        {/* </Button> */}
       </Row>
       <Wrapper>
         <Select items={initialSort} onChange={handleChangeSort} />
@@ -242,6 +255,15 @@ const Wrapper = styled.div`
   @media (max-width: 567px) {
     width: 100%;
   }
+`;
+
+export const Refresh = styled.button`
+  background-color: #009ef7;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
 `;
 
 export default MyFarmerPage;
