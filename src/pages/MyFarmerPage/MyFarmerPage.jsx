@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 
 // react redux
 import { useDispatch, useSelector } from "react-redux";
-import { allFarmers, getSearchFarmers } from "../../redux/action/farmer";
+import {
+  allFarmers,
+  getSearchFarmers,
+  sortFarmer,
+} from "../../redux/action/farmer";
 
 // components
 import CardList from "../../components/CardList/CardList";
@@ -34,6 +38,10 @@ const MyFarmerPage = () => {
     marked: false,
     pid: "",
   });
+  const [sort, setSort] = useState({
+    mealPlan: "",
+    area: "",
+  });
   // declare dispatch
   const dispatch = useDispatch();
 
@@ -46,12 +54,22 @@ const MyFarmerPage = () => {
     {
       id: "2",
       label: "بیشترین مساحت",
-      value: "most",
+      value: "descending-area",
     },
     {
-      id: "2",
-      label: "بیشترین برنامه",
-      value: "most-mealPlan",
+      id: "3",
+      label: "بیشترین برنامه غذایی",
+      value: "descending-mealplan",
+    },
+    {
+      id: "4",
+      label: "کمترین مساحت",
+      value: "acsending-area",
+    },
+    {
+      id: "5",
+      label: "کمترین برنامه غذایی",
+      value: "ascending-mealplan",
     },
   ];
 
@@ -109,6 +127,22 @@ const MyFarmerPage = () => {
       )
     );
     // dispatch(getSearchFarmers(form.fullName));
+  };
+
+  const handleChangeSort = (event) => {
+    const { value } = event.target;
+    switch (value) {
+      case "descending-area":
+        return dispatch(sortFarmer(expertCode, "", "descending"));
+      case "descending-mealplan":
+        return dispatch(sortFarmer(expertCode, "descending", ""));
+      case "acsending-area":
+        return dispatch(sortFarmer(expertCode, "", "ascending"));
+      case "ascending-mealplan":
+        return dispatch(setForm(expertCode, "ascending", ""));
+      default:
+        return;
+    }
   };
 
   useEffect(() => {
@@ -182,11 +216,15 @@ const MyFarmerPage = () => {
         </Button>
       </Row>
       <Wrapper>
-        <Select items={initialSort} />
+        <Select items={initialSort} onChange={handleChangeSort} />
       </Wrapper>
       <div style={{ marginTop: "1rem" }}>
         {farmers ? (
-          <CardList icon={<AiFillEdit />} items={farmers} />
+          <CardList
+            expertCode={expertCode}
+            icon={<AiFillEdit />}
+            items={farmers}
+          />
         ) : (
           <Typography>Loading...</Typography>
         )}

@@ -153,3 +153,13 @@ export const getVisit = () => async (dispatch) => {
     errorMessage("wrong");
   }
 };
+
+export const sortFarmer = (expertCode, mealplan, area) => async (dispatch) => {
+  try {
+    const { data } = await api.sortAllFarmer(expertCode, mealplan, area);
+    const result = data?.data?.result;
+    dispatch({ type: "SORT_FARMER", payload: result });
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};

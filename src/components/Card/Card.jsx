@@ -33,7 +33,7 @@ const Card = ({ item, icon }) => {
       commnet,
       marked: true,
     };
-    dispatch(addCommentToFarmer(data, item?.farmerCode));
+    dispatch(addCommentToFarmer(data, expertCode));
     setComment("");
   };
 

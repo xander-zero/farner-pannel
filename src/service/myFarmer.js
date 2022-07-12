@@ -25,11 +25,11 @@ export const getDetailFarmer = (farmerCode) =>
 // assign farmer to expert
 export const addAssignFarmer = (data) => API.post("/expert/farmer", data);
 // get province
-export const getProvince = () => API.get("/provinces");
+export const getProvince = () => API.get("https://agrodayan.ir/api/provinces");
 // get cities
-export const getCities = () => API.get("/cities");
+export const getCities = () => API.get("https://agrodayan.ir/api/cities");
 // get products
-export const getProducts = () => API.get("/products");
+export const getProducts = () => API.get("https://agrodayan.ir/api/products");
 // add files content management farmer
 export const addFileContent = (formData) => API.post("/file/content", formData);
 // add video content management farmer
@@ -53,3 +53,10 @@ export const getMoreQuestionnaire = (farmerCode) =>
 export const getMoreMealplan = () => API.get("/farmer/data/mealPlans/features");
 // get visit more
 export const getMoreVisit = () => API.get("/farmer/data/visits/features");
+// export const sort farmer
+export const sortAllFarmer = (expertCode, sortMeal, sortArea) =>
+  API.get(
+    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=${expertCode}&mealPlan=${
+      sortMeal ? sortMeal : ""
+    }&area=${sortArea ? sortArea : ""}`
+  );

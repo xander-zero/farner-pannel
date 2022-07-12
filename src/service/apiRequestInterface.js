@@ -6,7 +6,7 @@ import { userData } from "../help/userData";
 import { errorMessage } from "../utils/message";
 
 // create base url
-const API = axios.create({ baseURL: "https://agrodayan.ir/api" });
+const API = axios.create({ baseURL: "http://185.81.99.8:88/api" });
 
 // set access token for every request
 API.interceptors.request.use(

@@ -59,14 +59,14 @@ const UploadVideoPage = () => {
   };
 
   const farmerSelector = useSelector((state) => state.myFarmer);
-  const { loading } = farmerSelector;
+  const { loadingVideo } = farmerSelector;
 
   const generalSelector = useSelector((state) => state.general);
   const { products } = generalSelector;
 
   const productFormat = products?.map((product) => ({
     label: product.persianName,
-    value: product?.pid,
+    value: product?.persianName,
   }));
 
   const userInformation = userData();
@@ -122,7 +122,7 @@ const UploadVideoPage = () => {
           </div>
           <TagGenerator tags={tags} setTags={setTags} />
           <Button small size="14px" weight="bold" onClick={handleSubmit}>
-            {loading ? (
+            {loadingVideo ? (
               <Typography color="#fff" size="10px">
                 <Loading />
               </Typography>

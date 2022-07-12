@@ -31,7 +31,7 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
     case "ADD_VIDEO_CONTENT_LOADING":
       return {
         ...state,
-        loading: true,
+        loadingVideo: true,
       };
     case "ADD_VIDEO_CONTENT":
       return {
@@ -40,7 +40,7 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
     case "ADD_VIDEO_CONTENT_DONE":
       return {
         ...state,
-        loading: false,
+        loadingVideo: false,
       };
 
     // count farmer
@@ -92,6 +92,11 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
       return {
         ...state,
         visits: action.payload,
+      };
+    case "SORT_FARMER":
+      return {
+        ...state,
+        farmers: action.payload,
       };
 
     default:
