@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import DragDropFile from "../../components/DragDropFile/DragDropFile";
 import InputFeild from "../../components/InputFeild/InputFeild";
@@ -23,9 +24,9 @@ import {
 
 const UploadFilePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userInformation = userData();
   const expertCodeData = userInformation?.data?.result?.expert?.expertCode;
-  console.log(userInformation);
   const [tags, setTags] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [imageList, setImageList] = useState([]);
@@ -33,7 +34,7 @@ const UploadFilePage = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    contentCategory: "آموزشی",
+    contentCategory: "",
     keyWords: [],
     files: null,
   });
@@ -46,19 +47,16 @@ const UploadFilePage = () => {
 
   const productFormat = products?.map((product) => ({
     label: product.persianName,
-    value: product?.pid,
+    value: product?.persianName,
   }));
 
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { loadingFile } = farmerSelector;
 
   const onCertailFile = (files) => {
-    console.log("Hello");
     var newFile = files[0];
 
     let modeFile = "";
-
-    console.log(newFile.type);
 
     if (newFile.type === "image/jpeg") {
       modeFile = "jpeg";
@@ -80,20 +78,31 @@ const UploadFilePage = () => {
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("description", form.description);
+    formData.append("contentCategory", form.contentCategory);
     formData.append("keyWords", tags.join(","));
     formData.append("expertCode", expertCodeData);
-
-    const newFileList = [...fileList, ...imageList, ...certainFile];
+    // formData.append("files", certainFile[0]);
+    const newFileList = [fileList[0], ...imageList, certainFile[0]];
+    console.log("newFileList", newFileList);
     for (let i = 0; i < newFileList?.length; i++) {
-      formData.append(`files[${i}]`, newFileList[i]);
+      formData.append(`files`, newFileList[i]);
     }
 
-    dispatch(sendFileContent(formData));
+    dispatch(sendFileContent(formData, navigate));
+    setForm({
+      title: "",
+      description: "",
+      contentCategory: "",
+      keyWords: [],
+      files: null,
+    });
   };
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
+  console.log("fileList[0]", certainFile);
 
   return (
     <Container>

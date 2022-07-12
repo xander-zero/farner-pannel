@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // components
 import Typography from "../Typography/Typography";
 
@@ -30,6 +30,10 @@ const QuestionnaireList = ({ items }) => {
         return state;
     }
   };
+
+  const farmerSelector = useSelector((state) => state.myFarmer);
+  const { questionnaires } = farmerSelector;
+
   const dispatch = useDispatch();
   const getMoreQuestionnaire = (farmerCode) => {
     dispatch(moreQuestionnaire(farmerCode));
@@ -43,35 +47,71 @@ const QuestionnaireList = ({ items }) => {
       <CardListStyle>
         {/* <div style={{ width: "100%" }}>
           <Fade scale={0.4}> */}
-        {items?.map((item, index) => (
-          <Card key={index}>
-            <Header>
-              <Row>
-                <img src={imgProduct} />
+        {questionnaires ? (
+          questionnaires.map((item, index) => (
+            <Card key={index}>
+              <Header>
+                <Row>
+                  <img src={imgProduct} />
+                  <Typography size="14px" weight="bold">
+                    {item?.product || ""}
+                  </Typography>
+                </Row>
                 <Typography size="14px" weight="bold">
-                  {item?.product}
+                  تاریخ دریافت :{" "}
+                  {formatData(item?.date?.toString() || "") || ""}
                 </Typography>
-              </Row>
-              <Typography size="14px" weight="bold">
-                تاریخ دریافت : {formatData(item?.date?.toString())}
-              </Typography>
-            </Header>
-            <Header>
-              <Typography size="14px" weight="bold">
-                {item?.Qcode}
-              </Typography>
-              <Row>
+              </Header>
+              <Header>
                 <Typography size="14px" weight="bold">
-                  {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
-                  <img src={QRCode} alt="QRCode-image" />
+                  {item?.Qcode || ""}
                 </Typography>
-              </Row>
-            </Header>
-            <Button size="14px" color="#50CD89">
-              {checkState(item?.state)}
-            </Button>
-          </Card>
-        ))}
+                <Row>
+                  <Typography size="14px" weight="bold">
+                    {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
+                    <img src={QRCode} alt="QRCode-image" />
+                  </Typography>
+                </Row>
+              </Header>
+              <Button size="14px" color="#50CD89">
+                {checkState(item?.state) || ""}
+              </Button>
+            </Card>
+          ))
+        ) : (
+          <>
+            {items?.map((item, index) => (
+              <Card key={index}>
+                <Header>
+                  <Row>
+                    <img src={imgProduct} />
+                    <Typography size="14px" weight="bold">
+                      {item?.product}
+                    </Typography>
+                  </Row>
+                  <Typography size="14px" weight="bold">
+                    تاریخ دریافت : {formatData(item?.date?.toString())}
+                  </Typography>
+                </Header>
+                <Header>
+                  <Typography size="14px" weight="bold">
+                    {item?.Qcode}
+                  </Typography>
+                  <Row>
+                    <Typography size="14px" weight="bold">
+                      {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
+                      <img src={QRCode} alt="QRCode-image" />
+                    </Typography>
+                  </Row>
+                </Header>
+                <Button size="14px" color="#50CD89">
+                  {checkState(item?.state)}
+                </Button>
+              </Card>
+            ))}
+          </>
+        )}
+
         {/* </Fade>
         </div> */}
       </CardListStyle>

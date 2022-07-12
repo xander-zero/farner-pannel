@@ -45,7 +45,7 @@ export const assignFarmer = (data) => async (dispatch) => {
   }
 };
 
-export const sendFileContent = (formData) => async (dispatch) => {
+export const sendFileContent = (formData, navigate) => async (dispatch) => {
   console.log(formData);
   try {
     dispatch({ type: "ADD_FILE_CONTENT_LOADING" });
@@ -53,8 +53,10 @@ export const sendFileContent = (formData) => async (dispatch) => {
     dispatch({ type: "ADD_FILE_CONTENT" });
     successMessage("با موفقیت اضافه شد");
     dispatch({ type: "ADD_FILE_CONTENT_DONE" });
+    navigate("/dashboard/manage-page");
   } catch (error) {
     errorMessage("some thing wrong");
+    dispatch({ type: "ADD_FILE_CONTENT_DONE" });
   }
 };
 
@@ -134,9 +136,9 @@ export const moreQuestionnaire = (farmerCode) => async (dispatch) => {
   }
 };
 
-export const moreMealplan = () => async (dispatch) => {
+export const moreMealplan = (farmerCode) => async (dispatch) => {
   try {
-    const { data } = await api.getMoreMealplan();
+    const { data } = await api.getMoreMealplan(farmerCode);
     const result = data?.data?.result;
     dispatch({ type: "ALL_MEALPLAN", payload: result });
   } catch (error) {
@@ -144,9 +146,9 @@ export const moreMealplan = () => async (dispatch) => {
   }
 };
 
-export const getVisit = () => async (dispatch) => {
+export const getVisit = (farmerCode) => async (dispatch) => {
   try {
-    const { data } = await api.getMoreVisit();
+    const { data } = await api.getMoreVisit(farmerCode);
     const result = data?.data?.result;
     dispatch({ type: "ALL_VISIT", payload: result });
   } catch (error) {

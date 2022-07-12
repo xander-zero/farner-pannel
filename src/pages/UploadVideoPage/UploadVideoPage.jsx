@@ -58,6 +58,8 @@ const UploadVideoPage = () => {
     console.log(files);
   };
 
+  console.log("fileList[0]", fileList[0]);
+
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { loadingVideo } = farmerSelector;
 

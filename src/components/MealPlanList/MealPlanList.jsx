@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import Typography from "../Typography/Typography";
@@ -21,58 +21,111 @@ const MealPlanList = ({ items }) => {
 
   const dispatch = useDispatch();
 
-  const getMoreMealplan = () => {
-    dispatch(moreMealplan());
+  const farmerSelector = useSelector((state) => state.myFarmer);
+  const { mealplans } = farmerSelector;
+
+  const getMoreMealplan = (farmerCode) => {
+    dispatch(moreMealplan(farmerCode));
   };
 
   return (
     <Container>
       <HeaderTitle>برنامه غذایی</HeaderTitle>
       <CardListStyle>
-        {items?.map((item, index) => (
-          <Card key={index}>
-            <Header>
-              <Row>
-                <img src={imgProduct} alt="image-plant" />
-                <Typography size="14px" weight="bold">
-                  {item?.product}
+        {mealplans ? (
+          mealplans.map((item, index) => (
+            <Card key={index}>
+              <Header>
+                <Row>
+                  <img src={imgProduct} alt="image-plant" />
+                  <Typography size="14px" weight="bold">
+                    {item?.product || ""}
+                  </Typography>
+                </Row>
+                <Typography size="12px" weight="bold">
+                  تاریخ نگارش : {formatData(item?.date?.toString() || "")}
                 </Typography>
-              </Row>
-              <Typography size="12px" weight="bold">
-                تاریخ نگارش : {formatData(item?.date?.toString())}
-              </Typography>
-            </Header>
-            <Header>
-              <Typography size="14px" weight="bold">
-                {item?.Qcode}
-              </Typography>
+              </Header>
+              <Header>
+                <Typography size="14px" weight="bold">
+                  {item?.Qcode || ""}
+                </Typography>
 
+                <Row>
+                  <Typography size="14px" weight="bold">
+                    {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
+                    <img src={QRCode} />
+                  </Typography>
+                </Row>
+              </Header>
               <Row>
-                <Typography size="14px" weight="bold">
-                  {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
-                  <img src={QRCode} />
+                <Typography textAlign="left" size="14px" weight="bold">
+                  <a href={item?.files || ""} target="_blank">
+                    <FiDownload
+                      color="#009EF7"
+                      size={20}
+                      style={{ fontWeight: "bold" }}
+                    />
+                  </a>
                 </Typography>
               </Row>
-            </Header>
-            <Row>
-              <Typography textAlign="left" size="14px" weight="bold">
-                <a href={item?.files} target="_blank">
-                  <FiDownload
-                    color="#009EF7"
-                    size={20}
-                    style={{ fontWeight: "bold" }}
-                  />
-                </a>
-              </Typography>
-            </Row>
-            <Button size="14px" color="#F1416C">
-              مشاهده برنامه غذایی
-            </Button>
-          </Card>
-        ))}
+              <Button size="14px" color="#F1416C">
+                مشاهده برنامه غذایی
+              </Button>
+            </Card>
+          ))
+        ) : (
+          <>
+            {items?.map((item, index) => (
+              <Card key={index}>
+                <Header>
+                  <Row>
+                    <img src={imgProduct} alt="image-plant" />
+                    <Typography size="14px" weight="bold">
+                      {item?.product}
+                    </Typography>
+                  </Row>
+                  <Typography size="12px" weight="bold">
+                    تاریخ نگارش : {formatData(item?.date?.toString())}
+                  </Typography>
+                </Header>
+                <Header>
+                  <Typography size="14px" weight="bold">
+                    {item?.Qcode}
+                  </Typography>
+
+                  <Row>
+                    <Typography size="14px" weight="bold">
+                      {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
+                      <img src={QRCode} />
+                    </Typography>
+                  </Row>
+                </Header>
+                <Row>
+                  <Typography textAlign="left" size="14px" weight="bold">
+                    <a href={item?.files} target="_blank">
+                      <FiDownload
+                        color="#009EF7"
+                        size={20}
+                        style={{ fontWeight: "bold" }}
+                      />
+                    </a>
+                  </Typography>
+                </Row>
+                <Button size="14px" color="#F1416C">
+                  مشاهده برنامه غذایی
+                </Button>
+              </Card>
+            ))}
+          </>
+        )}
       </CardListStyle>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button small size="14px" onClick={getMoreMealplan}>
+        <Button
+          small
+          size="14px"
+          onClick={() => getMoreMealplan(items[0]?.farmerCode)}
+        >
           مشاهده بیشتر
         </Button>
       </div>

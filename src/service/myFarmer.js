@@ -50,9 +50,11 @@ export const addComment = (data, expertCode) =>
 export const getMoreQuestionnaire = (farmerCode) =>
   API.get(`/farmer/data/questionnaires/features?farmerCode=${farmerCode}`);
 // get mealplan more
-export const getMoreMealplan = () => API.get("/farmer/data/mealPlans/features");
+export const getMoreMealplan = (farmerCode) =>
+  API.get(`/farmer/data/mealPlans/features?farmerCode=${farmerCode}`);
 // get visit more
-export const getMoreVisit = () => API.get("/farmer/data/visits/features");
+export const getMoreVisit = (farmerCode) =>
+  API.get(`/farmer/data/visits/features?farmerCode=${farmerCode}`);
 // export const sort farmer
 export const sortAllFarmer = (expertCode, sortMeal, sortArea) =>
   API.get(
