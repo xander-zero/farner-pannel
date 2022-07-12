@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 // components
 import Layout from "../../layout/MainLayout";
@@ -14,9 +15,11 @@ import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 const Dashboard = () => {
   return (
     <Layout>
+      <ToastContainer />
       <Routes>
         <Route path="app" element={<DashboardApp />} />
         <Route path="myFarmer" element={<MyFarmerPage />} />
+        <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
         <Route path="manage-page" element={<ManagePage />} />
         <Route path="manage-page/uploadVideo" element={<UploadVideoPage />} />

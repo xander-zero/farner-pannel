@@ -18,24 +18,30 @@ import TextArea from "../TextArea/TextArea";
 import { addCommentToFarmer } from "../../redux/action/farmer";
 import { userData } from "../../help/userData";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Card = ({ item, icon }) => {
   const navigate = useNavigate();
-  const [commnet, setComment] = useState("");
+  const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
 
   const userInformation = userData();
   const expertCode = userInformation?.data?.result?.expert?.expertCode;
 
-  const handleClick = () => {
+  const handleClick = (farmerCode) => {
     const data = {
-      commnet,
+      comment,
       marked: true,
     };
-    dispatch(addCommentToFarmer(data, expertCode));
-    setComment("");
+    dispatch(addCommentToFarmer(data, farmerCode, expertCode));
   };
+
+  useEffect(() => {
+    if (item?.comment) {
+      setComment(item?.comment);
+    }
+  }, []);
 
   return (
     <CardStyle>
@@ -54,11 +60,12 @@ const Card = ({ item, icon }) => {
           <AiOutlineFile /> {item?.mealPlanCount} برنامه غذایی
         </Typography>
         <TextArea
+          value={item?.comment}
           small
           icon={icon}
           type="text"
           placeholder={`یادداشت خود را بنویسید...`}
-          onClick={handleClick}
+          onClick={() => handleClick(item?.farmerCode)}
           onChange={(event) => setComment(event.target.value)}
         />
         <div

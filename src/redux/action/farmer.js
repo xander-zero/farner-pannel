@@ -117,14 +117,15 @@ export const getSearchFarmers = (name) => async (dispatch) => {
   }
 };
 
-export const addCommentToFarmer = (data, expertCode) => async (dispatch) => {
-  try {
-    await api.addComment(data, expertCode);
-    dispatch({ type: "ADD_COMMENT_TO_FARMER" });
-    dispatch(allFarmers(expertCode));
-    successMessage("با موفقیت ارسال شد");
-  } catch (error) {}
-};
+export const addCommentToFarmer =
+  (data, farmerCode, expertCode) => async (dispatch) => {
+    try {
+      await api.addComment(data, farmerCode);
+      dispatch({ type: "ADD_COMMENT_TO_FARMER" });
+      dispatch(allFarmers(expertCode));
+      successMessage("با موفقیت ارسال شد");
+    } catch (error) {}
+  };
 
 export const moreQuestionnaire = (farmerCode) => async (dispatch) => {
   try {

@@ -44,8 +44,8 @@ export const getCountVisit = () => API.get("/me/visits/count");
 export const searchFarmers = (fullName) =>
   API.get(`/expert/get/farmers?expertCode=ESEHO907951&fullName=${fullName}`);
 // add comment
-export const addComment = (data, expertCode) =>
-  API.put(`/expert/farmer?farmerCode=${expertCode}`, data);
+export const addComment = (data, farmerCode) =>
+  API.put(`/expert/farmer?farmerCode=${farmerCode}`, data);
 // get questionnaire more
 export const getMoreQuestionnaire = (farmerCode) =>
   API.get(`/farmer/data/questionnaires/features?farmerCode=${farmerCode}`);
