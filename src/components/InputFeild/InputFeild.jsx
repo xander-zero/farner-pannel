@@ -13,10 +13,13 @@ const InputFeild = ({
   value,
   space,
   icon,
+  weight,
 }) => {
   return (
     <FormControl space={space}>
-      <Label htmlFor={label}>{label}</Label>
+      <Label weight={weight} htmlFor={label}>
+        {label}
+      </Label>
       <Input
         onChange={onChange}
         name={name}
@@ -52,7 +55,7 @@ const Label = styled.label`
   line-height: 1.5;
   color: ${({ theme }) => theme.text};
   margin-bottom: 0.4rem;
-  /* font-weight: bold; */
+  font-weight: ${({ weight }) => (weight ? "bold" : "")};
 `;
 const Input = styled.input`
   -webkit-appearance: none;

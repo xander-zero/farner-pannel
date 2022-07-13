@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <SidebarStyle>
       <Logo>
-        <TitleLogo>Dayan</TitleLogo>
+        <TitleLogo>Agrodayan Expert</TitleLogo>
       </Logo>
       <MenuList>
         <MenuListItem
@@ -95,7 +95,7 @@ const TitleLogo = styled.p`
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
   font-weight: bold;
-  font-size: 24px;
+  font-size: 22px;
   text-align: center;
   margin: 10px;
   @media (max-width: 899px) {

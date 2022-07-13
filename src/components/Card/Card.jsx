@@ -41,7 +41,7 @@ const Card = ({ item, icon }) => {
     if (item?.comment) {
       setComment(item?.comment);
     }
-  }, []);
+  }, [item?.comment]);
 
   return (
     <CardStyle>
@@ -60,7 +60,7 @@ const Card = ({ item, icon }) => {
           <AiOutlineFile /> {item?.mealPlanCount} برنامه غذایی
         </Typography>
         <TextArea
-          value={item?.comment}
+          value={comment}
           small
           icon={icon}
           type="text"

@@ -9,6 +9,9 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     direction:rtl;
   }
+  p{
+    margin:0
+  }
    a{
       text-decoration:none;
   }

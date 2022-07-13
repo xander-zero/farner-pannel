@@ -33,9 +33,14 @@ const MyFarmerDetailPage = () => {
   const myFarmerSelector = useSelector((state) => state.myFarmer);
   const { farmer } = myFarmerSelector;
 
-  const questionnaire = farmer[0];
-  const mealPlan = farmer[1];
-  const visit = farmer[2];
+  console.log(farmer);
+
+  const questionnaire = farmer?.data?.length > 0 ? farmer?.data[0] : [];
+  const questionnaireCount = farmer?.data?.length > 0 ? farmer?.count[0] : [];
+  const mealPlan = farmer?.data?.length > 0 ? farmer?.data[1] : [];
+  const mealPlanCount = farmer?.data?.length > 0 ? farmer?.count[1] : [];
+  const visit = farmer?.data?.length > 0 ? farmer?.data[2] : [];
+  const visitCount = farmer?.data?.length > 0 ? farmer?.count[2] : [];
 
   useEffect(() => {
     dispatch(detailFarmer(farmerCode));
@@ -76,9 +81,12 @@ const MyFarmerDetailPage = () => {
         </MainContent>
         <Row></Row>
       </Wrapper>
-      <QuestionnaireList items={questionnaire} />
-      <MealPlanList items={mealPlan} />
-      <VisitList items={farmer?.mealPlans} />
+      <QuestionnaireList
+        items={questionnaire}
+        questionnaireCount={questionnaireCount}
+      />
+      <MealPlanList items={mealPlan} mealPlanCount={mealPlanCount} />
+      <VisitList items={visit} visitCount={visitCount} />
     </Container>
   );
 };

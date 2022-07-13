@@ -33,6 +33,10 @@
   color: var(--txt-second-color);
   font-weight: 600;
   padding: 10px;
+  border: 1px solid #c8cccf;
+  width: 80%;
+  border-radius: 10px;
+  margin: 0.5rem;
 }
 
 .drop-file-input__label img {

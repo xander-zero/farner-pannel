@@ -166,9 +166,6 @@ const MyFarmerPage = () => {
     <Container>
       <Row>
         <HeaderTitle>کشاورزان من</HeaderTitle>
-        <Refresh onClick={() => dispatch(allFarmers(expertCode))}>
-          <FiRefreshCcw size={20} />
-        </Refresh>
       </Row>
       <Row>
         <InputFeild
@@ -209,6 +206,9 @@ const MyFarmerPage = () => {
             setForm({ ...form, marked: event.target.checked })
           }
         />
+        <Refresh onClick={() => dispatch(allFarmers(expertCode))}>
+          <FiRefreshCcw size={20} />
+        </Refresh>
         <Button
           color="#009EF7"
           size="12px"
@@ -218,6 +218,7 @@ const MyFarmerPage = () => {
         >
           جستجو
         </Button>
+
         {/* <Button
           color="#009EF7"
           size="12px"
@@ -229,7 +230,14 @@ const MyFarmerPage = () => {
         {/* </Button> */}
       </Row>
       <Wrapper>
-        <Select items={initialSort} onChange={handleChangeSort} />
+        <label style={{ width: "100%", fontSize: "14px", marginTop: "10px" }}>
+          مرتب سازی براساس :{" "}
+        </label>
+        <Select
+          label="مرتب سازی براساس :"
+          items={initialSort}
+          onChange={handleChangeSort}
+        />
       </Wrapper>
       <div style={{ marginTop: "1rem" }}>
         {farmers ? (
@@ -247,7 +255,7 @@ const MyFarmerPage = () => {
 };
 
 const Wrapper = styled.div`
-  width: 20%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,6 +272,8 @@ export const Refresh = styled.button`
   border: none;
   padding: 0.3rem 0.5rem;
   border-radius: 10px;
+  margin-top: 16px;
+  margin-left: 5px;
 `;
 
 export default MyFarmerPage;

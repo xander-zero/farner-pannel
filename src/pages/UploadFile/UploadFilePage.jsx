@@ -113,8 +113,9 @@ const UploadFilePage = () => {
         <Right>
           <InputFeild
             onChange={(e) => setForm({ ...form, title: e.target.value })}
-            label="عنوان مطلب"
+            label="عنوان"
             placeholder="عنوان"
+            weight
           />
           <TextArea
             onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -139,20 +140,20 @@ const UploadFilePage = () => {
         <Left>
           {/* <VideoInput type=".pdf" titleFile="مطلب مورد نظر را انتخاب کنید" /> */}
           <DragDropFile
-            title="مطلب مورد نظر را انتخاب کنید"
-            type=".pdf"
+            title="بارگذاری مطلب"
+            type=".docx"
             onFileChange={(files) => onFileChange(files)}
             fileList={fileList}
             setFileList={setFileList}
           />
           <DragDropFile
-            title="تصویر شاخص را انتخاب کنید"
+            title="بارگذاری تصویر شاخص"
             onFileChange={(files) => onCertailFile(files)}
             fileList={certainFile}
             setFileList={setCertainFile}
           />
           <DragDropFile
-            title="تصاویر مورد نظر را انتخاب کنید"
+            title="بارگذاری سایر تصاویر"
             onFileChange={(files) => onFileChange(files)}
             fileList={imageList}
             setFileList={setImageList}

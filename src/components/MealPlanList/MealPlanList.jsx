@@ -15,9 +15,10 @@ import { FiDownload } from "react-icons/fi";
 import QRCode from "../../assets/images/qr-code.png";
 import { moreMealplan } from "../../redux/action/farmer";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Alert/Alert";
 // import QRCode from "react-qr-code";
 
-const MealPlanList = ({ items }) => {
+const MealPlanList = ({ items, mealPlanCount }) => {
   console.log(items);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,59 +34,67 @@ const MealPlanList = ({ items }) => {
     <Container>
       <HeaderTitle>برنامه غذایی</HeaderTitle>
       <CardListStyle>
-        {items?.map((item, index) => (
-          <Card key={index}>
-            <Header>
-              <Row>
-                <img src={imgProduct} alt="image-plant" />
-                <Typography size="14px" weight="bold">
-                  {item?.product}
+        {items?.length > 0 ? (
+          items?.map((item, index) => (
+            <Card key={index}>
+              <Header>
+                <Row>
+                  <img src={imgProduct} alt="image-plant" />
+                  <Typography size="14px" weight="bold">
+                    {item?.product}
+                  </Typography>
+                </Row>
+                <Typography size="12px" weight="bold">
+                  تاریخ نگارش : {formatData(item?.date?.toString())}
                 </Typography>
-              </Row>
-              <Typography size="12px" weight="bold">
-                تاریخ نگارش : {formatData(item?.date?.toString())}
-              </Typography>
-            </Header>
-            <Header>
-              <Typography size="14px" weight="bold">
-                {item?.Qcode}
-              </Typography>
+              </Header>
+              <Header>
+                <Typography size="14px" weight="bold">
+                  {item?.Qcode}
+                </Typography>
 
+                <Row>
+                  <Typography size="14px" weight="bold">
+                    {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
+                    <img src={QRCode} />
+                  </Typography>
+                </Row>
+              </Header>
               <Row>
-                <Typography size="14px" weight="bold">
-                  {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
-                  <img src={QRCode} />
+                <Typography textAlign="left" size="14px" weight="bold">
+                  <a href={item?.files} target="_blank">
+                    <FiDownload
+                      color="#009EF7"
+                      size={20}
+                      style={{ fontWeight: "bold" }}
+                    />
+                  </a>
                 </Typography>
               </Row>
-            </Header>
-            <Row>
-              <Typography textAlign="left" size="14px" weight="bold">
-                <a href={item?.files} target="_blank">
-                  <FiDownload
-                    color="#009EF7"
-                    size={20}
-                    style={{ fontWeight: "bold" }}
-                  />
-                </a>
-              </Typography>
-            </Row>
-            <Button size="14px" color="#F1416C">
-              مشاهده برنامه غذایی
-            </Button>
-          </Card>
-        ))}
+              <Button size="14px" color="#F1416C">
+                مشاهده برنامه غذایی
+              </Button>
+            </Card>
+          ))
+        ) : (
+          <Alert>هیچ برنامه غذایی وجود ندارد!</Alert>
+        )}
       </CardListStyle>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button
-          small
-          size="14px"
-          onClick={() =>
-            navigate(`/dashboard/mealplan/${items[0]?.farmerCode}`)
-          }
+      {mealPlanCount > 3 ? (
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          مشاهده بیشتر
-        </Button>
-      </div>
+          <Button
+            small
+            size="14px"
+            onClick={() =>
+              navigate(`/dashboard/mealplan/${items[0]?.farmerCode}`)
+            }
+          >
+            مشاهده بیشتر
+          </Button>
+        </div>
+      ) : null}
     </Container>
   );
 };

@@ -10,7 +10,6 @@ export const CardStyle = styled.div`
   box-shadow: ${({ theme }) => theme.shadow};
   margin: 0.5rem;
   border-radius: 10px;
-  cursor: pointer;
   @media (max-width: 1500px) {
     width: 35%;
   }

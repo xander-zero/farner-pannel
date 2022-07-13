@@ -11,8 +11,10 @@ import { Container, HeaderTitle } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
 import QRCode from "react-qr-code";
 import { getVisit } from "../../redux/action/farmer";
+import styled from "styled-components";
+import Alert from "../Alert/Alert";
 
-const VisitList = ({ items }) => {
+const VisitList = ({ items, visitCount }) => {
   const checkState = (state) => {
     switch (state) {
       case "dataCheck":
@@ -43,8 +45,8 @@ const VisitList = ({ items }) => {
     <Container>
       <HeaderTitle>بازدید</HeaderTitle>
       <CardListStyle>
-        {visits ? (
-          visits?.map((item, index) => (
+        {items?.length > 0 ? (
+          items?.map((item, index) => (
             <Card key={index}>
               <Header>
                 <Row>
@@ -73,44 +75,11 @@ const VisitList = ({ items }) => {
             </Card>
           ))
         ) : (
-          <>
-            {items?.map((item, index) => (
-              <Card key={index}>
-                <Header>
-                  <Row>
-                    <img src={item.imgProduct} />
-                    <Typography size="14px" weight="bold">
-                      {item?.nameProduct}
-                    </Typography>
-                  </Row>
-                  <Typography size="14px" weight="bold">
-                    {item?.data}
-                  </Typography>
-                </Header>
-                <Header>
-                  <Row>
-                    <Typography size="14px" weight="bold">
-                      <QRCode
-                        value={item?.expertCode}
-                        size={100}
-                        height={100}
-                      />
-                    </Typography>
-                  </Row>
-                  <Typography size="14px" weight="bold">
-                    {item?.expertCode}
-                  </Typography>
-                </Header>
-                <Button size="14px" color="#009EF7">
-                  {checkState(item?.state)}
-                </Button>
-              </Card>
-            ))}
-          </>
+          <Alert>هیچ بازدیدی وجود ندارد!</Alert>
         )}
       </CardListStyle>
 
-      {!items ? null : (
+      {visitCount > 3 ? (
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
@@ -122,8 +91,9 @@ const VisitList = ({ items }) => {
             مشاهده بیشتر
           </Button>
         </div>
-      )}
+      ) : null}
     </Container>
   );
 };
+
 export default VisitList;

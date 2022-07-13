@@ -1,9 +1,9 @@
-import { Container, InputCheck, Span } from "./checkboxStyle.js";
+import { Container, InputCheck, Label } from "./checkboxStyle.js";
 
 const Checkbox = ({ title, value, onChange }) => {
   return (
     <Container>
-      <Span>{title}</Span>
+      <Label>{title}</Label>
       <InputCheck type="checkbox" onChange={onChange} />
     </Container>
   );
