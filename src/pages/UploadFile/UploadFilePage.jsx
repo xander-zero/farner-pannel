@@ -107,7 +107,7 @@ const UploadFilePage = () => {
   return (
     <Container>
       <Typography size="20px" weight="bold">
-        بارگذاری ویدیو
+        بارگذاری مطلب
       </Typography>
       <Wrapper>
         <Right>
@@ -123,7 +123,7 @@ const UploadFilePage = () => {
             placeholder="توضیحات"
           ></TextArea>
           <div className="select">
-            <Label>مطلب بندی</Label>
+            <Label>دسته بندی مطلب</Label>
             <Select
               onChange={(e) =>
                 setForm({ ...form, contentCategory: e.target.value })
