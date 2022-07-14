@@ -78,7 +78,7 @@ const Card = ({ item, icon }) => {
         </div>
       </CardRights>
       <CardLeft>
-        <Img src={bg} />
+        <Img src={item?.avatarUrl} />
         <Typography space=".3rem" size="10px" weight="bold">
           <GoLocation style={{ fontWeight: "bold" }} size={13} />
           {`${item?.province} ${item.city}`}{" "}

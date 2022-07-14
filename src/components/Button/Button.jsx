@@ -43,5 +43,11 @@ const ButtonStyle = styled.button`
   margin-top: ${({ marginTop }) => (marginTop ? marginTop : "1rem")};
   margin-right: ${({ space }) => (space ? ".5rem" : "0")};
   font-weight: ${({ weight }) => weight};
+
+  a {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+  }
 `;
 export default Button;

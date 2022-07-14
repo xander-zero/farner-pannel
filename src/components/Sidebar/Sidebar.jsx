@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <SidebarStyle>
       <Logo>
-        <TitleLogo>Agrodayan Expert</TitleLogo>
+        <TitleLogo>AgroIranExpert</TitleLogo>
       </Logo>
       <MenuList>
         <MenuListItem
@@ -91,7 +91,7 @@ const Logo = styled.div`
 
 const TitleLogo = styled.p`
   /* background: -webkit-linear-gradient(#6980ff, #6980ff); */
-  color: #00d25b;
+  color: #005ac8;
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
   font-weight: bold;

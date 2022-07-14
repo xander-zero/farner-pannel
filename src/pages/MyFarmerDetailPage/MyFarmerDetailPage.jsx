@@ -60,7 +60,7 @@ const MyFarmerDetailPage = () => {
       </Row>
       <Wrapper>
         <HeaderImg>
-          <Img src={""} />
+          <Img src="https://agrodayan.ir/uploads/avatars/avatar.png" />
           <HeadeTitle>
             <div>
               <Typography size="16px">

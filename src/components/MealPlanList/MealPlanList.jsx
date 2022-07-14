@@ -61,7 +61,7 @@ const MealPlanList = ({ items, mealPlanCount }) => {
                 </Row>
               </Header>
               <Row>
-                <Typography textAlign="left" size="14px" weight="bold">
+                {/* <Typography textAlign="left" size="14px" weight="bold">
                   <a href={item?.files} target="_blank">
                     <FiDownload
                       color="#009EF7"
@@ -69,10 +69,12 @@ const MealPlanList = ({ items, mealPlanCount }) => {
                       style={{ fontWeight: "bold" }}
                     />
                   </a>
-                </Typography>
+                </Typography> */}
               </Row>
               <Button size="14px" color="#F1416C">
-                مشاهده برنامه غذایی
+                <a href={item?.files} target="_blank">
+                  <Typography>مشاهده برنامه غذایی</Typography>
+                </a>
               </Button>
             </Card>
           ))

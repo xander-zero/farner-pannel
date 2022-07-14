@@ -79,12 +79,19 @@ const MyFarmerPage = () => {
   const { farmers } = farmerSelector;
 
   const generalSelector = useSelector((state) => state.general);
-
+  const choice = {
+    label: "انتخاب کنید",
+    value: "",
+  };
   const { provinces, cities, products } = generalSelector;
-  const allProvince = provinces?.provinces?.map((item) => ({
-    label: item?.name,
-    value: item.id,
-  }));
+  const allProvince = provinces?.provinces?.map((item) => {
+    return {
+      label: item?.name,
+      value: item.id,
+    };
+  });
+
+  const assignProvince = [{ ...choice }, ...allProvince];
 
   const userInformation = userData();
   const expertCode = userInformation?.data?.result?.expert?.expertCode;
@@ -107,6 +114,8 @@ const MyFarmerPage = () => {
     label: product.persianName,
     value: product?.pid,
   }));
+
+  const asasignProducts = [{ ...choice }, ...sortProducts];
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -183,7 +192,7 @@ const MyFarmerPage = () => {
           name="phoneNumber"
         />
         <Select
-          items={allProvince}
+          items={assignProvince ? assignProvince : []}
           onChange={(event) =>
             setForm({ ...form, province: event.target.value })
           }
@@ -195,7 +204,7 @@ const MyFarmerPage = () => {
           />
         )}
         <Select
-          items={sortProducts}
+          items={asasignProducts ? asasignProducts : []}
           onChange={(event) => setForm({ ...form, pid: event.target.value })}
         />
 
