@@ -11,6 +11,7 @@ import MealPlanVisitList from "../MoreDetailsFarmer/MealPlanListPage/MealPlanLis
 import QuestionnaireListPage from "../MoreDetailsFarmer/QuestionnaireListPage/QuestionnaireListPage";
 import MyFarmerDetailPage from "../MyFarmerDetailPage/MyFarmerDetailPage";
 import MyFarmerPage from "../MyFarmerPage/MyFarmerPage";
+import MyInformation from "../MyInformation/MyInformation";
 import UploadFilePage from "../UploadFile/UploadFilePage";
 import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 
@@ -22,6 +23,7 @@ const Dashboard = () => {
         <Route path="app" element={<DashboardApp />} />
         <Route path="myFarmer" element={<MyFarmerPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
+        <Route path="profile" element={<MyInformation />} />
         <Route
           path="questionnaire/:farmerCode"
           element={<QuestionnaireListPage />}

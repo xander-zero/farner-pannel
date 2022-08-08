@@ -50,6 +50,14 @@ const Sidebar = () => {
           </Link>
         </MenuListItem>
         <MenuListItem
+          className={location.pathname === "/dashboard/profile" ? "active" : ""}
+        >
+          <Link to="/dashboard/profile">
+            <FiUserCheck size={20} />
+            <p>اطلاعات من</p>
+          </Link>
+        </MenuListItem>
+        <MenuListItem
           className={
             location.pathname === "/dashboard/manage-page" ? "active" : ""
           }

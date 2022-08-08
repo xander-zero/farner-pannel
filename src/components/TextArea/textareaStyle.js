@@ -4,7 +4,7 @@ export const TextAreaStyle = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
   position: relative;
 
   svg {
