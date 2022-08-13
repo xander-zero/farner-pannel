@@ -11,7 +11,7 @@ export const allProvinces = () => async (dispatch) => {
   }
 };
 
-export const allCities = () => async (dispatch) => {
+export const allCitess = () => async (dispatch) => {
   try {
     const { data } = await api.getCities();
     const result = data?.data?.result;

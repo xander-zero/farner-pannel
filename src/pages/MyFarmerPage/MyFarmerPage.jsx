@@ -17,7 +17,7 @@ import { Container, HeaderTitle, Row } from "../../theme/GlobalStyle";
 import InputFeild from "../../components/InputFeild/InputFeild";
 import Select from "../../components/Select/Select";
 import {
-  allCities,
+  allCitess,
   allProvinces,
   getAllProducts,
 } from "../../redux/action/general";
@@ -84,14 +84,20 @@ const MyFarmerPage = () => {
     value: "",
   };
   const { provinces, cities, products } = generalSelector;
-  const allProvince = provinces?.provinces?.map((item) => {
-    return {
-      label: item?.name,
-      value: item.id,
-    };
-  });
+  let allProvince = provinces
+    ? provinces?.provinces?.map((item) => {
+        return {
+          label: item?.name,
+          value: item.id,
+        };
+      })
+    : [];
 
-  const assignProvince = [{ ...choice }, ...allProvince];
+  const assignProvince = allProvince?.map((item) => ({ ...item }));
+  // let assignProvince = [...allProvince, { ...choice }];
+  console.log("assignProvince", assignProvince);
+
+  // [{ ...choice }, ...allProvince];
 
   const userInformation = userData();
   const expertCode = userInformation?.data?.result?.expert?.expertCode;
@@ -115,7 +121,7 @@ const MyFarmerPage = () => {
     value: product?.pid,
   }));
 
-  const asasignProducts = [{ ...choice }, ...sortProducts];
+  let asasignProducts = [{ ...choice }, ...sortProducts];
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -164,7 +170,7 @@ const MyFarmerPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(allCities());
+    dispatch(allCitess());
   }, [dispatch]);
 
   useEffect(() => {
@@ -244,7 +250,7 @@ const MyFarmerPage = () => {
         </label>
         <Select
           label="مرتب سازی براساس :"
-          items={initialSort}
+          items={initialSort ? initialSort : []}
           onChange={handleChangeSort}
         />
       </Wrapper>

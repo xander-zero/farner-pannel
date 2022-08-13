@@ -11,20 +11,8 @@ import styled from "styled-components";
 
 const Sidebar = () => {
   const location = useLocation();
-  const sidebarData = [
-    {
-      id: 1,
-      path: ["/dashboard/app"],
-    },
-    {
-      id: 2,
-      path: ["/dashboard/myFarmer"],
-    },
-    {
-      id: 3,
-      path: ["/dashboard/manage-page"],
-    },
-  ];
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
   return (
     <SidebarStyle>
       <Logo>
@@ -57,16 +45,48 @@ const Sidebar = () => {
             <p>اطلاعات من</p>
           </Link>
         </MenuListItem>
-        <MenuListItem
-          className={
-            location.pathname === "/dashboard/manage-page" ? "active" : ""
-          }
-        >
+        {/* <MenuListItem>
           <Link to="/dashboard/manage-page">
             <RiTicketLine size={20} />
             <p>مدیریت صفحه</p>
           </Link>
         </MenuListItem>
+        <MenuListItem>
+          <SubMenu>
+            <Wrapper onClick={() => setShowSubMenu(!showSubMenu)}>
+              <RiTicketLine size={20} />
+              <p>مدیریت وبلاگ</p>
+            </Wrapper>
+            {showSubMenu && (
+              <WrapperSubMenu>
+                <MenuListItem
+                  className={
+                    location.pathname === "/dashboard/content-video"
+                      ? "active"
+                      : ""
+                  }
+                >
+                  <Link to="/dashboard/content-video">
+                    <RiTicketLine size={20} />
+                    <p>محتوای ویدیویی</p>
+                  </Link>
+                </MenuListItem>
+                <MenuListItem
+                  className={
+                    location.pathname === "/dashboard/content-text"
+                      ? "active"
+                      : ""
+                  }
+                >
+                  <Link to="/dashboard/content-text">
+                    <RiTicketLine size={20} />
+                    <p>محتوای متنی</p>
+                  </Link>
+                </MenuListItem>
+              </WrapperSubMenu>
+            )}
+          </SubMenu>
+        </MenuListItem> */}
       </MenuList>
     </SidebarStyle>
   );
@@ -167,6 +187,24 @@ const MenuListItem = styled.li`
       transform: translateX(0);
     } */
   }
+`;
+
+const SubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+`;
+
+const WrapperSubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  width: 100%;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export default Sidebar;

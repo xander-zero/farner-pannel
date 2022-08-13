@@ -1,3 +1,4 @@
+import axios from "axios";
 import { API } from "./apiRequestInterface";
 
 // get all farmer
@@ -25,11 +26,12 @@ export const getDetailFarmer = (farmerCode) =>
 // assign farmer to expert
 export const addAssignFarmer = (data) => API.post("/expert/farmer", data);
 // get province
-export const getProvince = () => API.get("https://agrodayan.ir/api/provinces");
+export const getProvince = () =>
+  axios.get("https://agrodayan.ir/api/provinces");
 // get cities
-export const getCities = () => API.get("https://agrodayan.ir/api/cities");
+export const getCities = () => axios.get("https://agrodayan.ir/api/cities");
 // get products
-export const getProducts = () => API.get("https://agrodayan.ir/api/products");
+export const getProducts = () => axios.get("https://agrodayan.ir/api/products");
 // add files content management farmer
 export const addFileContent = (formData) => API.post("/file/content", formData);
 // add video content management farmer
@@ -62,3 +64,21 @@ export const sortAllFarmer = (expertCode, sortMeal, sortArea) =>
       sortMeal ? sortMeal : ""
     }&area=${sortArea ? sortArea : ""}`
   );
+export const sendIfno = (information) =>
+  API.post("/expert/skills", information);
+
+// get content
+export const getAllContent = () => API.get("/expert/sills");
+
+// get single content
+export const singleContent = (sid) => API.get(`/expert/sills?sid=${sid}`);
+
+// get info expert
+export const getInfoExpert = (expertCode) =>
+  API.get(`/expert?expertCode=${expertCode}`);
+
+// confirm content
+export const confirmedContent = (sid) => API.put(`/expert/skills?sid=${sid}`);
+
+// delete content
+export const deleteContent = (sid) => API.delete(`/expert/skills?sid=${sid}`);

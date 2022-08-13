@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { userData } from "../../help/userData";
 
 // components
 import Layout from "../../layout/MainLayout";
@@ -16,10 +17,17 @@ import UploadFilePage from "../UploadFile/UploadFilePage";
 import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 
 const Dashboard = () => {
+  const userInformation = userData();
+
+  console.log(userInformation);
+
   return (
     <Layout>
       <ToastContainer />
       <Routes>
+        {/* <Route path="content-video" element={<ManageWeblogVideo />} />
+        <Route path="content-text" element={<ManageWeblogText />} />
+        <Route path="manage-page" element={<ManagementPage />} /> */}
         <Route path="app" element={<DashboardApp />} />
         <Route path="myFarmer" element={<MyFarmerPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />

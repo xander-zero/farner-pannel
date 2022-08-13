@@ -1,4 +1,7 @@
-export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
+export const farmerReducer = (
+  state = { farmers: [], farmer: {}, contents: [], content: {} },
+  action
+) => {
   switch (action.type) {
     //   get all farmers
     case "GET_ALL_FARMERS":
@@ -97,6 +100,57 @@ export const farmerReducer = (state = { farmers: [], farmer: {} }, action) => {
       return {
         ...state,
         farmers: action.payload,
+      };
+
+    // add information
+    case "SEND_INFORMATION_LOADING":
+      return {
+        ...state,
+        loadingSendInfo: true,
+      };
+    case "SEND_INFORMATION":
+      return {
+        ...state,
+      };
+    case "SEND_INFORMATION_LOADING_RESET":
+      return {
+        ...state,
+        loadingSendInfo: false,
+      };
+    // get content
+    case "GET_ALL_CONTENT":
+      return {
+        ...state,
+        contents: action.payload,
+      };
+
+    // get detail single content
+    case "GET_SINGLE_CONTENT":
+      return {
+        ...state,
+        content: action.payload,
+      };
+
+    // get information expert
+    case "GET_INFORMATION_EXPERT":
+      return {
+        ...state,
+        expertInfo: action.payload,
+      };
+
+    // confirm content
+    case "CONFIRM_CONTENT":
+      return {
+        ...state,
+      };
+
+    // delete content
+    case "DELETE_CONTENT":
+      return {
+        ...state,
+        contents: state.contents?.filter(
+          (content) => content?.sid !== action.payload
+        ),
       };
 
     default:

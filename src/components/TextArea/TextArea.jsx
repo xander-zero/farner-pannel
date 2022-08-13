@@ -9,11 +9,13 @@ const TextArea = ({
   icon,
   onClick,
   value,
+  name,
 }) => {
   return (
     <TextAreaStyle>
       <Label>{label}</Label>
       <Text
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
         small={small}

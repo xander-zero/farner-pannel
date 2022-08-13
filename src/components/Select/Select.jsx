@@ -1,9 +1,15 @@
 import { Option, SelectStyle } from "./selectStyle";
 
 const Select = ({ items, onChange }) => {
+  if (!items) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <SelectStyle onChange={onChange}>
-      {items
+      <Option value="" selected={"انتخاب کنید"}>
+        انتخاب کنید
+      </Option>
+      {items?.length > 0
         ? items?.map((item, index) => (
             <Option
               key={index}

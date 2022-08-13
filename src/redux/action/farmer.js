@@ -166,3 +166,17 @@ export const sortFarmer = (expertCode, mealplan, area) => async (dispatch) => {
     errorMessage("wrong");
   }
 };
+
+// send information
+export const addInformation = (information) => async (dispatch) => {
+  try {
+    dispatch({ type: "SEND_INFORMATION_LOADING" });
+    const { data } = await api.sendIfno(information);
+    dispatch({ type: "SEND_INFORMATION" });
+    dispatch({ type: "SEND_INFORMATION_LOADING_RESET" });
+    console.log("data", data);
+    successMessage(data?.data?.message);
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};
