@@ -12,7 +12,7 @@ const sidebarData = [
   {
     path: "/profile",
     icon: "emojione-monotone:information",
-    name: "اطلاعات من",
+    name: "حرفه و مهارت های من",
   },
   {
     path: "/manage-page",

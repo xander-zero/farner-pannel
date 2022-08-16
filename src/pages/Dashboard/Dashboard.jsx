@@ -13,6 +13,7 @@ import QuestionnaireListPage from "../MoreDetailsFarmer/QuestionnaireListPage/Qu
 import MyFarmerDetailPage from "../MyFarmerDetailPage/MyFarmerDetailPage";
 import MyFarmerPage from "../MyFarmerPage/MyFarmerPage";
 import MyInformation from "../MyInformation/MyInformation";
+import RecordProfession from "../RecordProfession/RecordProfession";
 import UploadFilePage from "../UploadFile/UploadFilePage";
 import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 
@@ -41,6 +42,7 @@ const Dashboard = () => {
         <Route path="manage-page/uploadVideo" element={<UploadVideoPage />} />
         <Route path="manage-page/uploadFile" element={<UploadFilePage />} />
         <Route path="calender" element={<CalenderPage />} />
+        <Route path="record-profession" element={<RecordProfession />} />
       </Routes>
     </Layout>
   );

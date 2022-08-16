@@ -76,7 +76,9 @@ const MyInformation = () => {
 
   return (
     <Fragment>
-      <HeaderTitle style={{ marginTop: "1rem" }}>اطلاعات من</HeaderTitle>
+      <HeaderTitle style={{ marginTop: "1rem" }}>
+        حرفه و مهارت های من
+      </HeaderTitle>
       <InfoStyle>
         <InfoWrapper>
           <InputFile>

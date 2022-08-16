@@ -1,0 +1,4 @@
+.accordion-button::after {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}

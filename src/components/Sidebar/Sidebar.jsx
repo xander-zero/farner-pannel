@@ -42,7 +42,7 @@ const Sidebar = () => {
         >
           <Link to="/dashboard/profile">
             <FiUserCheck size={20} />
-            <p>اطلاعات من</p>
+            <p>حرفه و مهارت های من</p>
           </Link>
         </MenuListItem>
         {/* <MenuListItem>

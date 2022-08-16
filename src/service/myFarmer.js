@@ -12,7 +12,7 @@ export const getAllFarmer = (
   marked
 ) =>
   API.get(
-    `http://185.81.99.8:88/api/expert/get/farmers?expertCode=${expertCode}&fullName=${
+    `http://panel.agroiranexpert.ir/api/expert/get/farmers?expertCode=${expertCode}&fullName=${
       fullName || ""
     }&phoneNumber=${phone || ""}&province=${province || ""}&city=${
       city || ""
@@ -21,7 +21,9 @@ export const getAllFarmer = (
 
 // get detail farmer
 export const getDetailFarmer = (farmerCode) =>
-  API.get(`http://185.81.99.8:88/api/farmer/data?farmerCode=${farmerCode}`);
+  API.get(
+    `http://panel.agroiranexpert.ir/api/farmer/data?farmerCode=${farmerCode}`
+  );
 
 // assign farmer to expert
 export const addAssignFarmer = (data) => API.post("/expert/farmer", data);
