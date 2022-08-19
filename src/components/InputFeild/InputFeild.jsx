@@ -14,6 +14,7 @@ const InputFeild = ({
   space,
   icon,
   weight,
+  defaultValue,
 }) => {
   return (
     <FormControl space={space}>
@@ -21,6 +22,7 @@ const InputFeild = ({
         {label}
       </Label>
       <Input
+        defaultValue={defaultValue}
         onChange={onChange}
         name={name}
         type={type}

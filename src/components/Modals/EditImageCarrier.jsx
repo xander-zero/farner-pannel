@@ -15,8 +15,8 @@ import cloud from "../../assets/images/cloud-upload-regular-240.png";
 import Typography from "../Typography/Typography";
 import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 
-const EditImageCarrier = ({ title, headTitle, show, setShowModal }) => {
-  const imageList = [1, 2, 3, 4, 5];
+const EditImageCarrier = ({ title, headTitle, show, setShowModal, images }) => {
+  // const imageList = [1, 2, 3, 4, 5];
   //   const [show, setShow] = useState(false);
 
   const handleClose = () => setShowModal(false);
@@ -42,7 +42,7 @@ const EditImageCarrier = ({ title, headTitle, show, setShowModal }) => {
                   type="file"
                   name="image"
                   id="file"
-                  class="inputfile"
+                  className="inputfile"
                   onChange={handleChange}
                   multiple={true}
                 />
@@ -55,9 +55,9 @@ const EditImageCarrier = ({ title, headTitle, show, setShowModal }) => {
                 {/* <img className="image-slider" src={cloud} alt="cloud" /> */}
               </InputFile>
             </WrapperImg>
-            {imageList?.map((item) => (
-              <WrapperImg>
-                <img src={bg} alt="bg" />
+            {images?.map((image, index) => (
+              <WrapperImg key={index}>
+                <img src={image?.link} alt="bg" />
                 <Icon color="#ffd0d0">
                   <AiOutlineDelete color="red" size={20} />
                 </Icon>

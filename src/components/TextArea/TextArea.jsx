@@ -10,11 +10,13 @@ const TextArea = ({
   onClick,
   value,
   name,
+  defaultValue,
 }) => {
   return (
     <TextAreaStyle>
       <Label>{label}</Label>
       <Text
+        defaultValue={defaultValue}
         name={name}
         placeholder={placeholder}
         onChange={onChange}

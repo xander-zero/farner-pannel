@@ -1,5 +1,5 @@
 export const farmerReducer = (
-  state = { farmers: [], farmer: {}, contents: [], content: {} },
+  state = { farmers: [], farmer: {}, contents: [], content: {}, carriers: [] },
   action
 ) => {
   switch (action.type) {
@@ -157,6 +157,26 @@ export const farmerReducer = (
       return {
         ...state,
         carriers: action.payload,
+      };
+
+    case "UPDATE_CARRIER_LOADING":
+      return {
+        ...state,
+        loadingUpdateCarrier: true,
+      };
+
+    case "UPDATE_CARRIER":
+      return {
+        ...state,
+        carriers: state.carriers?.map((carrier) =>
+          carrier?.sid === action?.payload?.sid ? action.payload : carrier
+        ),
+      };
+
+    case "RESET_UPDATE_CARRIER_LOADING":
+      return {
+        ...state,
+        loadingUpdateCarrier: false,
       };
 
     default:

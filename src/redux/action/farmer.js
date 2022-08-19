@@ -190,3 +190,15 @@ export const allCarriers = () => async (dispatch) => {
     errorMessage("wrong");
   }
 };
+
+export const updatedCarrier = (carrierData, sid) => async (dispatch) => {
+  try {
+    dispatch({ type: "UPDATE_CARRIER_LOADING" });
+    const { data } = await api.updateCarrier(carrierData, sid);
+    const result = data?.data?.result;
+    dispatch({ type: "UPDATE_CARRIER", payload: result });
+    dispatch({ type: "RESET_UPDATE_CARRIER_LOADING" });
+  } catch (error) {
+    errorMessage(error?.data?.message);
+  }
+};

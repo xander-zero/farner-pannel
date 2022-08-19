@@ -86,3 +86,6 @@ export const confirmedContent = (sid) => API.put(`/expert/skills?sid=${sid}`);
 export const deleteContent = (sid) => API.delete(`/expert/skills?sid=${sid}`);
 
 export const getAllCarriers = () => API.get("/expert/carriers");
+
+export const updateCarrier = (carrierData, sid) =>
+  API.put(`/expert/carriers?sid=${sid}`, carrierData);
