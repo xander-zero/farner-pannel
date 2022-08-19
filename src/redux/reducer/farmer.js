@@ -153,6 +153,12 @@ export const farmerReducer = (
         ),
       };
 
+    case "GET_ALL_CARRIERS":
+      return {
+        ...state,
+        carriers: action.payload,
+      };
+
     default:
       return state;
   }

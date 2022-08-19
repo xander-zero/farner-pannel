@@ -47,8 +47,10 @@ const MyInformation = () => {
 
   const handleChange = (event) => {
     const { type, value, name } = event.target;
+
     if (type === "file") {
-      setForm({ ...form, image: event.target.files[0] });
+      const chosenFiles = Array.prototype.slice.call(event.target.files);
+      setForm({ ...form, image: chosenFiles });
       const objectUrl = URL.createObjectURL(event.target.files[0]);
       setImage(objectUrl);
     } else {
@@ -64,12 +66,14 @@ const MyInformation = () => {
   };
 
   const handleSubmit = () => {
+    console.log(form);
     const formData = new FormData();
-    formData.append("image", form.image);
     formData.append("title", form.title);
     formData.append("content", form.content);
-    formData.append("expertCode", expertCode);
-
+    // formData.append("expertCode", expertCode);
+    for (let i = 0; i < form?.image?.length; i++) {
+      formData.append("images", form.image[i]);
+    }
     dispatch(addInformation(formData));
     resetForm();
   };
@@ -77,20 +81,21 @@ const MyInformation = () => {
   return (
     <Fragment>
       <HeaderTitle style={{ marginTop: "1rem" }}>
-        حرفه و مهارت های من
+        ثبت حرفه و مهارت های من
       </HeaderTitle>
       <InfoStyle>
         <InfoWrapper>
           <InputFile>
             <Input
               type="file"
-              name="image"
+              name="images"
               id="file"
-              class="inputfile"
+              className="inputfile"
               onChange={handleChange}
+              multiple
             />
-            <Label for="file">
-              <img src={image || bg} alt="profile" />
+            <Label htmlFor="file">
+              <img src={bg} alt="profile" />
             </Label>
             <img className="image-slider" src={cloud} alt="cloud" />
           </InputFile>

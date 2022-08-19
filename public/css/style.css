@@ -22,3 +22,9 @@ body {
 .deActive {
   color: #abb1b5;
 }
+.active-sub {
+  transform: translateX(-10px);
+}
+.nav .default-nav svg {
+  fill: red;
+}

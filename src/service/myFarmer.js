@@ -12,7 +12,7 @@ export const getAllFarmer = (
   marked
 ) =>
   API.get(
-    `http://panel.agroiranexpert.ir/api/expert/get/farmers?expertCode=${expertCode}&fullName=${
+    `http://panel.agroiranexpert.com/api/expert/get/farmers?expertCode=${expertCode}&fullName=${
       fullName || ""
     }&phoneNumber=${phone || ""}&province=${province || ""}&city=${
       city || ""
@@ -22,7 +22,7 @@ export const getAllFarmer = (
 // get detail farmer
 export const getDetailFarmer = (farmerCode) =>
   API.get(
-    `http://panel.agroiranexpert.ir/api/farmer/data?farmerCode=${farmerCode}`
+    `http://panel.agroiranexpert.com/api/farmer/data?farmerCode=${farmerCode}`
   );
 
 // assign farmer to expert
@@ -67,7 +67,7 @@ export const sortAllFarmer = (expertCode, sortMeal, sortArea) =>
     }&area=${sortArea ? sortArea : ""}`
   );
 export const sendIfno = (information) =>
-  API.post("/expert/skills", information);
+  API.post("/expert/carriers", information);
 
 // get content
 export const getAllContent = () => API.get("/expert/sills");
@@ -84,3 +84,5 @@ export const confirmedContent = (sid) => API.put(`/expert/skills?sid=${sid}`);
 
 // delete content
 export const deleteContent = (sid) => API.delete(`/expert/skills?sid=${sid}`);
+
+export const getAllCarriers = () => API.get("/expert/carriers");

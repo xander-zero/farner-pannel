@@ -68,3 +68,11 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000;
 }
+
+.modal-title {
+  font-size: 16px !important;
+}
+
+.btn-close {
+  display: none !important;
+}

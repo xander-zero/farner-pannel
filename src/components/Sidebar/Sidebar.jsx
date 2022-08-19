@@ -38,13 +38,45 @@ const Sidebar = () => {
           </Link>
         </MenuListItem>
         <MenuListItem
-          className={location.pathname === "/dashboard/profile" ? "active" : ""}
+          className={
+            location.pathname === "/dashboard/profile" ||
+            location.pathname === "/dashboard/record-profession"
+              ? "active"
+              : ""
+          }
+          onClick={() => setShowSubMenu(!showSubMenu)}
         >
-          <Link to="/dashboard/profile">
-            <FiUserCheck size={20} />
-            <p>حرفه و مهارت های من</p>
-          </Link>
+          {/* <Link to="/dashboard/profile"> */}
+          <FiUserCheck size={20} />
+          <p>حرفه و مهارت ها </p>
+          {/* </Link> */}
         </MenuListItem>
+        {showSubMenu && (
+          <>
+            <MenuListItem
+              className={
+                location.pathname === "/dashboard/profile" ? "active-sub" : ""
+              }
+            >
+              <Link to="/dashboard/profile">
+                <FiUserCheck size={20} />
+                <p>ثبت حرفه و مهارت</p>
+              </Link>
+            </MenuListItem>
+            <MenuListItem
+              className={
+                location.pathname === "/dashboard/record-profession"
+                  ? "active-sub"
+                  : ""
+              }
+            >
+              <Link to="/dashboard/record-profession">
+                <FiUserCheck size={20} />
+                <p>حرفه ها و مهارت های من</p>
+              </Link>
+            </MenuListItem>
+          </>
+        )}
         {/* <MenuListItem>
           <Link to="/dashboard/manage-page">
             <RiTicketLine size={20} />
@@ -148,6 +180,7 @@ const MenuListItem = styled.li`
   color: #495057;
   transition: 0.4s all ease-in-out;
   margin: 5px 0;
+  cursor: pointer;
 
   span {
     color: ${({ theme }) => theme.text};

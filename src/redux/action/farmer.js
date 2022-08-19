@@ -180,3 +180,13 @@ export const addInformation = (information) => async (dispatch) => {
     errorMessage("wrong");
   }
 };
+
+export const allCarriers = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllCarriers();
+    const result = data?.data?.result;
+    dispatch({ type: "GET_ALL_CARRIERS", payload: result });
+  } catch (error) {
+    errorMessage("wrong");
+  }
+};

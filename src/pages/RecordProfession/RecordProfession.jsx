@@ -1,4 +1,7 @@
 import { useState } from "react";
+// react redux
+import { useDispatch } from "react-redux";
+
 // react bootstrap
 import Accordion from "react-bootstrap/Accordion";
 
@@ -23,14 +26,41 @@ import {
 import InputFeild from "../../components/InputFeild/InputFeild";
 import TextArea from "../../components/TextArea/TextArea";
 import Button from "../../components/Button/Button";
+import { Fade } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import EditImageCarrier from "../../components/Modals/EditImageCarrier";
+import { useEffect } from "react";
+import { getAllCarriers } from "../../service/myFarmer";
+import { allCarriers } from "../../redux/action/farmer";
 
 const RecordProfession = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const handleChange = () => {};
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const fadeImages = [1, 2, 3, 4, 5];
+  const properties = {
+    duration: 5000,
+    transitionDuration: 500,
+    infinite: true,
+    indicators: true,
+    arrows: true,
+    pauseOnHover: true,
+    autoplay: false,
+    easing: "ease",
+    onChange: (oldIndex, newIndex) => {
+      console.log(`slide transition from ${oldIndex} to ${newIndex}`);
+    },
+  };
+
+  useEffect(() => {
+    dispatch(allCarriers());
+  }, [dispatch]);
 
   return (
     <Container>
-      <HeaderTitle>ثبت حرفه و مهارت های من</HeaderTitle>
+      <HeaderTitle>حرفه ها و مهارت های من</HeaderTitle>
       <div className="mt-2">
         <Accordion>
           <Accordion.Item eventKey="0">
@@ -38,19 +68,29 @@ const RecordProfession = () => {
             <Accordion.Body>
               <div className="row">
                 <div className="col-4">
-                  <InputFile>
-                    <Input
-                      type="file"
-                      name="image"
-                      id="file"
-                      class="inputfile"
-                      onChange={handleChange}
-                    />
-                    <Label for="file">
-                      <img src={image || bg} alt="profile" />
-                    </Label>
-                    <img className="image-slider" src={cloud} alt="cloud" />
-                  </InputFile>
+                  <div className="slide-container">
+                    <Fade {...properties}>
+                      {fadeImages.map((fadeImage, index) => (
+                        <div className="each-fade" key={index}>
+                          <div
+                            className="image-container"
+                            onClick={() => setShowModal(true)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            <img src={bg} width="100%" height="100%" />
+                          </div>
+                        </div>
+                      ))}
+                    </Fade>
+                    {showModal && (
+                      <EditImageCarrier
+                        setShowModal={setShowModal}
+                        show={showModal}
+                        title="ویرایش"
+                        headTitle="ویرایش"
+                      />
+                    )}
+                  </div>
                 </div>
                 <div className="col-8">
                   <Content>

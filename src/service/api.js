@@ -4,10 +4,10 @@ import axios from "axios";
 import { userData } from "../help/userData";
 // sign in
 export const singIn = (userData) =>
-  axios.put("http://panel.agroiranexpert.ir/api/expert/login", userData);
+  axios.put("http://panel.agroiranexpert.com/api/expert/login", userData);
 // logout
 export const logOut = () =>
-  axios.get("http://panel.agroiranexpert.ir/api/employee/logout", {
+  axios.get("http://panel.agroiranexpert.com/api/employee/logout", {
     headers: {
       "access-token": userData()?.data?.result?.accessToken,
       "refresh-token": userData()?.data?.result?.refreshToken,
