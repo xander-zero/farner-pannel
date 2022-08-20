@@ -4,18 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 // styled ccomponents
 import styled from "styled-components";
 
-const InputFeild = ({
-  label,
-  type,
-  placeholder,
-  onChange,
-  name,
-  value,
-  space,
-  icon,
-  weight,
-  defaultValue,
-}) => {
+const InputFeild = ({ label, type, placeholder, onChange, name, value, space, icon, weight, defaultValue }) => {
   return (
     <FormControl space={space}>
       <Label weight={weight} htmlFor={label}>
@@ -72,6 +61,7 @@ const Input = styled.input`
 
   ::-webkit-input-placeholder {
     color: ${({ theme }) => theme.text};
+    font-size: 0.9rem;
   }
 `;
 

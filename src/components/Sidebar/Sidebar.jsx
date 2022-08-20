@@ -6,8 +6,16 @@ import { Link, useLocation } from "react-router-dom";
 import { FiUserCheck } from "react-icons/fi";
 import { RiTicketLine } from "react-icons/ri";
 import { BsCalendarCheck } from "react-icons/bs";
+import {RiDashboardLine} from "react-icons/ri";
+import {GiFarmer} from "react-icons/gi";
+import {RiProfileLine} from "react-icons/ri";
+
 // styled components module
 import styled from "styled-components";
+
+
+// image
+import logo from "../../assets/images/logo.png";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -16,27 +24,29 @@ const Sidebar = () => {
   return (
     <SidebarStyle>
       <Logo>
-        <TitleLogo>AgroIranExpert</TitleLogo>
+        {/* <TitleLogo>AgroIranExpert</TitleLogo> */}
+        <img src={logo} />
       </Logo>
+      
       <MenuList>
-        <MenuListItem
-          className={location.pathname === "/dashboard/app" ? "active" : ""}
-        >
+        <MenuListItem className={location.pathname === "/dashboard/app" ? "active" : ""}>
           <Link to="/dashboard/app">
-            <FiUserCheck size={20} />
+            <RiDashboardLine size={30}/>
             <p>پیشخوان من</p>
           </Link>
         </MenuListItem>
+
         <MenuListItem
           className={
             location.pathname === "/dashboard/myFarmer" ? "active" : ""
           }
         >
           <Link to="/dashboard/myFarmer">
-            <FiUserCheck size={20} />
+            <GiFarmer size={30} />
             <p>کشاورزان من</p>
           </Link>
         </MenuListItem>
+
         <MenuListItem
           className={
             location.pathname === "/dashboard/profile" ||
@@ -47,10 +57,11 @@ const Sidebar = () => {
           onClick={() => setShowSubMenu(!showSubMenu)}
         >
           {/* <Link to="/dashboard/profile"> */}
-          <FiUserCheck size={20} />
+          <RiProfileLine size={30} />
           <p>حرفه و مهارت ها </p>
           {/* </Link> */}
         </MenuListItem>
+
         {showSubMenu && (
           <>
             <MenuListItem
@@ -63,6 +74,7 @@ const Sidebar = () => {
                 <p>ثبت حرفه و مهارت</p>
               </Link>
             </MenuListItem>
+
             <MenuListItem
               className={
                 location.pathname === "/dashboard/record-profession"
@@ -147,19 +159,10 @@ const Logo = styled.div`
   background-color: ${({ theme }) => theme.backgroundSidebar};
   border-bottom: 1px solid ${({ theme }) => theme.border};
   transition: all 0.4s ease-in-out;
-`;
+  height: 68px;
 
-const TitleLogo = styled.p`
-  /* background: -webkit-linear-gradient(#6980ff, #6980ff); */
-  color: #005ac8;
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
-  font-weight: bold;
-  font-size: 22px;
-  text-align: center;
-  margin: 10px;
-  @media (max-width: 899px) {
-    font-size: 16px;
+  img {
+    width: 60px;
   }
 `;
 
@@ -171,17 +174,21 @@ const MenuList = styled.ul`
   margin: 0px;
   padding: 0px;
   list-style: none;
+  /* gap: 1rem; */
 `;
 const MenuListItem = styled.li`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   font-size: 0.8rem;
   color: #495057;
   transition: 0.4s all ease-in-out;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   cursor: pointer;
-
+  /* background-color: red; */
+  padding: 10px 0;
+  
   span {
     color: ${({ theme }) => theme.text};
     margin: 0 0.5rem;
@@ -205,10 +212,11 @@ const MenuListItem = styled.li`
     display: flex;
     align-items: center;
     margin: 0.2rem;
+    font-size: 1rem;
   }
 
   &:hover {
-    transform: translateX(-10px);
+    /* transform: translateX(-10px); */
   }
   @media (max-width: 899px) {
     justify-content: center;

@@ -24,7 +24,7 @@ const Button = ({
       size={size}
     >
       {children}
-    </ButtonStyle>
+    </ButtonStyle> 
   );
 };
 
@@ -34,7 +34,7 @@ const ButtonStyle = styled.button`
   line-height: 1.5;
   border-radius: 0.3rem;
   color: #fff;
-  background-color: ${({ color }) => (color ? color : "#6980ff")};
+  background: linear-gradient(90deg, rgb(25, 56, 95) 0%, rgb(0, 90, 200) 100%);
   font-family: "IRAN";
   width: ${({ small }) => (small ? "130px" : "100%")};
   outline: none;

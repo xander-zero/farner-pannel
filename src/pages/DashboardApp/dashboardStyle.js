@@ -13,6 +13,7 @@ export const Right = styled.div`
   justify-content: space-between;
   flex-wrap: "wrap";
   width: 100%;
+  margin-top: 1.4rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -27,14 +28,25 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1rem;
-  box-shadow: ${({ theme }) => theme.shadow};
+  /* padding: 1rem; */
+  box-shadow: ${({ theme }) => theme.cardShadow};
   background-color: ${({ bgColor }) => bgColor};
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 0.5rem 0;
   width: 30%;
+  height: 160px;
 
   @media (max-width: 768px) {
     width: 95%;
   }
 `;
+
+export const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+`

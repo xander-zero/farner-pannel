@@ -16,6 +16,7 @@ import styled from "styled-components";
 import bg from "../../assets/images/expert.png";
 import Typography from "../../components/Typography/Typography";
 import Loading from "../../components/Loading/Loading";
+import expertLogin from "../../assets/images/expertLogin.svg";
 
 const LoginPage = () => {
   const [expertCode, setExpertCode] = useState("");
@@ -74,11 +75,12 @@ const LoginPage = () => {
             </Form>
           </Content>
         </Right>
+        
         <Left>
-          <img src={bg} alt="background-image" />
-          <Typography size="24px">
+          <img src={expertLogin} alt="background-image" />
+          {/* <Typography size="24px">
             به پنل کارشناسان agroIranExpert خوش آمدید.
-          </Typography>
+          </Typography> */}
         </Left>
       </Container>
     </LoginStyle>
@@ -90,7 +92,7 @@ const LoginStyle = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1470df;
+  background-color: #DADADA;
   width: 100%;
 `;
 
@@ -98,7 +100,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 60%;
   height: 80vh;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -108,9 +110,13 @@ export const Container = styled.div`
 const Left = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 65%;
+  width: 55%;
   height: 500px;
+  background-color: #dde6f8;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 
   img {
     width: 80%;
@@ -124,7 +130,7 @@ const Left = styled.div`
 const Right = styled.div`
   display: flex;
   /* flex: 1; */
-  width: 35%;
+  width: 45%;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -146,7 +152,7 @@ const Content = styled.div`
 `;
 const TitleLogo = styled.p`
   background: -webkit-linear-gradient(#6980ff, #6980ff);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
   font-weight: bold;
   font-size: 24px;
@@ -171,7 +177,7 @@ const FormGroup = styled.div`
   flex-direction: column;
   width: 100%;
   border-top: 1px solid #e9ecef;
-  border-bottom: 1px solid #e9ecef;
+  /* border-bottom: 1px solid #e9ecef; */
   padding: 2rem 0;
 
   @media (max-width: 799px) {

@@ -86,11 +86,11 @@ const MyFarmerPage = () => {
   const { provinces, cities, products } = generalSelector;
   let allProvince = provinces
     ? provinces?.provinces?.map((item) => {
-        return {
-          label: item?.name,
-          value: item.id,
-        };
-      })
+      return {
+        label: item?.name,
+        value: item.id,
+      };
+    })
     : [];
 
   const assignProvince = allProvince?.map((item) => ({ ...item }));
@@ -105,7 +105,7 @@ const MyFarmerPage = () => {
   // const allCities = cities?.cities?.map((item) => ({
   //   label: item.name,
   //   value: item.id,
-  // }));
+  // })); 
 
   const filtedCity = cities?.cities?.filter(
     (item) => item.province_id === +form?.province
@@ -179,10 +179,11 @@ const MyFarmerPage = () => {
 
   return (
     <Container>
-      <Row>
+      {/* <Row>
         <HeaderTitle>کشاورزان من</HeaderTitle>
-      </Row>
+      </Row> */}
       <Row>
+
         <InputFeild
           onChange={handleChange}
           space
@@ -204,15 +205,9 @@ const MyFarmerPage = () => {
           }
         />
         {allCity?.length > 1 && (
-          <Select
-            items={allCity ? allCity : []}
-            onChange={(event) => setForm({ ...form, city: event.target.value })}
-          />
+        <Select items={allCity ? allCity : []} onChange={(event) => setForm({ ...form, city: event.target.value })}/>
         )}
-        <Select
-          items={asasignProducts ? asasignProducts : []}
-          onChange={(event) => setForm({ ...form, pid: event.target.value })}
-        />
+        <Select items={asasignProducts ? asasignProducts : []} onChange={(event) => setForm({ ...form, pid: event.target.value })}/>
 
         <Checkbox
           value={form.marked}
@@ -224,6 +219,7 @@ const MyFarmerPage = () => {
         <Refresh onClick={() => dispatch(allFarmers(expertCode))}>
           <FiRefreshCcw size={20} />
         </Refresh>
+        
         <Button
           color="#009EF7"
           size="12px"
@@ -244,16 +240,21 @@ const MyFarmerPage = () => {
 
         {/* </Button> */}
       </Row>
-      <Wrapper>
-        <label style={{ width: "100%", fontSize: "14px", marginTop: "10px" }}>
-          مرتب سازی براساس :{" "}
-        </label>
-        <Select
-          label="مرتب سازی براساس :"
-          items={initialSort ? initialSort : []}
-          onChange={handleChangeSort}
-        />
-      </Wrapper>
+
+      <Row>
+        <Wrapper>
+          <label style={{ width: "80%", fontSize: "14px", marginTop: "10px" }}>
+            مرتب سازی براساس :
+          </label>
+
+          <Select
+            label="مرتب سازی براساس :"
+            items={initialSort ? initialSort : []}
+            onChange={handleChangeSort}
+          />
+        </Wrapper>
+      </Row>
+
       <div style={{ marginTop: "1rem" }}>
         {farmers ? (
           <CardList
@@ -274,7 +275,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 0.5rem;
+  /* background-color: red; */
+
+  label {
+    
+  }
   @media (max-width: 567px) {
     width: 100%;
   }

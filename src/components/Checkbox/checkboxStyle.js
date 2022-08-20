@@ -5,7 +5,8 @@ export const Container = styled.div`
   align-items: center;
   width: 50%;
   justify-content: flex-start;
-  margin: 0.2rem 0.5rem 0 0.3rem;
+  margin: 0.7rem 0.5rem 0 0.3rem;
+  /* background-color: red; */
 `;
 
 export const Label = styled.label`
