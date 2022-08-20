@@ -15,8 +15,10 @@ import { Fade } from "react-slideshow-image";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updatedCarrier } from "../../../redux/action/farmer";
+import { HeaderTitle } from "../../../theme/GlobalStyle";
 const AccordingCarrier = ({ carrier, id }) => {
   const [showModal, setShowModal] = useState(false);
+  const [sid, setSid] = useState("");
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -61,7 +63,7 @@ const AccordingCarrier = ({ carrier, id }) => {
       ...form,
       title: carrier?.title,
       content: carrier?.content,
-      images: carrier?.images,
+      images: carrier?.images[0],
     });
   }, [carrier]);
 
@@ -78,7 +80,10 @@ const AccordingCarrier = ({ carrier, id }) => {
                     <div className="each-fade" key={index}>
                       <div
                         className="image-container"
-                        onClick={() => setShowModal(true)}
+                        onClick={() => {
+                          setShowModal(true);
+                          setSid(carrier?.sid);
+                        }}
                         style={{ cursor: "pointer" }}
                       >
                         <img src={image?.link} width="100%" height="100%" />
@@ -94,6 +99,7 @@ const AccordingCarrier = ({ carrier, id }) => {
                   title="ویرایش"
                   headTitle="ویرایش"
                   images={carrier?.images}
+                  sid={sid}
                 />
               )}
             </div>

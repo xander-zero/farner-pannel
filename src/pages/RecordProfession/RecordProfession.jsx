@@ -33,6 +33,7 @@ import { useEffect } from "react";
 import { getAllCarriers } from "../../service/myFarmer";
 import { allCarriers } from "../../redux/action/farmer";
 import AccordingCarrier from "./AccordingCarrier/AccordingCarrier";
+import { Fragment } from "react";
 
 const RecordProfession = () => {
   const dispatch = useDispatch();
@@ -50,9 +51,24 @@ const RecordProfession = () => {
       <HeaderTitle>حرفه ها و مهارت های من</HeaderTitle>
       <div className="mt-2">
         <Accordion>
-          {carriers?.map((carrier, index) => (
-            <AccordingCarrier carrier={carrier} key={index} id={index} />
-          ))}
+          {carriers?.map((carrier, index) => {
+            if (carrier?.status === true) {
+              return (
+                <Fragment>
+                  <AccordingCarrier carrier={carrier} key={index} id={index} />
+                </Fragment>
+              );
+            } else {
+              return (
+                <AccordingCarrier
+                  title="حرفه ها و مهارت های برگشت خورده"
+                  carrier={carrier}
+                  key={index}
+                  id={index}
+                />
+              );
+            }
+          })}
         </Accordion>
       </div>
     </Container>

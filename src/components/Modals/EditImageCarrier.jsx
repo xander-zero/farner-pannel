@@ -14,15 +14,33 @@ import bg from "../../assets/images/expert.png";
 import cloud from "../../assets/images/cloud-upload-regular-240.png";
 import Typography from "../Typography/Typography";
 import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { updatedCarrier } from "../../redux/action/farmer";
 
-const EditImageCarrier = ({ title, headTitle, show, setShowModal, images }) => {
+const EditImageCarrier = ({
+  title,
+  headTitle,
+  show,
+  setShowModal,
+  images,
+  sid,
+}) => {
   // const imageList = [1, 2, 3, 4, 5];
   //   const [show, setShow] = useState(false);
-
+  const [file, setFile] = useState(null);
+  const dispatch = useDispatch();
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  const handleChange = () => {};
+  const handleChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("images", file);
+    dispatch(updatedCarrier(formData, sid));
+  };
 
   return (
     <>
@@ -69,7 +87,7 @@ const EditImageCarrier = ({ title, headTitle, show, setShowModal, images }) => {
           <Button variant="secondary" onClick={handleClose}>
             منصرف شدم
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSubmit}>
             تایید
           </Button>
         </Modal.Footer>

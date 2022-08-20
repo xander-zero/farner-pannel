@@ -198,6 +198,8 @@ export const updatedCarrier = (carrierData, sid) => async (dispatch) => {
     const result = data?.data?.result;
     dispatch({ type: "UPDATE_CARRIER", payload: result });
     dispatch({ type: "RESET_UPDATE_CARRIER_LOADING" });
+    dispatch(allCarriers());
+    successMessage("اطلاعات با موفقیت تایید شد");
   } catch (error) {
     errorMessage(error?.data?.message);
   }
