@@ -15,7 +15,7 @@ import cloud from "../../assets/images/cloud-upload-regular-240.png";
 import Typography from "../Typography/Typography";
 import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { updatedCarrier } from "../../redux/action/farmer";
+import { deletedImage, updatedCarrier } from "../../redux/action/farmer";
 
 const EditImageCarrier = ({
   title,
@@ -40,6 +40,11 @@ const EditImageCarrier = ({
     const formData = new FormData();
     formData.append("images", file);
     dispatch(updatedCarrier(formData, sid));
+  };
+
+  const handleDeleteImage = (id) => {
+    dispatch(deletedImage(id));
+    handleClose();
   };
 
   return (
@@ -76,7 +81,10 @@ const EditImageCarrier = ({
             {images?.map((image, index) => (
               <WrapperImg key={index}>
                 <img src={image?.link} alt="bg" />
-                <Icon color="#ffd0d0">
+                <Icon
+                  color="#ffd0d0"
+                  onClick={() => handleDeleteImage(image?.id)}
+                >
                   <AiOutlineDelete color="red" size={20} />
                 </Icon>
               </WrapperImg>

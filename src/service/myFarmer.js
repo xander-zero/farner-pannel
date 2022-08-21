@@ -89,3 +89,7 @@ export const getAllCarriers = () => API.get("/expert/carriers");
 
 export const updateCarrier = (carrierData, sid) =>
   API.put(`/expert/carriers?sid=${sid}`, carrierData);
+
+export const deleteImage = (id) => API.delete(`/expert/carrier?id=${id}`);
+
+export const deleteCarrier = (sid) => API.delete(`/expert/carrier?sid=${sid}`);

@@ -14,7 +14,7 @@ import {
 import { Fade } from "react-slideshow-image";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updatedCarrier } from "../../../redux/action/farmer";
+import { deletedCarrier, updatedCarrier } from "../../../redux/action/farmer";
 import { HeaderTitle } from "../../../theme/GlobalStyle";
 const AccordingCarrier = ({ carrier, id }) => {
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +57,10 @@ const AccordingCarrier = ({ carrier, id }) => {
     dispatch(updatedCarrier(form, carrier?.sid));
   };
   console.log("after click form Hello", form);
+
+  const handleDelete = (sid) => {
+    dispatch(deletedCarrier(sid));
+  };
 
   useEffect(() => {
     setForm({
@@ -126,7 +130,12 @@ const AccordingCarrier = ({ carrier, id }) => {
                   اعمال تفییرات
                 </Button>
                 <div className="mx-1">
-                  <Button small size="14px" color="red">
+                  <Button
+                    small
+                    size="14px"
+                    color="red"
+                    onClick={() => handleDelete(carrier?.sid)}
+                  >
                     حذف
                   </Button>
                 </div>

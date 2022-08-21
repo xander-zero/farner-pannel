@@ -204,3 +204,25 @@ export const updatedCarrier = (carrierData, sid) => async (dispatch) => {
     errorMessage(error?.data?.message);
   }
 };
+
+export const deletedImage = (id) => async (dispatch) => {
+  try {
+    await api.deleteImage(id);
+    dispatch({ type: "DELETE_IMAGE" });
+    dispatch(allCarriers());
+    successMessage("عملیات با موفقیت انجام شد");
+  } catch (error) {
+    errorMessage(error?.data?.message);
+  }
+};
+
+export const deletedCarrier = (sid) => async (dispatch) => {
+  try {
+    await api.deleteCarrier(sid);
+    dispatch({ type: "DELETE_CARRIER" });
+    dispatch(allCarriers());
+    successMessage("عملیات با موفقیت انجام شد");
+  } catch (error) {
+    errorMessage(error?.data?.message);
+  }
+};

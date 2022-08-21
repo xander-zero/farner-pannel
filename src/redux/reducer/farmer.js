@@ -179,6 +179,14 @@ export const farmerReducer = (
         loadingUpdateCarrier: false,
       };
 
+    case "DELETE_IMAGE":
+      return {
+        ...state,
+      };
+    case "DELETE_CARRIER":
+      return {
+        ...state,
+      };
     default:
       return state;
   }
