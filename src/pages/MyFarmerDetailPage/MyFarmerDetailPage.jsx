@@ -14,14 +14,7 @@ import QuestionnaireList from "../../components/QuestionnaireList/QuestionnaireL
 // react redux
 import { detailFarmer } from "../../redux/action/farmer";
 import { Container, HeaderTitle, Row } from "../../theme/GlobalStyle";
-import {
-  Column,
-  HeaderImg,
-  HeadeTitle,
-  Img,
-  MainContent,
-  Wrapper,
-} from "./myFarmerDetailStyle";
+import { Column, HeaderImg, HeadeTitle, Img, MainContent, Wrapper, } from "./myFarmerDetailStyle";
 import VisitList from "../../components/Visit/VisitList";
 const MyFarmerDetailPage = () => {
   // use params
@@ -45,7 +38,7 @@ const MyFarmerDetailPage = () => {
   const visit = farmer?.data?.length > 0 ? farmer?.data[2] : [];
   const visitCount = farmer?.data?.length > 0 ? farmer?.count[2] : [];
 
-  console.log("visit" , visit);
+  console.log("visit", visit);
 
   useEffect(() => {
     dispatch(detailFarmer(farmerCode));
@@ -65,28 +58,28 @@ const MyFarmerDetailPage = () => {
         </HeaderImg>
 
         <HeadeTitle>
-            <div>
-              <Typography size="16px">
-                {(questionnaire && questionnaire[0]?.fullName) || ""}
-              </Typography>
-            </div>
+          <div>
             <Typography size="16px">
-              شماره تماس:{" "}
-              {(questionnaire && questionnaire[0]?.phoneNumber) || ""}
+              {(questionnaire && questionnaire[0]?.fullName) || ""}
             </Typography>
-            <Typography size="16px">
-              آدرس: {`${(questionnaire && questionnaire[0]?.city) || ""}`}
-            </Typography>
+          </div>
+          <Typography size="16px">
+            شماره تماس:{" "}
+            {(questionnaire && questionnaire[0]?.phoneNumber) || ""}
+          </Typography>
+          <Typography size="16px">
+            آدرس: {`${(questionnaire && questionnaire[0]?.city) || ""}`}
+          </Typography>
         </HeadeTitle>
 
       </FarmerBioRow>
 
       {/* <QuestionnaireList items={questionnaire} questionnaireCount={questionnaireCount}/> */}
-      <QuestionnaireList items={[{product : "پسته" , date : "1401/6/25" , Qcode : "FJATE7920051-1401042536" , state : "در حال نگارش"} , {product : "پسته" , date : "1401/6/25" , Qcode : "FJATE7920051-1401042536" , state : "در حال نگارش"}]} questionnaireCount={questionnaireCount}/>
+      <QuestionnaireList items={[{ product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} questionnaireCount={questionnaireCount} />
       {/* <MealPlanList items={mealPlan} mealPlanCount={mealPlanCount} /> */}
-      <MealPlanList items={[{product : "پسته" , date : "1401/6/25" , Qcode : "FJATE7920051-1401042536" , state : "در حال نگارش"} , {product : "پسته" , date : "1401/6/25" , Qcode : "FJATE7920051-1401042536" , state : "در حال نگارش"}]} mealPlanCount={mealPlanCount} />
+      <MealPlanList items={[{ product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} mealPlanCount={mealPlanCount} />
       {/* <VisitList items={visit} visitCount={visitCount} /> */}
-      <VisitList items={[{nameProduct : "پسته" , expertCode : "FJATE7920051-1401042536" , state : "در حال نگارش"} , {nameProduct : "پسته" , expertCode : "FJATE7920051-1401042536" , state : "در حال نگارش"}]} visitCount={visitCount} />
+      <VisitList items={[{ nameProduct: "پسته", date: "1401/6/25", expertCode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { nameProduct: "پسته", expertCode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} visitCount={visitCount} />
     </Container>
   );
 };

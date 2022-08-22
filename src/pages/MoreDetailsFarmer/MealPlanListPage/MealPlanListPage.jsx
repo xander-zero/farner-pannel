@@ -70,6 +70,7 @@ const MealPlanVisitList = () => {
                 تاریخ نگارش : {formatData(item?.date?.toString() || "")}
               </Typography>
             </Header>
+
             <Header>
               <Typography size="14px" weight="bold">
                 {item?.Qcode || ""}
@@ -82,6 +83,7 @@ const MealPlanVisitList = () => {
                 </Typography>
               </Row>
             </Header>
+            
             <Row>
               <Typography textAlign="left" size="14px" weight="bold">
                 <a href={item?.files || ""} target="_blank">

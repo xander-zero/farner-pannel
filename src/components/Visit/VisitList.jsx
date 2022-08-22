@@ -15,6 +15,8 @@ import { getVisit } from "../../redux/action/farmer";
 import styled from "styled-components";
 import Alert from "../Alert/Alert";
 
+import imgProduct from "../../assets/images/plant.png";
+
 // icon
 import { BsArrowLeftShort } from "react-icons/bs";
 
@@ -48,7 +50,7 @@ const VisitList = ({ items, visitCount }) => {
 
   return (
     <FarmerDataRowContainer>
-
+ 
       <HeaderFarmerDataRowContainer>
         <p>درخواست های بازدید</p>
         {visitCount = 2 ? (
@@ -65,9 +67,10 @@ const VisitList = ({ items, visitCount }) => {
           {items?.length > 0 ? (
             items?.map((item, index) => (
               <Card key={index}>
+                
                 <Header>
                   <Row>
-                    <img src={item.imgProduct} />
+                    <img src={imgProduct} />
                     <Typography size="14px" weight="bold">
                       {item?.nameProduct}
                     </Typography>
@@ -92,7 +95,6 @@ const VisitList = ({ items, visitCount }) => {
                     <p>{checkState(item?.state)}</p>
                 </State>
 
-               
               </Card>
             ))
           ) : (
