@@ -14,7 +14,7 @@ const TextArea = ({
 }) => {
   return (
     <TextAreaStyle>
-      <Label>{label}</Label>
+      {/* <Label>{label}</Label> */}
       <Text
         defaultValue={defaultValue}
         name={name}

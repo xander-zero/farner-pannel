@@ -50,9 +50,9 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
+            {/* <Typography color="#fff" size="24px" weight="bold">
               0
-            </Typography>
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countFarmer}
             </Typography>
@@ -75,9 +75,9 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
+            {/* <Typography color="#fff" size="24px" weight="bold">
               0
-            </Typography>
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countVisit}
             </Typography>
@@ -100,9 +100,9 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
+            {/* <Typography color="#fff" size="24px" weight="bold">
               0
-            </Typography>
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countMealplan}
             </Typography>

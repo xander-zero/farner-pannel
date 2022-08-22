@@ -55,7 +55,7 @@ export const getMoreQuestionnaire = (farmerCode) =>
   API.get(`/farmer/data/questionnaires/features?farmerCode=${farmerCode}`);
 // get mealplan more
 export const getMoreMealplan = (farmerCode) =>
-  API.get(`/farmer/data/mealPlans/features?farmerCode=${farmerCode}`);
+  API.get(`/farmer/data/mealPlans/features?farmerCode=${farmerCode}`);  
 // get visit more
 export const getMoreVisit = (farmerCode) =>
   API.get(`/farmer/data/visits/features?farmerCode=${farmerCode}`);

@@ -40,8 +40,8 @@ const ButtonStyle = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  margin-top: ${({ marginTop }) => (marginTop ? marginTop : "1rem")};
-  margin-right: ${({ space }) => (space ? ".5rem" : "0")};
+  /* margin-top: ${({ marginTop }) => (marginTop ? marginTop : "1rem")}; */
+  /* margin-right: ${({ space }) => (space ? ".5rem" : "0")}; */
   font-weight: ${({ weight }) => weight};
 
   a {

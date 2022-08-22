@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Typography from "../Typography/Typography";
 
 // styled components
-import { Container, HeaderTitle } from "../../theme/GlobalStyle";
+import { BodyFarmerDataRowContainer,State,SeeMore, Container, FarmerDataRowContainer, HeaderFarmerDataRowContainer, HeaderTitle } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
 import { Card, Header, Row } from "./questionnaireStyle";
 import Button from "../Button/Button";
@@ -14,15 +14,19 @@ import QRCode from "../../assets/images/qr-code.png";
 import { moreQuestionnaire } from "../../redux/action/farmer";
 import { useNavigate } from "react-router-dom";
 import Alert from "../Alert/Alert";
+import styled from "styled-components";
 // import QRCode from "react-qr-code";
+
+// icon
+import {BsArrowLeftShort} from "react-icons/bs"
 
 const QuestionnaireList = ({ items, questionnaireCount }) => {
   const checkState = (state) => {
     switch (state) {
       case "supportCheck":
-        return "در حال بررسی";
+        return "...در حال بررسی";
       case "mealPlanCheck":
-        return "در حال نگارش";
+        return "...در حال نگارش";
       case "educationCheck":
       case "saleCheck":
         return "کنترل و تایید";
@@ -45,65 +49,70 @@ const QuestionnaireList = ({ items, questionnaireCount }) => {
   console.log(items);
 
   return (
-    <Container>
-      <HeaderTitle>پرسشنامه</HeaderTitle>
-      <CardListStyle>
-        {/* <div style={{ width: "100%" }}>
+    <FarmerDataRowContainer>
+
+      <HeaderFarmerDataRowContainer>
+        <p>پرسشنامه ها</p>
+        {questionnaireCount = 2 ? (
+          <SeeMore onClick={() => navigate(`/dashboard/questionnaire/${items[0]?.farmerCode}`)}>
+            <p >
+              مشاهده بیشتر<BsArrowLeftShort size={22}/>
+            </p>
+          </SeeMore>
+        ) : null}
+      </HeaderFarmerDataRowContainer>
+
+      <BodyFarmerDataRowContainer>
+        <CardListStyle>
+          {/* <div style={{ width: "100%" }}>
           <Fade scale={0.4}> */}
 
-        {items?.length > 0 ? (
-          items?.map((item, index) => (
-            <Card key={index}>
-              <Header>
-                <Row>
-                  <img src={imgProduct} />
+          {items?.length > 0 ? (
+            items?.map((item, index) => (
+              <Card key={index}>
+                <Header>
+                  <Row>
+                    <img src={imgProduct} />
+                    <Typography size="14px" weight="bold">
+                      {item?.product}
+                    </Typography>
+                  </Row>
                   <Typography size="14px" weight="bold">
-                    {item?.product}
+                    تاریخ دریافت : {formatData(item?.date?.toString())}
                   </Typography>
-                </Row>
-                <Typography size="14px" weight="bold">
-                  تاریخ دریافت : {formatData(item?.date?.toString())}
-                </Typography>
-              </Header>
-              <Header>
-                <Typography size="14px" weight="bold">
-                  {item?.Qcode}
-                </Typography>
-                <Row>
-                  <Typography size="14px" weight="bold">
-                    {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
-                    <img src={QRCode} alt="QRCode-image" />
-                  </Typography>
-                </Row>
-              </Header>
-              <Button size="14px" color="#50CD89">
-                {checkState(item?.state)}
-              </Button>
-            </Card>
-          ))
-        ) : (
-          <Alert>هیچ پرسشنامه ای وجود ندارد</Alert>
-        )}
+                </Header>
 
-        {/* </Fade>
+                <Header>
+                  <Typography size="14px" weight="bold">
+                    {item?.Qcode}
+                  </Typography>
+                  <Row>
+                    <Typography size="14px" weight="bold">
+                      {/* <QRCode value={item?.Qcode} size={100} height={100} /> */}
+                      <img src={QRCode} alt="QRCode-image" />
+                    </Typography>
+                  </Row>
+                </Header>
+
+                <State>
+                  <p>{checkState(item?.state)}</p>
+                </State>
+              </Card>
+            ))
+          ) : (
+            <Alert>هیچ پرسشنامه ای وجود ندارد</Alert>
+          )}
+
+          {/* </Fade>
         </div> */}
-      </CardListStyle>
-      {questionnaireCount > 3 ? (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <Button
-            small
-            size="14px"
-            onClick={() =>
-              navigate(`/dashboard/questionnaire/${items[0]?.farmerCode}`)
-            }
-          >
-            مشاهده بیشتر
-          </Button>
-        </div>
-      ) : null}
-    </Container>
+        </CardListStyle>
+      </BodyFarmerDataRowContainer>
+
+    </FarmerDataRowContainer>
   );
 };
+
 export default QuestionnaireList;
+
+
+

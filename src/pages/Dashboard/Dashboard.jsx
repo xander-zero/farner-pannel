@@ -28,15 +28,12 @@ const Dashboard = () => {
       <Routes>
         {/* <Route path="content-video" element={<ManageWeblogVideo />} />
         <Route path="content-text" element={<ManageWeblogText />} />
-        <Route path="manage-page" element={<ManagementPage />} /> */}
+        <Route path="manage-page" element={<ManagementPage />} /> */} 
         <Route path="app" element={<DashboardApp />} />
         <Route path="myFarmer" element={<MyFarmerPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
         <Route path="profile" element={<MyInformation />} />
-        <Route
-          path="questionnaire/:farmerCode"
-          element={<QuestionnaireListPage />}
-        />
+        <Route path="questionnaire/:farmerCode" element={<QuestionnaireListPage />}/>
         <Route path="mealplan/:farmerCode" element={<MealPlanVisitList />} />
         <Route path="manage-page" element={<ManagePage />} />
         <Route path="manage-page/uploadVideo" element={<UploadVideoPage />} />

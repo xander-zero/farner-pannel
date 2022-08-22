@@ -31,6 +31,7 @@ import { FiRefreshCcw } from "react-icons/fi";
 // import { farmerCardList } from "../../data/farmerData";
 
 const MyFarmerPage = () => {
+
   const [form, setForm] = useState({
     fullName: "",
     phoneNumber: "",
@@ -179,9 +180,7 @@ const MyFarmerPage = () => {
 
   return (
     <Container>
-      {/* <Row>
-        <HeaderTitle>کشاورزان من</HeaderTitle>
-      </Row> */}
+
       <Row>
 
         <InputFeild
@@ -255,7 +254,7 @@ const MyFarmerPage = () => {
         </Wrapper>
       </Row>
 
-      <div style={{ marginTop: "1rem" }}>
+      <WrapperCardList> 
         {farmers ? (
           <CardList
             expertCode={expertCode}
@@ -265,18 +264,17 @@ const MyFarmerPage = () => {
         ) : (
           <Typography>Loading...</Typography>
         )}
-      </div>
+      </WrapperCardList>
+
     </Container>
   );
 };
 
 const Wrapper = styled.div`
-  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 0.5rem;
-  /* background-color: red; */
 
   label {
     
@@ -285,6 +283,11 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `;
+
+const WrapperCardList = styled.div`
+  width: 100%;
+  margin-top: 1.5rem;
+`
 
 export const Refresh = styled.button`
   background-color: #009ef7;

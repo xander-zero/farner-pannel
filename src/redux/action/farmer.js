@@ -4,23 +4,527 @@ import { errorMessage, successMessage } from "../../utils/message";
 // get all farmers
 export const allFarmers =
   (expertCode, fullName, phone, province, city, pid, marked) =>
-  async (dispatch) => {
-    try {
-      const { data } = await api.getAllFarmer(
-        expertCode,
-        fullName,
-        phone,
-        province,
-        city,
-        pid,
-        marked
-      );
-      const result = data?.data?.result;
-      dispatch({ type: "GET_ALL_FARMERS", payload: result });
-    } catch (error) {
-      errorMessage("some thing wrong");
-    }
-  };
+    async (dispatch) => {
+      try {
+        // const { data } = await api.getAllFarmer(
+        //   expertCode,
+        //   fullName,
+        //   phone,
+        //   province,
+        //   city,
+        //   pid,
+        //   marked
+        // );
+        // const result = data?.data?.result;
+        const result = [
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+          
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          }
+        ]
+        dispatch({ type: "GET_ALL_FARMERS", payload: result });
+      } catch (error) {
+        // errorMessage("some thing wrong");
+        // const { data } = await api.getAllFarmer(
+        //   expertCode,
+        //   fullName,
+        //   phone,
+        //   province,
+        //   city,
+        //   pid,
+        //   marked
+        // );
+        // const result = data?.data?.result;
+        const result = [
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          },
+          
+          {
+            "_id": "627b8463e9918fa2ce320082",
+            "fullName": "سمیه نظامی 2",
+            "farmerCode": "FSONE655151",
+            "expert": "سیدرضا حسینی",
+            "expertCode": "ESEHO907951",
+            "phoneNumber": "09054145919",
+            "province": "خراسان رضوی",
+            "city": "مشهد",
+            "products": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "mealPlans": [
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 2.5
+              },
+              {
+                "Qcode": "FSONE655151-qW8515",
+                "area": 30
+              },
+              {
+                "Qcode": "FSONE655151-qb0880",
+                "area": 3
+              },
+              {
+                "Qcode": "FNaJa406151-PH03140011131",
+                "area": 12
+              },
+              {
+                "Qcode": "FNAJA929951-PC21140012061",
+                "area": 50
+              }
+            ],
+            "mealPlanCount": 5,
+            "totalArea": 97.5,
+            "comment": null,
+            "marked": false,
+            "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU"
+          }
+        ]
+        dispatch({ type: "GET_ALL_FARMERS", payload: result });
+      }
+    };
+
 
 // get detail farmer
 export const detailFarmer = (farmerCode) => async (dispatch) => {
@@ -32,6 +536,8 @@ export const detailFarmer = (farmerCode) => async (dispatch) => {
     errorMessage("some thing wrong");
   }
 };
+
+
 
 // assign farmer to expert
 export const assignFarmer = (data) => async (dispatch) => {
@@ -60,6 +566,7 @@ export const sendFileContent = (formData, navigate) => async (dispatch) => {
   }
 };
 
+// send video
 export const sendVideoContent = (formData) => async (dispatch) => {
   try {
     dispatch({ type: "ADD_VIDEO_CONTENT_LOADING" });
@@ -124,7 +631,7 @@ export const addCommentToFarmer =
       dispatch({ type: "ADD_COMMENT_TO_FARMER" });
       dispatch(allFarmers(expertCode));
       successMessage("با موفقیت ارسال شد");
-    } catch (error) {}
+    } catch (error) { }
   };
 
 export const moreQuestionnaire = (farmerCode) => async (dispatch) => {

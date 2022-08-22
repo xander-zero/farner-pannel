@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 // styled components
 import { CardListStyle } from "./CardListStyle";
 
-const CardList = ({ items, icon, expertCode }) => {
+const CardList = ({ items, icon, expertCode }) => {  
   return (
     <CardListStyle>
       {items?.map((item, index) => (
