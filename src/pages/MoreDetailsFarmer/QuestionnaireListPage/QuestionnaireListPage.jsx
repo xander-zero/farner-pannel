@@ -45,12 +45,13 @@ const QuestionnaireListPage = () => {
 
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { questionnaires } = farmerSelector;
+  console.log(questionnaires);
 
   useEffect(() => {
     dispatch(moreQuestionnaire(farmerCode));
   }, [dispatch, farmerCode]);
 
-  return (
+  return ( 
     <Container>
       <HeaderTitle>پرسشنامه</HeaderTitle>
       <CardListStyle>
@@ -58,6 +59,7 @@ const QuestionnaireListPage = () => {
           <Fade scale={0.4}> */}
         {questionnaires?.map((item, index) => (
           <Card key={index}>
+
             <Header>
               <Row>
                 <img src={imgProduct} />
@@ -69,6 +71,7 @@ const QuestionnaireListPage = () => {
                 تاریخ دریافت : {formatData(item?.date?.toString() || "") || ""}
               </Typography>
             </Header>
+
             <Header>
               <Typography size="14px" weight="bold">
                 {item?.Qcode || ""}
@@ -80,6 +83,7 @@ const QuestionnaireListPage = () => {
                 </Typography>
               </Row>
             </Header>
+
             <Button size="14px" color="#50CD89">
               {checkState(item?.state) || ""}
             </Button>

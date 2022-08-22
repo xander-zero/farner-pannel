@@ -39,7 +39,7 @@ const QuestionnaireList = ({ items, questionnaireCount }) => {
 
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { questionnaires } = farmerSelector;
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const dispatch = useDispatch();
   const getMoreQuestionnaire = (farmerCode) => {
