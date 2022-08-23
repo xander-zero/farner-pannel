@@ -3,9 +3,14 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // react icons
-import { FiUserCheck } from "react-icons/fi";
-import { RiTicketLine } from "react-icons/ri";
-import { BsCalendarCheck } from "react-icons/bs";
+import { FiUsers } from "react-icons/fi";
+import { IoIosRecording, IoMdArrowDropdown } from "react-icons/io";
+import {
+  MdOutlineDashboardCustomize,
+  MdOutlineManageSearch,
+} from "react-icons/md";
+import { GiSkills } from "react-icons/gi";
+import { GrUnorderedList } from "react-icons/gr";
 // styled components module
 import styled from "styled-components";
 
@@ -23,7 +28,7 @@ const Sidebar = () => {
           className={location.pathname === "/dashboard/app" ? "active" : ""}
         >
           <Link to="/dashboard/app">
-            <FiUserCheck size={20} />
+            <MdOutlineDashboardCustomize size={20} />
             <p>پیشخوان من</p>
           </Link>
         </MenuListItem>
@@ -33,8 +38,18 @@ const Sidebar = () => {
           }
         >
           <Link to="/dashboard/myFarmer">
-            <FiUserCheck size={20} />
+            <FiUsers size={20} />
             <p>کشاورزان من</p>
+          </Link>
+        </MenuListItem>
+        <MenuListItem
+          className={
+            location.pathname === "/dashboard/manage-page" ? "active" : ""
+          }
+        >
+          <Link to="/dashboard/manage-page">
+            <MdOutlineManageSearch size={20} />
+            <p>مدیریت صفحه</p>
           </Link>
         </MenuListItem>
         <MenuListItem
@@ -47,8 +62,11 @@ const Sidebar = () => {
           onClick={() => setShowSubMenu(!showSubMenu)}
         >
           {/* <Link to="/dashboard/profile"> */}
-          <FiUserCheck size={20} />
-          <p>حرفه و مهارت ها </p>
+          <GiSkills size={20} />
+          <div className="d-flex align-items-center">
+            <p>حرفه و مهارت ها </p>
+            <IoMdArrowDropdown />
+          </div>
           {/* </Link> */}
         </MenuListItem>
         {showSubMenu && (
@@ -59,7 +77,7 @@ const Sidebar = () => {
               }
             >
               <Link to="/dashboard/profile">
-                <FiUserCheck size={20} />
+                <IoIosRecording size={20} />
                 <p>ثبت حرفه و مهارت</p>
               </Link>
             </MenuListItem>
@@ -71,7 +89,7 @@ const Sidebar = () => {
               }
             >
               <Link to="/dashboard/record-profession">
-                <FiUserCheck size={20} />
+                <GrUnorderedList size={20} />
                 <p>حرفه ها و مهارت های من</p>
               </Link>
             </MenuListItem>
