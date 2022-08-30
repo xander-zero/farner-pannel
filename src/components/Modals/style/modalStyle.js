@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const InputFile = styled.div`
-  background-color: ${({ theme }) => theme.body};
+  /* background-color: ${({ theme }) => theme.body}; */
   border-radius: 10px;
   position: relative;
+  
 
   label {
     width: 100%;
@@ -61,7 +62,9 @@ export const WrapperImg = styled.div`
   flex-direction: column;
   padding: 0.3rem;
   width: 100px;
-  justify-content: center;
+  height: 120px;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin: 0.3rem 0.5rem;
   border-radius: 10px;
@@ -71,15 +74,21 @@ export const WrapperImg = styled.div`
     text-align: center !important;
     margin: 0 auto !important;
   }
+
+  img {
+    width: 80%;
+  }
+  
 `;
 
 export const Input = styled.input`
-  width: 0.1px;
-  height: 0.1px;
   opacity: 0;
   overflow: hidden;
   position: absolute;
-  z-index: -1;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 `;
 export const Label = styled.label`
   width: 70px;

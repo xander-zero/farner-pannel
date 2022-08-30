@@ -13,7 +13,7 @@ export const validationUser = (userData) => async (dispatch) => {
     //   errorMessage()
     errorMessage("some thing wrong");
     console.log(error.response);
-  }
+  } 
 };
 // sing in
 export const singInUser = (userData, navigate) => async (dispatch) => {
@@ -26,6 +26,7 @@ export const singInUser = (userData, navigate) => async (dispatch) => {
     navigate("/dashboard/app", { replace: true });
     successMessage("شما با موفقیت وارد شدید");
   } catch (error) {
+    dispatch({type: "SIGN_IN_FAILED"});
     console.log(error.response);
   }
 };

@@ -2,7 +2,7 @@ export const farmerReducer = (
   state = { farmers: [], farmer: {}, contents: [], content: {}, carriers: [] },
   action
 ) => {
-  switch (action.type) {
+  switch (action.type) { 
     //   get all farmers
     case "GET_ALL_FARMERS":
       return {
@@ -29,7 +29,11 @@ export const farmerReducer = (
         ...state,
         loadingFile: false,
       };
-
+      case "ADD_FILE_CONTENT_FAILED":
+        return {
+          ...state,
+          loadingFile: false,
+        };
     //
     case "ADD_VIDEO_CONTENT_LOADING":
       return {
@@ -41,6 +45,11 @@ export const farmerReducer = (
         ...state,
       };
     case "ADD_VIDEO_CONTENT_DONE":
+      return {
+        ...state,
+        loadingVideo: false,
+      };
+    case "ADD_VIDEO_CONTENT_FAILED":
       return {
         ...state,
         loadingVideo: false,
@@ -77,6 +86,12 @@ export const farmerReducer = (
       return {
         ...state,
       };
+
+    // add star
+    case "ADD_STAR_DONE":
+      return {
+        ...state,
+      }
 
     // get more questionnaire
     case "ALL_QUESTIONNAIRE":
@@ -173,19 +188,30 @@ export const farmerReducer = (
         ),
       };
 
-    case "RESET_UPDATE_CARRIER_LOADING":
+    case "UPDATE_CARRIER_DONE":
       return {
         ...state,
         loadingUpdateCarrier: false,
       };
 
+    case "UPDATE_CARRIER_FAILED":
+        return {
+          ...state,
+          loadingUpdateCarrier: false,
+        };
+
     case "DELETE_IMAGE":
       return {
         ...state,
       };
-    case "DELETE_CARRIER":
+    case "DELETE_CARRIER_DONE":
       return {
         ...state,
+      };
+      case "DELETE_CARRIER_FAILED":
+      return {
+        ...state,
+        loadingDeleteCarrier: false,
       };
     default:
       return state;

@@ -56,7 +56,7 @@ export const sendFileContent = (formData, navigate) => async (dispatch) => {
     navigate("/dashboard/manage-page");
   } catch (error) {
     errorMessage("some thing wrong");
-    dispatch({ type: "ADD_FILE_CONTENT_DONE" });
+    dispatch({ type: "ADD_FILE_CONTENT_FAILED" });
   }
 };
 
@@ -68,6 +68,7 @@ export const sendVideoContent = (formData) => async (dispatch) => {
     successMessage("با موفقیت اضافه شد");
     dispatch({ type: "ADD_VIDEO_CONTENT_DONE" });
   } catch (error) {
+    dispatch({ type: "ADD_VIDEO_CONTENT_FAILED" });
     errorMessage("some thing wrong");
   }
 };
@@ -117,21 +118,40 @@ export const getSearchFarmers = (name) => async (dispatch) => {
   }
 };
 
-export const addCommentToFarmer =
-  (data, farmerCode, expertCode) => async (dispatch) => {
+// add comment to farmer
+export const addCommentToFarmer = (data, farmerCode, expertCode) => async (dispatch) => {
     try {
       await api.addComment(data, farmerCode);
       dispatch({ type: "ADD_COMMENT_TO_FARMER" });
       dispatch(allFarmers(expertCode));
       successMessage("با موفقیت ارسال شد");
-    } catch (error) {}
-  };
+    } catch (error) {
+      errorMessage(error)
+      dispatch({type : "ADD_COMMENT_FAILED"});
+    }
+  }; 
+
+// allahdadi
+// add star to farmer
+export const addStarToFarmer = (starData , farmerCode , expertCode) => async (dispatch) => {
+    dispatch({type : "ADD_STAR_LOADING"});
+    try {
+      const {data} = await api.addStar(starData , farmerCode);
+      const result = data?.data;
+      console.log("resulttttttttttttttttt" , result);
+      dispatch({type : "ADD_STAR_DONE" , payload : result});
+      dispatch(allFarmers(expertCode));
+      successMessage("کشاورز با موفقیت ستاره دار شد");
+    } catch (error) {
+      dispatch({type : "ADD_STAR_FAILED"});
+    }
+}
 
 export const moreQuestionnaire = (farmerCode) => async (dispatch) => {
   try {
     const { data } = await api.getMoreQuestionnaire(farmerCode);
     const result = data?.data?.result;
-    dispatch({ type: "ALL_QUESTIONNAIRE", payload: result });
+    dispatch({ type: "ALL_QUESTIONNAIRE", payload: result.questionnaires });
   } catch (error) {
     errorMessage("wrong");
   }
@@ -141,7 +161,7 @@ export const moreMealplan = (farmerCode) => async (dispatch) => {
   try {
     const { data } = await api.getMoreMealplan(farmerCode);
     const result = data?.data?.result;
-    dispatch({ type: "ALL_MEALPLAN", payload: result });
+    dispatch({ type: "ALL_MEALPLAN", payload: result.mealplans });
   } catch (error) {
     errorMessage("wrong");
   }
@@ -151,7 +171,7 @@ export const getVisit = (farmerCode) => async (dispatch) => {
   try {
     const { data } = await api.getMoreVisit(farmerCode);
     const result = data?.data?.result;
-    dispatch({ type: "ALL_VISIT", payload: result });
+    dispatch({ type: "ALL_VISIT", payload: result.visits });
   } catch (error) {
     errorMessage("wrong");
   }
@@ -197,10 +217,12 @@ export const updatedCarrier = (carrierData, sid) => async (dispatch) => {
     const { data } = await api.updateCarrier(carrierData, sid);
     const result = data?.data?.result;
     dispatch({ type: "UPDATE_CARRIER", payload: result });
-    dispatch({ type: "RESET_UPDATE_CARRIER_LOADING" });
+    // dispatch({ type: "RESET_UPDATE_CARRIER_LOADING" });
+    dispatch({ type: "UPDATE_CARRIER_DONE" });
     dispatch(allCarriers());
     successMessage("اطلاعات با موفقیت تایید شد");
   } catch (error) {
+    dispatch({ type: "UPDATE_CARRIER_FAILED" });
     errorMessage(error?.data?.message);
   }
 };
@@ -219,10 +241,11 @@ export const deletedImage = (id) => async (dispatch) => {
 export const deletedCarrier = (sid) => async (dispatch) => {
   try {
     await api.deleteCarrier(sid);
-    dispatch({ type: "DELETE_CARRIER" });
+    dispatch({ type: "DELETE_CARRIER_DONE" });
     dispatch(allCarriers());
     successMessage("عملیات با موفقیت انجام شد");
   } catch (error) {
+    dispatch({ type: "DELETE_CARRIER_FAILED" });
     errorMessage(error?.data?.message);
   }
 };

@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 
 // styled componentss
 import { Card, Header, Row } from "../QuestionnaireList/questionnaireStyle";
-import { Container, HeaderTitle } from "../../theme/GlobalStyle";
+import { BodyFarmerDataRowContainer, Container, FarmerDataRowContainer, HeaderFarmerDataRowContainer, HeaderTitle, SeeMore, State } from "../../theme/GlobalStyle";
 import { CardListStyle } from "../CardList/CardListStyle";
 import imgProduct from "../../assets/images/plant.png";
 import { formatData } from "../../utils/date";
@@ -17,6 +17,9 @@ import { moreMealplan } from "../../redux/action/farmer";
 import { useNavigate } from "react-router-dom";
 import Alert from "../Alert/Alert";
 // import QRCode from "react-qr-code";
+
+// icon
+import {BsArrowLeftShort} from "react-icons/bs";
 
 const MealPlanList = ({ items, mealPlanCount }) => {
   console.log(items);
@@ -31,37 +34,52 @@ const MealPlanList = ({ items, mealPlanCount }) => {
   };
 
   return (
-    <Container>
-      <HeaderTitle>برنامه غذایی</HeaderTitle>
-      <CardListStyle>
-        {items?.length > 0 ? (
-          items?.map((item, index) => (
-            <Card key={index}>
-              <Header>
-                <Row>
-                  <img src={imgProduct} alt="image-plant" />
-                  <Typography size="14px" weight="bold">
-                    {item?.product}
+    <FarmerDataRowContainer>
+
+      <HeaderFarmerDataRowContainer>
+        <p>برنامه غذایی ها</p>
+        {mealPlanCount > 3 ? (
+          <SeeMore onClick={() => navigate(`/dashboard/questionnaire/${items[0]?.farmerCode}`)}>
+          <p>
+            مشاهده بیشتر<BsArrowLeftShort size={22}/>
+          </p>
+        </SeeMore>
+        ) : null}
+
+      </HeaderFarmerDataRowContainer>
+
+      <BodyFarmerDataRowContainer>
+        <CardListStyle>
+          {items?.length > 0 ? (
+            items?.map((item, index) => (
+              <Card key={index}>
+                <Header>
+                  <Row>
+                    <img src={imgProduct} alt="image-plant" />
+                    <Typography size="14px" weight="bold">
+                      {item?.product}
+                    </Typography>
+                  </Row>
+                  <Typography size="12px" weight="bold">
+                    تاریخ نگارش : {formatData(item?.date?.toString())}
                   </Typography>
-                </Row>
-                <Typography size="12px" weight="bold">
-                  تاریخ نگارش : {formatData(item?.date?.toString())}
-                </Typography>
-              </Header>
-              <Header>
-                <Typography size="14px" weight="bold">
-                  {item?.Qcode}
-                </Typography>
+                </Header>
+                
+                <Header>
+                  <Typography size="14px" weight="bold">
+                    {item?.Qcode}
+                  </Typography>
+
+                  <Row>
+                    <Typography size="14px" weight="bold">
+                      {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
+                      <img src={QRCode} />
+                    </Typography>
+                  </Row>
+                </Header>
 
                 <Row>
-                  <Typography size="14px" weight="bold">
-                    {/* <QRCode value={item?.Qcode} size={50} height={100} /> */}
-                    <img src={QRCode} />
-                  </Typography>
-                </Row>
-              </Header>
-              <Row>
-                {/* <Typography textAlign="left" size="14px" weight="bold">
+                  {/* <Typography textAlign="left" size="14px" weight="bold">
                   <a href={item?.files} target="_blank">
                     <FiDownload
                       color="#009EF7"
@@ -70,34 +88,22 @@ const MealPlanList = ({ items, mealPlanCount }) => {
                     />
                   </a>
                 </Typography> */}
-              </Row>
-              <Button size="14px" color="#F1416C">
-                <a href={item?.files} target="_blank">
-                  <Typography>مشاهده برنامه غذایی</Typography>
-                </a>
-              </Button>
-            </Card>
-          ))
-        ) : (
-          <Alert>هیچ برنامه غذایی وجود ندارد!</Alert>
-        )}
-      </CardListStyle>
-      {mealPlanCount > 3 ? (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <Button
-            small
-            size="14px"
-            onClick={() =>
-              navigate(`/dashboard/mealplan/${items[0]?.farmerCode}`)
-            }
-          >
-            مشاهده بیشتر
-          </Button>
-        </div>
-      ) : null}
-    </Container>
+                </Row>
+
+                <State>
+                  <a href={item?.files} target="_blank">
+                    <Typography>مشاهده برنامه غذایی</Typography>
+                  </a>
+                </State>
+              </Card>
+            ))
+          ) : (
+            <Alert>هیچ برنامه غذایی وجود ندارد!</Alert>
+          )}
+        </CardListStyle>
+      </BodyFarmerDataRowContainer>
+
+    </FarmerDataRowContainer>
   );
 };
 export default MealPlanList;

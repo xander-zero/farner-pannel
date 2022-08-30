@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addInformation } from "../../redux/action/farmer";
 
 // components
-import InputFeild from "../../components/InputFeild/InputFeild";
 import Button from "../../components/Button/Button";
-import TextArea from "../../components/TextArea/TextArea";
 import Loading from "../../components/Loading/Loading";
-
+import { LeftRow, Right, Left, InputField, Label, TextArea } from "../RecordProfession/style/recordProfession"
+import Typography from "../../components/Typography/Typography";
+import { Fade } from "react-slideshow-image";
 // helper
 import { userData } from "../../help/userData";
 
@@ -18,22 +18,31 @@ import {
   FormGroup,
   InfoStyle,
   InfoWrapper,
-  Input,
   InputFile,
-  Label,
+  Input,
   Title,
 } from "./myInformationStyle";
+import styled from "styled-components";
+import { TitleVideoWrapper, CustomInput, CustomTextArea, CustomLabel } from "../UploadVideoPage/UploadVideoPage";
 import { HeaderTitle } from "../../theme/GlobalStyle";
 
 // images
 import cloud from "../../assets/images/cloud-upload-regular-240.png";
-import bg from "../../assets/images/expert.png";
+import { EachFade, ImageContainer, SlideContainer } from "../RecordProfession/style/recordProfession";
+import EditImageCarrier from "../../components/Modals/EditImageCarrier";
+
+// IMG CROP
+import ImgCrop from 'antd-img-crop';
+import { Upload } from 'antd';
+import 'antd/dist/antd.css';
+import 'antd/es/modal/style';
+import 'antd/es/slider/style';
+
 
 const MyInformation = () => {
   const dispatch = useDispatch();
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
   const [form, setForm] = useState({
-    image: null,
     title: "",
     content: "",
   });
@@ -45,16 +54,46 @@ const MyInformation = () => {
   const expertSelector = useSelector((state) => state.myFarmer);
   const { loadingSendInfo } = expertSelector;
 
+  const [showModal, setShowModal] = useState(false);
+
+  const properties = {
+    duration: 5000,
+    transitionDuration: 500,
+    infinite: false,
+    indicators: true,
+    arrows: true,
+    pauseOnHover: true,
+    autoplay: false,
+    easing: "ease",
+    onChange: (oldIndex, newIndex) => {
+      console.log(`slide transition from ${oldIndex} to ${newIndex}`);
+    },
+  };
+
   const handleChange = (event) => {
     const { type, value, name } = event.target;
+    setForm({ ...form, [name]: value });
+  };
 
-    if (type === "file") {
-      const chosenFiles = Array.prototype.slice.call(event.target.files);
-      setForm({ ...form, image: chosenFiles });
-      const objectUrl = URL.createObjectURL(event.target.files[0]);
-      setImage(objectUrl);
+  const getSrcFromFile = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file.originFileObj);
+      reader.onload = () => resolve(reader.result);
+    });
+  };
+
+
+  const onPreview = async (file) => {
+    const src = file.url || (await getSrcFromFile(file));
+    const imgWindow = window.open(src);
+
+    if (imgWindow) {
+      const image = new Image();
+      image.src = src;
+      imgWindow.document.write(image.outerHTML);
     } else {
-      setForm({ ...form, [name]: value });
+      window.location.href = src;
     }
   };
 
@@ -66,14 +105,11 @@ const MyInformation = () => {
   };
 
   const handleSubmit = () => {
-    console.log(form);
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("content", form.content);
-    // formData.append("expertCode", expertCode);
-    for (let i = 0; i < form?.image?.length; i++) {
-      formData.append("images", form.image[i]);
-    }
+
+    images.map(image => formData.append("images", image))
     dispatch(addInformation(formData));
     resetForm();
   };
@@ -83,44 +119,103 @@ const MyInformation = () => {
       <HeaderTitle style={{ marginTop: "1rem" }}>
         ثبت حرفه و مهارت های من
       </HeaderTitle>
-      <InfoStyle>
-        <InfoWrapper>
-          <InputFile>
-            <Input
-              type="file"
-              name="images"
-              id="file"
-              className="inputfile"
-              onChange={handleChange}
-              multiple
+      <Row>
+        <Right>
+          <SlideContainer>
+            {images.length > 0 ?
+              <Fade {...properties}>
+                {images?.map((img, index) => {
+                  console.log(images);
+                  return (
+                    <EachFade key={index}>
+                      <ImageContainer
+                        onClick={() => {
+                          setShowModal(true);
+                        }}>
+
+                        <ImgCrop grid rotate
+                          aspect={16 / 9}
+                          modalOk='برش بده'
+                          modalCancel='انصراف'
+                          rotate={true}
+                          modalTitle='برش عکس'
+                        >
+                          <Upload
+                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            listType="picture-card"
+                            fileList={images}
+                            onChange={handleChange}
+                            onPreview={onPreview}
+                          >
+                            {/* {fileList.length < 3 && '+ Upload'} */} آپلود تصویر+
+                          </Upload>
+                        </ImgCrop>
+                        {/* <img src={URL.createObjectURL(img)} width="280px" height="270px" object-fit="cover" /> */}
+                      </ImageContainer>
+                    </EachFade>
+                  );
+                })
+                }
+              </Fade> : <img className="image-slider" src={cloud} alt="cloud" style={{ width: "280px", height: "270px" }} onClick={() => {
+                setShowModal(true);
+              }} />}
+          </SlideContainer>
+
+          {showModal && (
+            <EditImageCarrier
+              setShowModal={setShowModal}
+              show={showModal}
+              title="مدیریت تصاویر"
+              headTitle="مدیریت تصاویر"
+              setImage={setImages}
+              images={images}
+              from="addCareer"
             />
-            <Label htmlFor="file">
-              <img src={bg} alt="profile" />
-            </Label>
-            <img className="image-slider" src={cloud} alt="cloud" />
-          </InputFile>
-          <InputFeild
-            label="عنوان"
-            type="text"
-            name="title"
-            onChange={handleChange}
-            value={form.title}
-          />
-        </InfoWrapper>
-        <FormGroup>
-          <Title>متن اصلی</Title>
-          <TextArea
-            name="content"
-            value={form.content}
-            onChange={handleChange}
-          ></TextArea>
-        </FormGroup>
-        <Button small size="12px" onClick={handleSubmit}>
-          {loadingSendInfo ? <Loading /> : "تایید"}
-        </Button>
-      </InfoStyle>
+          )}
+        </Right>
+
+        <Left>
+          <LeftRow height="15%">
+            <Label>عنوان:</Label>
+            <InputField
+              onChange={handleChange}
+              defaultValue={form?.title}
+              name="title"
+            />
+          </LeftRow>
+          <LeftRow height="65%">
+            <Label>توضیحات:</Label>
+            <TextArea
+              onChange={handleChange}
+              defaultValue={form.content}
+              name="content"
+            />
+          </LeftRow>
+          <LeftRow height="20%" justify="flex-end">
+            <Button small size="14px" onClick={handleSubmit}>
+              {loadingSendInfo ? (
+                <Typography color="#fff" size="10px">
+                  <Loading />
+                </Typography>
+              ) : (
+                "ثبت"
+              )}
+            </Button>
+          </LeftRow>
+        </Left>
+      </Row>
     </Fragment>
   );
 };
 
+export const Row = styled.div`
+display: flex;
+flex-direction: row;
+height: 300px;
+padding: 1rem;
+background-color: white;
+border-radius: 1rem
+`
+
 export default MyInformation;
+

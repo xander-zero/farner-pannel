@@ -35,8 +35,10 @@
   padding: 10px;
   border: 1px solid #c8cccf;
   width: 80%;
+  height: auto;
   border-radius: 10px;
   margin: 0.5rem;
+  
 }
 
 .drop-file-input__label img {
@@ -47,7 +49,8 @@
   /* margin-top: 30px; */
   border-radius: 10px;
   height: 200px;
-  overflow-y: scroll;
+  /* background-color: red; */
+  /* overflow-y: scroll; */
 }
 
 .drop-file-preview p {

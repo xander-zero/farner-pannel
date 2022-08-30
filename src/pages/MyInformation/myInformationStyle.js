@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const InfoStyle = styled.div`
   margin-top: 0.5rem;
-  padding: 1rem;
+  padding: 1rem; 
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   background-color: ${({ theme }) => theme.backgroundSidebar};
   border-radius: 10px;
 `;

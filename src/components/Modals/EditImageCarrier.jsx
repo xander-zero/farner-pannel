@@ -10,10 +10,7 @@ import {
   WrapperImg,
 } from "./style/modalStyle";
 // images
-import bg from "../../assets/images/expert.png";
-import cloud from "../../assets/images/cloud-upload-regular-240.png";
-import Typography from "../Typography/Typography";
-import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus, AiOutlinePicture } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deletedImage, updatedCarrier } from "../../redux/action/farmer";
 
@@ -23,17 +20,26 @@ const EditImageCarrier = ({
   show,
   setShowModal,
   images,
+  setImage,
   sid,
+  from
 }) => {
-  // const imageList = [1, 2, 3, 4, 5];
-  //   const [show, setShow] = useState(false);
-  const [file, setFile] = useState(null);
+  let file = null;
   const dispatch = useDispatch();
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
   const handleChange = (event) => {
-    setFile(event.target.files[0]);
+
+    if (from === "addCareer") {
+      const chosenFiles = Array.prototype.slice.call(event.target.files);
+      images.push(...chosenFiles)
+      setImage(images)
+      handleClose()
+    } else {
+      file = event.target.files[0];
+      window.confirm("فایل مورد نظر در سرور بارگذاری شود؟") === true && handleSubmit()
+    }
   };
 
   const handleSubmit = () => {
@@ -42,16 +48,22 @@ const EditImageCarrier = ({
     dispatch(updatedCarrier(formData, sid));
   };
 
-  const handleDeleteImage = (id) => {
-    dispatch(deletedImage(id));
-    handleClose();
+  const handleDeleteImage = (img) => {
+    if (from === "addCareer") {
+      setImage(images.filter(item => item.name !== img.name));
+    } else {
+      dispatch(deletedImage(img));
+      handleClose();
+    }
   };
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        {title}
-      </Button> */}
+      {/* {
+          showImgUploadAndDeleteAlert && (
+            window.confirm("فایل مورد نظر در سرور بارگذاری شود؟") === true && (handleSubmit())
+          )
+        } */}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -67,28 +79,41 @@ const EditImageCarrier = ({
                   id="file"
                   className="inputfile"
                   onChange={handleChange}
-                  multiple={true}
+                  multiple={from === "addCareer" ? true : false}
                 />
-                <Label htmlFor="file">
-                  <img src={bg} alt="profile" />
-                </Label>
-                <Icon color="#D1F1F7">
-                  <AiOutlinePlus color="#0d6efd" size={20} />
+                <Icon color="#E2E2E2">
+                  <AiOutlinePicture color="black" size={80} />
                 </Icon>
-                {/* <img className="image-slider" src={cloud} alt="cloud" /> */}
+                <p style={{ backgroundColor: "#E2E2E2", textAlign: "center", color: "black" }}>افزودن تصویر</p>
               </InputFile>
             </WrapperImg>
-            {images?.map((image, index) => (
-              <WrapperImg key={index}>
-                <img src={image?.link} alt="bg" />
-                <Icon
-                  color="#ffd0d0"
-                  onClick={() => handleDeleteImage(image?.id)}
-                >
-                  <AiOutlineDelete color="red" size={20} />
-                </Icon>
-              </WrapperImg>
-            ))}
+            {from === "addCareer" ?
+              images?.map((image, index) => (
+                <WrapperImg key={index}>
+                  <img src={URL.createObjectURL(image)} alt="bg" />
+                  <Icon
+                    color="#ffd0d0"
+                    onClick={() => handleDeleteImage(image)}
+                    style={{ width: "100%" }}
+                  >
+                    <AiOutlineDelete color="red" size={20} style={{ alignSelf: "flex-end" }} />
+                  </Icon>
+                </WrapperImg>
+              ))
+              :
+              images?.map((image, index) => (
+                <WrapperImg key={index}>
+                  <img src={image?.link} alt="bg" />
+                  <Icon
+                    color="#ffd0d0"
+                    onClick={() => handleDeleteImage(image?.id)}
+                    style={{ width: "100%" }}
+                  >
+                    <AiOutlineDelete color="red" size={20} style={{ alignSelf: "flex-end" }} />
+                  </Icon>
+                </WrapperImg>
+              ))
+            }
           </WrapperCard>
         </Modal.Body>
         <Modal.Footer>

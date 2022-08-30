@@ -15,6 +15,7 @@ import { sendFileContent } from "../../redux/action/farmer";
 import { getAllProducts } from "../../redux/action/general";
 import { Container } from "../../theme/GlobalStyle";
 import { errorMessage } from "../../utils/message";
+import { CustomLabel, CustomSelect, CustomTextArea, CustomInput, TitleVideoWrapper } from "../UploadVideoPage/UploadVideoPage";
 import {
   Label,
   Left,
@@ -26,21 +27,13 @@ const UploadFilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userInformation = userData();
-  const expertCodeData = userInformation?.data?.result?.expert?.expertCode;
+  const expertCodeData = userInformation?.data?.result ?.expert?.expertCode;
   const [tags, setTags] = useState([]);
-  const [fileList, setFileList] = useState([]);
-  const [imageList, setImageList] = useState([]);
-  const [certainFile, setCertainFile] = useState([]);
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-    contentCategory: "",
-    keyWords: [],
-    files: null,
-  });
-  const onFileChange = (files) => {
-    // console.log(files);
-  };
+  const [mainContent, setMainContent] = useState(null);
+  const [featuredImage, setFeaturedImage] = useState([]);
+  const [otherImages, setOtherImages] = useState([]);
+  const [form, setForm] = useState({ title: "", description: "", contentCategory: "", keyWords: [], files: null, });
+
 
   const generalSelector = useSelector((state) => state.general);
   const { products } = generalSelector;
@@ -53,25 +46,22 @@ const UploadFilePage = () => {
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { loadingFile } = farmerSelector;
 
-  const onCertailFile = (files) => {
-    var newFile = files[0];
+  const onOtherImages = (files) => {
 
+    var date = new Date();
+    var newFile = files[(files.length - 1)];
     let modeFile = "";
 
-    if (newFile.type === "image/jpeg") {
-      modeFile = "jpeg";
-    } else if (newFile.type === "image/png") {
-      modeFile = "png";
-    } else {
+    if (newFile.type === "image/jpeg") {modeFile = "jpeg";} 
+    else if (newFile.type === "image/png") {modeFile = "png";} 
+    else {
       errorMessage("فایل انتخاب شده صحیح نمی باشد");
       return false;
     }
 
-    var blob = newFile.slice(0, newFile.size, `image/${modeFile}`);
-    newFile = new File([blob], `featuredImage.${modeFile}`, {
-      type: `image/${modeFile}`,
-    });
-    setCertainFile([...certainFile, newFile]);
+    var blob = newFile.slice(0, newFile.size, `image${date}/${modeFile}`);
+    newFile = new File([blob], `otherImages${date}.${modeFile}`, {type: `image/${modeFile}`,});
+    setOtherImages([...otherImages, newFile]);
   };
 
   const handleSubmit = () => {
@@ -81,11 +71,11 @@ const UploadFilePage = () => {
     formData.append("contentCategory", form.contentCategory);
     formData.append("keyWords", tags.join(","));
     formData.append("expertCode", expertCodeData);
-    // formData.append("files", certainFile[0]);
-    const newFileList = [fileList[0], ...imageList, certainFile[0]];
-    console.log("newFileList", newFileList);
-    for (let i = 0; i < newFileList?.length; i++) {
-      formData.append(`files`, newFileList[i]);
+    formData.append("files", featuredImage);
+    formData.append("files", mainContent);
+    // const newFileList = [fileList[0], ...imageList, certainFile[0]];
+    for (let i = 0; i < otherImages?.length; i++) {
+      formData.append(`files`, otherImages[i]);
     }
 
     dispatch(sendFileContent(formData, navigate));
@@ -102,7 +92,7 @@ const UploadFilePage = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  console.log("fileList[0]", certainFile);
+  // console.log("fileList[0]", certainFile);
 
   return (
     <Container>
@@ -111,52 +101,61 @@ const UploadFilePage = () => {
       </Typography>
       <Wrapper>
         <Right>
-          <InputFeild
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
-            label="عنوان"
-            placeholder="عنوان"
-            weight
-          />
-          <TextArea
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
-            label="توضیحات"
-            placeholder="توضیحات"
-          ></TextArea>
-          <div className="select">
-            <Label>دسته بندی مطلب</Label>
-            <Select
-              onChange={(e) =>
-                setForm({ ...form, contentCategory: e.target.value })
+
+          <TitleVideoWrapper>
+            <CustomLabel>عنوان</CustomLabel>
+            <CustomInput onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="عنوان" />
+            <CustomLabel>توضیحات</CustomLabel>
+            <CustomTextArea onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="توضیحات" />
+          </TitleVideoWrapper>
+
+          <TitleVideoWrapper>
+            <CustomLabel>دسته بندی مطالب</CustomLabel>
+            <CustomSelect onChange={(e) => setForm({ ...form, contentCategory: e.target.value })}>
+              <option value="" selected={"انتخاب کنید"}>
+                انتخاب کنید
+              </option>
+              {
+                productFormat.map((item, index) => (
+                  <option key={index} value={item.value}>{item.label}</option>
+                ))
               }
-              items={productFormat}
-            />
-          </div>
+            </CustomSelect>
+          </TitleVideoWrapper>
+
+          <TitleVideoWrapper>
+            <CustomLabel>کلمات کلیدی</CustomLabel>
           <TagGenerator tags={tags} setTags={setTags} />
+          </TitleVideoWrapper>
 
           <Button small size="14px" weight="bold" onClick={handleSubmit}>
             {loadingFile ? <Loading /> : "ارسال"}
           </Button>
+          
         </Right>
+
         <Left>
           {/* <VideoInput type=".pdf" titleFile="مطلب مورد نظر را انتخاب کنید" /> */}
           <DragDropFile
             title="بارگذاری مطلب"
             type=".docx"
-            onFileChange={(files) => onFileChange(files)}
-            fileList={fileList}
-            setFileList={setFileList}
+            mainContent={mainContent}
+            setMainContent={setMainContent}
+            fileType = "content"
+
           />
           <DragDropFile
             title="بارگذاری تصویر شاخص"
-            onFileChange={(files) => onCertailFile(files)}
-            fileList={certainFile}
-            setFileList={setCertainFile}
+            featuredImage={featuredImage}
+            setFeaturedImage={setFeaturedImage}
+            fileType = "featuredImage"
           />
           <DragDropFile
             title="بارگذاری سایر تصاویر"
-            onFileChange={(files) => onFileChange(files)}
-            fileList={imageList}
-            setFileList={setImageList}
+            onFileChange={(files) => onOtherImages(files)}
+            otherImages={otherImages}
+            setOtherImages={setOtherImages}
+            fileType = "otherImages"
           />
         </Left>
       </Wrapper>

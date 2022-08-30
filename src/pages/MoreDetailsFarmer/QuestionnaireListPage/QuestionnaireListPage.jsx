@@ -66,7 +66,7 @@ const QuestionnaireListPage = () => {
                 </Typography>
               </Row>
               <Typography size="14px" weight="bold">
-                تاریخ دریافت : {formatData(item?.date?.toString() || "") || ""}
+                تاریخ دریافت : {formatData(item?.date?.toString())}
               </Typography>
             </Header>
             <Header>

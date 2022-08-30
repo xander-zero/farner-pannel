@@ -10,7 +10,7 @@ const Header = () => {
     <Wrapper>
       <HeaderTitle>
         <Typography size="16px" weight="bold">
-          داشبورد
+          داشبورد 
         </Typography>
       </HeaderTitle>
       <WrapperProfile>

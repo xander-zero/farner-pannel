@@ -21,9 +21,9 @@ export const Card = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 350px;
-  background-color: ${({ theme }) => theme.backgroundSidebar};
-  box-shadow: ${({ theme }) => theme.shadow};
+  width: 30%;
+  background-color: ${({ theme }) => theme.body};
+  box-shadow: ${({ theme }) => theme.farmerDataCardShadow};
   margin: 0.5rem;
   border-radius: 10px;
   cursor: pointer;

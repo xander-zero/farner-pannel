@@ -15,15 +15,13 @@ import { userData } from "../../help/userData";
 import { sendVideoContent } from "../../redux/action/farmer";
 import Loading from "../../components/Loading/Loading";
 
-const UploadVideoPage = () => {
+// style components
+import styled from "styled-components"; 
+ 
+const UploadVideoPage = () => { 
   const initialValue = [
     {
       id: "1",
-      label: "انتخاب کنید",
-      value: "",
-    },
-    {
-      id: "2",
       label: "آموزشی",
       value: "آموزشی",
     },
@@ -34,19 +32,11 @@ const UploadVideoPage = () => {
     },
   ];
 
-  const [fileList, setFileList] = useState([]);
+  // const [cover, setCover] = useState(null);
+  const [cover, setCover] = useState([]);
   const [tags, setTags] = useState([]);
   const [source, setSource] = useState(null);
-  const [form, setForm] = useState({
-    title: "",
-    video: null,
-    cover: "",
-    description: "",
-    type: "",
-    pid: "",
-    category: "",
-    keyWords: [],
-  });
+  const [form, setForm] = useState({ title: "", video: null, cover: "", description: "", type: "", pid: "", category: "", keyWords: [] });
   const inputRef = useRef();
   const dispatch = useDispatch();
 
@@ -58,7 +48,7 @@ const UploadVideoPage = () => {
     console.log(files);
   };
 
-  console.log("fileList[0]", fileList[0]);
+  // console.log("fileList[0]", fileList[0]);
 
   const farmerSelector = useSelector((state) => state.myFarmer);
   const { loadingVideo } = farmerSelector;
@@ -80,7 +70,7 @@ const UploadVideoPage = () => {
     formData.append("video", inputRef ? inputRef?.current?.files[0] : null);
     formData.append("type", form.type);
     formData.append("category", form.category);
-    formData.append("cover", fileList[0] ? fileList[0] : null);
+    formData.append("cover", cover.length > 0 ? cover[0].originFileObj : null);
     formData.append("keyWords", tags?.join(","));
     formData.append("expertCode", expertCodeData);
 
@@ -96,33 +86,49 @@ const UploadVideoPage = () => {
       <Typography size="20px" weight="bold">
         بارگذاری ویدیو
       </Typography>
+
       <Wrapper>
-        <Right>
-          <InputFeild
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
-            label="ارسال عنوان ویدیو"
-            placeholder="عنوان"
-          />
-          <TextArea
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
-            label="توضیحات ویدیو"
-            placeholder="توضیحات"
-          ></TextArea>
-          <div className="select">
-            <Label>نوع ویدیو</Label>
-            <Select
-              onChange={(e) => setForm({ ...form, type: e.target.value })}
-              items={initialValue}
-            />
-          </div>
-          <div className="select">
-            <Label>دسته بندی ویدیو</Label>
-            <Select
-              onChange={(e) => setForm({ ...form, category: e.target.value })}
-              items={productFormat}
-            />
-          </div>
-          <TagGenerator tags={tags} setTags={setTags} />
+        <Right> 
+
+          <TitleVideoWrapper>
+            <CustomLabel>عنوان ویدیو</CustomLabel>
+            <CustomInput onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="مثال: راهکارهای خندان شدن پسته" />
+            <CustomLabel>توضیحات ویدیو</CustomLabel>
+            <CustomTextArea onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="توضیحات ویدیو..." />
+          </TitleVideoWrapper>
+
+          <TitleVideoWrapper>
+            <CustomLabel>نوع ویدیو</CustomLabel>
+            <CustomSelect onChange={(e) => setForm({ ...form, type: e.target.value })}>
+              <option value="" selected={"انتخاب کنید"}>
+                انتخاب کنید
+              </option>
+              {
+                initialValue.map((item, index) => (
+                  <option key={index} value={item.value}>{item.label}</option>
+                ))
+              }
+            </CustomSelect>
+
+            <CustomLabel>دسته بندی ویدیو</CustomLabel>
+            <CustomSelect onChange={(e) => setForm({ ...form, category: e.target.value })} >
+              <option value="" selected={"انتخاب کنید"}>
+                انتخاب کنید
+              </option>
+              {
+                productFormat.map((item, index) => (
+                  <option key={index} value={item.value}>{item.label}</option>
+                ))
+              }
+            </CustomSelect>
+
+          </TitleVideoWrapper>
+
+          <TitleVideoWrapper>
+            <CustomLabel>کلمات کلیدی</CustomLabel>
+            <TagGenerator tags={tags} setTags={setTags} />
+          </TitleVideoWrapper>
+
           <Button small size="14px" weight="bold" onClick={handleSubmit}>
             {loadingVideo ? (
               <Typography color="#fff" size="10px">
@@ -133,25 +139,89 @@ const UploadVideoPage = () => {
             )}
           </Button>
         </Right>
+
         <Left>
-          <VideoInput
-            titleFile="ویدیو شاخص را انتخاب کنید"
-            onFileChange={(files) => onFileChange(files)}
-            type=".mov,.mp4"
-            setSource={setSource}
-            source={source}
-            inputRef={inputRef}
-          />
-          <DragDropFile
-            title="کاور را انتخاب کنید"
-            onFileChange={(files) => onVideoChange(files)}
-            fileList={fileList}
-            setFileList={setFileList}
-          />
+          <VideoInput titleFile="ویدیو را انتخاب کنید" onFileChange={(files) => onFileChange(files)} type=".mov,.mp4" setSource={setSource} source={source} inputRef={inputRef}/>
+          <DragDropFile title="کاور را انتخاب کنید" onFileChange={(files) => onVideoChange(files)} cover={cover} setCover={setCover} fileType = "cover"/>
         </Left>
       </Wrapper>
     </Container>
   );
-};
+}; 
+const WrapperVideo = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  gap: 1.2rem;
+  width: 100%;
+
+`
+
+export const TitleVideoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: flex-start; */
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  /* background-color: red; */
+`
+
+export const CustomLabel = styled.label`
+  font-size: 1rem;
+  font-weight: bold;
+`
+
+
+export const CustomInput = styled.input`
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #c8cccf;
+  border-radius: 5px;
+  outline: none;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundSidebar};
+  margin-bottom: 0.5rem;
+
+  &::placeholder {
+    font-size: 0.8rem;
+  }
+`
+
+export const CustomTextArea = styled.textarea`
+  width: 100%;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.text};
+  padding: 0.5rem 0.5rem 0 1.1rem;
+  font-family: "IRAN";
+  font-size: 10px;
+  background: #F2F2F2;
+  box-shadow: inset 4px 4px 15px -9px rgba(79, 79, 79, 0.25);
+  border-radius: 10px;
+  height: 68px;
+  margin-bottom: 0.5rem;
+
+  &::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  }
+`
+
+export const CustomSelect = styled.select`
+  border: 1px solid ${({ theme }) => theme.border};
+  color: ${({ theme }) => theme.text};
+  padding: 0.4rem;
+  background-color: ${({ theme }) => theme.backgroundSidebar};
+  outline: none;
+  font-family: "IRAN";
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+
+`
 
 export default UploadVideoPage;

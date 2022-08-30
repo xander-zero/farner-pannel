@@ -14,6 +14,15 @@ import { GrUnorderedList } from "react-icons/gr";
 // styled components module
 import styled from "styled-components";
 
+import { FiUserCheck } from "react-icons/fi";
+import { RiTicketLine } from "react-icons/ri";
+import { BsCalendarCheck } from "react-icons/bs";
+import {RiDashboardLine} from "react-icons/ri";
+import {GiFarmer} from "react-icons/gi";
+import {RiProfileLine} from "react-icons/ri";
+
+import logo from "../../assets/images/logo.png";
+
 const Sidebar = () => {
   const location = useLocation();
   const [showSubMenu, setShowSubMenu] = useState(false);
@@ -21,37 +30,40 @@ const Sidebar = () => {
   return (
     <SidebarStyle>
       <Logo>
-        <TitleLogo>AgroIranExpert</TitleLogo>
+        <img src={logo} />
       </Logo>
+
       <MenuList>
-        <MenuListItem
-          className={location.pathname === "/dashboard/app" ? "active" : ""}
-        >
+
+        <MenuListItem className={location.pathname === "/dashboard/app" ? "active" : ""}>
           <Link to="/dashboard/app">
-            <MdOutlineDashboardCustomize size={20} />
+          <RiDashboardLine size={25}/>
             <p>پیشخوان من</p>
           </Link>
         </MenuListItem>
+
         <MenuListItem
           className={
             location.pathname === "/dashboard/myFarmer" ? "active" : ""
           }
         >
           <Link to="/dashboard/myFarmer">
-            <FiUsers size={20} />
+          <GiFarmer size={25} />
             <p>کشاورزان من</p>
           </Link>
         </MenuListItem>
+
         <MenuListItem
           className={
             location.pathname === "/dashboard/manage-page" ? "active" : ""
           }
         >
           <Link to="/dashboard/manage-page">
-            <MdOutlineManageSearch size={20} />
+            <MdOutlineManageSearch size={25} />
             <p>مدیریت صفحه</p>
           </Link>
         </MenuListItem>
+
         <MenuListItem
           className={
             location.pathname === "/dashboard/profile" ||
@@ -59,19 +71,21 @@ const Sidebar = () => {
               ? "active"
               : ""
           }
-          onClick={() => setShowSubMenu(!showSubMenu)}
+          onMouseEnter={() => setShowSubMenu(!showSubMenu)}
+
         >
           {/* <Link to="/dashboard/profile"> */}
-          <GiSkills size={20} />
+          <RiProfileLine size={25} />
           <div className="d-flex align-items-center">
             <p>حرفه و مهارت ها </p>
-            <IoMdArrowDropdown />
+            <IoMdArrowDropdown style={{marginRight : "2.5rem"}} />
           </div>
           {/* </Link> */}
         </MenuListItem>
+
         {showSubMenu && (
           <>
-            <MenuListItem
+            <SubMenuListItem
               className={
                 location.pathname === "/dashboard/profile" ? "active-sub" : ""
               }
@@ -80,8 +94,9 @@ const Sidebar = () => {
                 <IoIosRecording size={20} />
                 <p>ثبت حرفه و مهارت</p>
               </Link>
-            </MenuListItem>
-            <MenuListItem
+            </SubMenuListItem>
+
+            <SubMenuListItem
               className={
                 location.pathname === "/dashboard/record-profession"
                   ? "active-sub"
@@ -92,7 +107,7 @@ const Sidebar = () => {
                 <GrUnorderedList size={20} />
                 <p>حرفه ها و مهارت های من</p>
               </Link>
-            </MenuListItem>
+            </SubMenuListItem>
           </>
         )}
         {/* <MenuListItem>
@@ -138,6 +153,7 @@ const Sidebar = () => {
           </SubMenu>
         </MenuListItem> */}
       </MenuList>
+
     </SidebarStyle>
   );
 };
@@ -165,6 +181,11 @@ const Logo = styled.div`
   background-color: ${({ theme }) => theme.backgroundSidebar};
   border-bottom: 1px solid ${({ theme }) => theme.border};
   transition: all 0.4s ease-in-out;
+  height: 68px;
+
+  img {
+    width: 60px;
+  }
 `;
 
 const TitleLogo = styled.p`
@@ -189,17 +210,22 @@ const MenuList = styled.ul`
   margin: 0px;
   padding: 0px;
   list-style: none;
+  /* gap: 1rem; */
 `;
+
 const MenuListItem = styled.li`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   font-size: 0.8rem;
   color: #495057;
   transition: 0.4s all ease-in-out;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   cursor: pointer;
-
+  /* background-color: red; */
+  padding: 10px 0;
+  
   span {
     color: ${({ theme }) => theme.text};
     margin: 0 0.5rem;
@@ -223,10 +249,11 @@ const MenuListItem = styled.li`
     display: flex;
     align-items: center;
     margin: 0.2rem;
+    font-size: 1rem;
   }
 
   &:hover {
-    transform: translateX(-10px);
+    /* transform: translateX(-10px); */
   }
   @media (max-width: 899px) {
     justify-content: center;
@@ -239,6 +266,63 @@ const MenuListItem = styled.li`
     } */
   }
 `;
+
+const SubMenuListItem = styled.li`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.8rem;
+  color: #495057;
+  transition: 0.4s all ease-in-out;
+  /* margin: 5px 0; */
+  cursor: pointer;
+  /* background-color: red; */
+  padding: 10px 0;
+  margin-right: 4rem;
+  
+  span {
+    color: ${({ theme }) => theme.text};
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+  }
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9ea4a9;
+    margin-top: 5px;
+    svg {
+      color: ${({ theme }) => theme.text};
+      margin-left: 0.5rem;
+    }
+  }
+  p {
+    color: ${({ theme }) => theme.text};
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 0.2rem;
+    font-size: 0.8rem;
+  }
+
+  &:hover {
+    /* transform: translateX(-10px); */
+  }
+  @media (max-width: 899px) {
+    justify-content: center;
+    cursor: pointer;
+    p {
+      display: none;
+    }
+    /* &:hover {
+      transform: translateX(0);
+    } */
+  }
+`;
+
+
 
 const SubMenu = styled.div`
   display: flex;

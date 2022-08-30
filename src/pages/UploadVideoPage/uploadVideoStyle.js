@@ -12,12 +12,12 @@ export const Right = styled.div`
   flex-direction: column;
   margin-left: 1rem;
   background-color: ${({ theme }) => theme.backgroundSidebar};
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 10px;
   .select {
     display: flex;
     flex-direction: column;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0; 
   }
 `;
 
@@ -26,6 +26,9 @@ export const Left = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundSidebar};
+  padding: 1rem 0;
+  gap: 1.2rem;
+  border-radius: 10px;
 `;
 
 export const Label = styled.label`

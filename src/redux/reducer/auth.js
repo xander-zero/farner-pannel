@@ -24,6 +24,11 @@ export const authReducer = (
         validation: true,
         authData: action.payload,
       };
+    case "SIGN_IN_FAILED":
+        return {
+          ...state,
+          loading: false,
+        };
     // Logout
     case "LOG_OUT":
       return {

@@ -9,7 +9,7 @@ export const Upload = styled.div`
 
 export const Img = styled.img`
   /* border-radius: 50%; */
-  border: 2px solid #00b4ff;
+  border: 2px solid #005ac8;
   width: 100%;
   height: 200px;
   object-fit: contain;
@@ -46,30 +46,33 @@ export const InputFile = styled.input`
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: 70vh;
+
 `;
 
 export const Left = styled.div`
   display: flex;
-  width: 50%;
+  width: 40%;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundSidebar};
+  box-shadow: ${({ theme }) => theme.cardShadow};
   border-radius: 10px;
   padding: 1rem;
   /* margin: 0 0.5rem; */
 `;
 export const Right = styled.div`
   display: flex;
-  width: 50%;
+  width: 40%;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundSidebar};
+  box-shadow: ${({ theme }) => theme.cardShadow};
   border-radius: 10px;
   padding: 1rem;
   margin: 0 0.5rem;

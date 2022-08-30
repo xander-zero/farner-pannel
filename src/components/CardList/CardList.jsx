@@ -8,11 +8,11 @@ import { CardListStyle } from "./CardListStyle";
 
 const CardList = ({ items, icon, expertCode }) => {
   return (
-    <CardListStyle>
+    <CardListStyle> 
       {items?.map((item, index) => (
         <Card icon={icon} key={index} item={item} expertCode={expertCode} />
       ))}
-    </CardListStyle>
+    </CardListStyle> 
   );
 };
 

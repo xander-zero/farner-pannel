@@ -59,6 +59,7 @@ const Label = styled.label`
   margin-bottom: 0.4rem;
   font-weight: ${({ weight }) => (weight ? "bold" : "")};
 `;
+
 const Input = styled.input`
   -webkit-appearance: none;
   border: 1px solid #c8cccf;
@@ -72,7 +73,9 @@ const Input = styled.input`
 
   ::-webkit-input-placeholder {
     color: ${({ theme }) => theme.text};
+    font-size: 0.9rem;
   }
 `;
+
 
 export default InputFeild;

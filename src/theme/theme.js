@@ -1,16 +1,21 @@
 // light mode color
 
 export const lightTheme = {
-  body: "#ECECEC",
+  body: "#dde6f8",
+  containerBackground : "#DADADA",
   text: "#565c63",
   toggleBorder: "#FFF",
   background: "#363537",
-  backgroundSidebar: "#fff",
+  backgroundSidebar: "#fff", 
   shadow: "2px 2px 10px 2px gray",
   bgPrimary: "#0b618d",
   border: "#C8CCCF",
   lightColor: "#98FB98",
   cardBackground: "#EBEBEB",
+  sidebarOptionSelect : "#C1EFFF",
+  cardShadow : "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+  bottomCardShadow : "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 0px 0px -1px",
+  farmerDataCardShadow :"rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"
 };
 
 // dark mode color

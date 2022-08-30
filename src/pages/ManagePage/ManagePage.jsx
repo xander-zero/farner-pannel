@@ -23,6 +23,7 @@ const ManagePage = () => {
             <Img src={uploadVideo} alt="" />
           </Upload>
         </Left>
+        
         <Right>
           <Typography weight="bold" size="14px">
             بارگذاری مطلب

@@ -43,12 +43,12 @@ function TagGenerator({ tags, setTags }) {
 
       <TagFormStyle>
         <form
-          className="form-tag-crt"
+          className="form-tag-crt" 
           id="tag-form"
           onSubmit={handleAddTag}
           noValidate
         >
-          <InputFeild
+          <TagInput
             value={tag}
             onChange={(e) => setTag(e.target.value)}
             maxLenght="15"
@@ -60,6 +60,21 @@ function TagGenerator({ tags, setTags }) {
     </TagGenerateWrapper>
   );
 }
+
+const TagInput = styled.input`
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #c8cccf;
+  border-radius: 5px;
+  outline: none;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundSidebar};
+  margin-bottom: 0.5rem;
+
+  &::placeholder {
+    font-size: 0.8rem;
+  }
+`
 
 const TagGenerateWrapper = styled(motion.div)`
   display: flex;
@@ -125,8 +140,9 @@ const ToggleQuestion = styled(motion.div)`
 
 const TagFormStyle = styled(motion.div)`
   width: 100%;
-  padding: 1rem;
-
+  /* padding: 1rem; */
+  /* background-color: red; */
+  
   .form-tag-crt {
     display: flex;
     align-items: center;
@@ -147,6 +163,7 @@ const TagFormStyle = styled(motion.div)`
 
 const TagListContainer = styled.div`
   margin-top: 1rem;
+  margin-bottom: 1rem;
   width: 100%;
   display: flex;
   align-items: center;

@@ -29,24 +29,22 @@ const Button = ({
 };
 
 const ButtonStyle = styled.button`
+  align-items: center;
   padding: 0.5rem 1rem;
   font-size: ${({ size }) => (size ? size : "1rem")};
   line-height: 1.5;
   border-radius: 0.3rem;
   color: #fff;
-  background-color: ${({ color }) => (color ? color : "#6980ff")};
-  font-family: "IRAN";
+  background: ${({ color }) => (color ? color : "linear-gradient(90deg, rgb(25, 56, 95) 0%, rgb(0, 90, 200) 100%)")};
   width: ${({ small }) => (small ? "130px" : "100%")};
   outline: none;
   border: none;
   cursor: pointer;
-  margin-top: ${({ marginTop }) => (marginTop ? marginTop : "1rem")};
-  margin-right: ${({ space }) => (space ? ".5rem" : "0")};
   font-weight: ${({ weight }) => weight};
-
   a {
     display: flex;
     justify-content: center;
+    align-items: center;
     color: #fff;
   }
 `;

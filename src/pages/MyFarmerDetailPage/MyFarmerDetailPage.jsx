@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 // react router dom
 import { useParams } from "react-router-dom";
 
+// styled component
+import styled from "styled-components"
+
 // components
 import MealPlanList from "../../components/MealPlanList/MealPlanList";
 import Typography from "../../components/Typography/Typography";
@@ -52,43 +55,49 @@ const MyFarmerDetailPage = () => {
 
   return (
     <Container>
-      <Row>
-        <HeaderTitle>جزییات کشاورز</HeaderTitle>
-        {/* <Button size="14px" color="#009EF7" small>
-          assign
-        </Button> */}
-      </Row>
-      <Wrapper>
+
+      <FarmerBioRow>
+
         <HeaderImg>
-          <Img src="https://agrodayan.ir/uploads/avatars/avatar.png" />
-          <HeadeTitle>
-            <div>
-              <Typography size="16px">
-                {(questionnaire && questionnaire[0]?.fullName) || ""}
-              </Typography>
-            </div>
-            <Typography size="16px">
-              شماره تماس :{" "}
-              {(questionnaire && questionnaire[0]?.phoneNumber) || ""}
-            </Typography>
-            <Typography size="16px">
-              آدرس : {`${(questionnaire && questionnaire[0]?.city) || ""}`}
-            </Typography>
-          </HeadeTitle>
+          <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWw9vglASaTDSSdrefQewxE72VRNFXWCe82Q&usqp=CAU" />
         </HeaderImg>
-        <MainContent>
-          <Column></Column>
-        </MainContent>
-        <Row></Row>
-      </Wrapper>
-      <QuestionnaireList
-        items={questionnaire}
-        questionnaireCount={questionnaireCount}
-      />
+
+        <HeadeTitle>
+          <div>
+            <Typography size="16px">
+              {(questionnaire && questionnaire[0]?.fullName) || ""}
+            </Typography>
+          </div>
+          <Typography size="16px">
+            شماره تماس:{" "}
+            {(questionnaire && questionnaire[0]?.phoneNumber) || ""}
+          </Typography>
+          <Typography size="16px">
+            آدرس: {`${(questionnaire && questionnaire[0]?.city) || ""}`}
+          </Typography>
+        </HeadeTitle>
+
+      </FarmerBioRow>
+
+      <QuestionnaireList items={questionnaire} questionnaireCount={questionnaireCount}/>
+      {/* <QuestionnaireList items={[{ product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} questionnaireCount={questionnaireCount} /> */}
       <MealPlanList items={mealPlan} mealPlanCount={mealPlanCount} />
+      {/* <MealPlanList items={[{ product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { product: "پسته", date: "1401/6/25", Qcode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} mealPlanCount={mealPlanCount} /> */}
       <VisitList items={visit} visitCount={visitCount} />
+      {/* <VisitList items={[{ nameProduct: "پسته", date: "1401/6/25", expertCode: "FJATE7920051-1401042536", state: "در حال نگارش" }, { nameProduct: "پسته", expertCode: "FJATE7920051-1401042536", state: "در حال نگارش" }]} visitCount={visitCount} /> */}
     </Container>
   );
 };
+
+const FarmerBioRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: ${({ theme }) => theme.backgroundSidebar};
+  box-shadow: ${({ theme }) => theme.cardShadow};
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+`
 
 export default MyFarmerDetailPage;

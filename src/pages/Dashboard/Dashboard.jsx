@@ -17,13 +17,13 @@ import RecordProfession from "../RecordProfession/RecordProfession";
 import UploadFilePage from "../UploadFile/UploadFilePage";
 import UploadVideoPage from "../UploadVideoPage/UploadVideoPage";
 
-const Dashboard = () => {
+const Dashboard = () => { 
   const userInformation = userData();
 
-  console.log(userInformation);
+  console.log(userInformation); 
 
-  return (
-    <Layout>
+  return ( 
+    <Layout>   
       <ToastContainer />
       <Routes>
         {/* <Route path="content-video" element={<ManageWeblogVideo />} />
@@ -33,10 +33,7 @@ const Dashboard = () => {
         <Route path="myFarmer" element={<MyFarmerPage />} />
         <Route path="myFarmer/:farmerCode" element={<MyFarmerDetailPage />} />
         <Route path="profile" element={<MyInformation />} />
-        <Route
-          path="questionnaire/:farmerCode"
-          element={<QuestionnaireListPage />}
-        />
+        <Route path="questionnaire/:farmerCode" element={<QuestionnaireListPage />} />
         <Route path="mealplan/:farmerCode" element={<MealPlanVisitList />} />
         <Route path="manage-page" element={<ManagePage />} />
         <Route path="manage-page/uploadVideo" element={<UploadVideoPage />} />

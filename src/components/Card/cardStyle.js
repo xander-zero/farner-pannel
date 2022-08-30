@@ -4,13 +4,19 @@ export const CardStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 25%;
-  height: 250px;
+  width: 346px;
+  height: 170px;
   background-color: ${({ theme }) => theme.cardBackground};
-  box-shadow: ${({ theme }) => theme.shadow};
+  box-shadow: ${({ theme }) => theme.cardShadow};
   margin: 0.5rem;
-  border-radius: 10px;
-  @media (max-width: 1500px) {
+  padding: 0.5rem;
+  cursor: pointer;
+
+  /* background: #EBEBEB; */
+  border-radius: 30px;
+
+
+  /* @media (max-width: 1500px) {
     width: 35%;
   }
   @media (max-width: 1300px) {
@@ -21,7 +27,7 @@ export const CardStyle = styled.div`
   }
   @media (max-width: 768px) {
     width: 100%;
-  }
+  } */
 `;
 
 export const Icon = styled.div`
@@ -42,8 +48,8 @@ export const Icon = styled.div`
 export const CardRights = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  padding: 1rem;
+  width: 55%;
+  padding: 1rem; 
 `;
 
 export const CardLeft = styled.div`
@@ -51,15 +57,18 @@ export const CardLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40%;
+  width: 45%;
+  position: relative;
+  /* background-color: red; */
   /* padding: 0.3rem; */
-  background-color: ${({ theme }) => theme.body};
+  /* background-color: ${({ theme }) => theme.body}; */
 `;
+
 
 export const Img = styled.img`
   display: flex;
-  width: 100%;
+  width: 150px;
   height: 150px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 30px;
 `;

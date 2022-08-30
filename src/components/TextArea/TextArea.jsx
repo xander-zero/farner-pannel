@@ -11,8 +11,11 @@ const TextArea = ({
   value,
   name,
   defaultValue,
+  width,
+  onBlur
 }) => {
   return (
+
     <TextAreaStyle>
       <Label>{label}</Label>
       <Text
@@ -22,6 +25,8 @@ const TextArea = ({
         onChange={onChange}
         small={small}
         value={value}
+        width={width}
+        onBlur={onBlur && onBlur}
       ></Text>
       <Typography onClick={onClick}>{icon}</Typography>
     </TextAreaStyle>

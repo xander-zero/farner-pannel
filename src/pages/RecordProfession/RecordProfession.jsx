@@ -13,7 +13,7 @@ import { Input, Label } from "../MyInformation/myInformationStyle";
 import "./style/style.css";
 
 // images
-import bg from "../../assets/images/expert.png";
+import bg from "../../assets/images/expertLogin.svg";
 import cloud from "../../assets/images/cloud-upload-regular-240.png";
 import {
   Content,
@@ -37,19 +37,19 @@ import { Fragment } from "react";
 
 const RecordProfession = () => {
   const dispatch = useDispatch();
-  const fadeImages = [1, 2, 3, 4, 5];
+  // const fadeImages = [1, 2, 3, 4, 5];
 
   const expertSelector = useSelector((state) => state.myFarmer);
   const { carriers } = expertSelector;
 
   useEffect(() => {
     dispatch(allCarriers());
-  }, [dispatch]);
+  }, [dispatch]); 
 
   return (
     <Container>
       <HeaderTitle>حرفه ها و مهارت های من</HeaderTitle>
-      <div className="mt-2">
+      <div className="mt-2" style={{width: "100%"}}>
         <Accordion>
           {carriers?.map((carrier, index) => {
             if (carrier?.status === true) {

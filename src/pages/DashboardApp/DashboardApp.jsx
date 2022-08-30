@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "../../components/Typography/Typography";
-import { Card, Dashboard, Right } from "./dashboardStyle";
+import { Card, Dashboard, Right, CardHeader } from "./dashboardStyle";
 import { HeaderTitle } from "../../theme/GlobalStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -33,9 +33,11 @@ const DashboardApp = () => {
       <HeaderTitle>پیشخوان من</HeaderTitle>
       <Right>
         <Card bgColor="#009EF7">
-          <Typography color="#fff" weight="bold">
-            کشاورزان
-          </Typography>
+          <CardHeader>
+            <Typography color="#fff" weight="bold" size={20}>
+              تعداد کشاورزان
+            </Typography>
+          </CardHeader>
           <div
             style={{
               display: "flex",
@@ -46,18 +48,21 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
-              تعداد کشاورزان
-            </Typography>
+            {/* <Typography color="#fff" size="24px" weight="bold">
+              0
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countFarmer}
             </Typography>
           </div>
         </Card>
+
         <Card bgColor="#F1416C">
-          <Typography color="#fff" weight="bold">
-            بازدید
-          </Typography>
+          <CardHeader>
+            <Typography color="#fff" weight="bold" size={20}>
+              تعداد بازدید
+            </Typography>
+          </CardHeader>
           <div
             style={{
               display: "flex",
@@ -68,18 +73,21 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
-              تعداد بازدید
-            </Typography>
+            {/* <Typography color="#fff" size="24px" weight="bold">
+              0
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countVisit}
             </Typography>
           </div>
         </Card>
+
         <Card bgColor="#50CD89">
-          <Typography color="#fff" weight="bold">
-            برنامه غذایی
-          </Typography>
+        <CardHeader>
+            <Typography color="#fff" weight="bold" size={20}>
+              تعداد برنامه غذایی
+            </Typography>
+          </CardHeader>
           <div
             style={{
               display: "flex",
@@ -90,9 +98,9 @@ const DashboardApp = () => {
               height: "200px",
             }}
           >
-            <Typography color="#fff" size="24px" weight="bold">
-              تعداد برنامه غذایی
-            </Typography>
+            {/* <Typography color="#fff" size="24px" weight="bold">
+              0
+            </Typography> */}
             <Typography color="#fff" size="24px" weight="bold">
               {countMealplan}
             </Typography>
